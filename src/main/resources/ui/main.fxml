@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.MainController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="系统">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onClickExit" text="退出" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="管理">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onClickShedManagement" text="猪舍管理" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickBatchManagement" text="批次管理" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickPigPlan" text="进猪计划" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="帮助">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onClickAbout" text="关于" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <top>
+                <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <items>
+                        <Button fx:id="btnStart" mnemonicParsing="false" onAction="#onClickStart" text="启动" />
+                        <Button mnemonicParsing="false" onAction="#onClickStop" text="停止" />
+                        <Button mnemonicParsing="false" onAction="#onClickClean" text="清洗" />
+                        <Button fx:id="btnTest" mnemonicParsing="false" onAction="#onClickTest" text="test" />
+                    </items>
+                </ToolBar>
+            </top>
+            <center>
+                <SplitPane dividerPositions="0.8" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                            <children>
+                                <SplitPane dividerPositions="0.8" layoutX="191.0" layoutY="32.0" prefHeight="223.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                            <children>
+                                                <fx:include fx:id="svg" source="svg.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                           <children>
+                                               <fx:include fx:id="status" source="status.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                           </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="598.0">
+                     <children>
+                        <TabPane layoutX="83.0" layoutY="-80.0" prefHeight="70.0" prefWidth="598.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="提醒" />
+                            <Tab text="消息" />
+                          </tabs>
+                        </TabPane>
+                     </children></AnchorPane>
+                    </items>
+                </SplitPane>
+            </center>
+        </BorderPane>
+    </center>
+    <bottom>
+        <Pane prefHeight="26.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+    </bottom>
+</BorderPane>
