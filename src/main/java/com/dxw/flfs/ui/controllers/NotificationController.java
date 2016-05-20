@@ -1,6 +1,9 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.common.ms.*;
+import com.dxw.common.ms.Notification;
+import com.dxw.common.ms.NotificationManager;
+import com.dxw.common.ms.NotificationManagerImpl;
+import com.dxw.common.ms.NotificationTags;
 import com.dxw.common.services.ServiceException;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
@@ -16,22 +19,9 @@ import java.util.Date;
 /**
  * Created by zhang on 2016-05-20.
  */
-public class ReminderController {
+public class NotificationController {
     @FXML
     private TableView<Reminder> tableView;
-
-    public ReminderController(){
-
-    }
-    public void addReminder(Reminder reminder){
-        ObservableList<Reminder> data = tableView.getItems();
-        data.add( reminder);
-    }
-
-    public void removeAll(){
-        ObservableList<Reminder> items = tableView.getItems();
-        items.clear();
-    }
 
     private NotificationManager notificationManger;
 
@@ -63,8 +53,9 @@ public class ReminderController {
             String datetime= TimeUtil.formatDateTime( new Date(notification.getWhen()));
             String content = notification.getContent().toString();
 
-            items.add( new Reminder(tag,datetime,content));
+            items.add( new Reminder(tag, datetime,content));
         }
-
     }
+
+
 }

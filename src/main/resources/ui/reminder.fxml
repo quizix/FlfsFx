@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.ReminderController">
+    <children>
+        <TableView fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+            <columns>
+                <TableColumn prefWidth="213.0" text="时间">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="when" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn editable="false" minWidth="0.0" prefWidth="293.0" text="内容">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="content" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <items>
 
-<TableView fx:id="tableReminder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.dxw.flfs.ui.controllers.ReminderController">
-  <columns>
-    <TableColumn prefWidth="260.0" text="时间" />
-    <TableColumn editable="false" minWidth="0.0" prefWidth="246.0" text="描述" />
-  </columns>
-</TableView>
+            </items>
+
+        </TableView>
+    </children>
+</AnchorPane>

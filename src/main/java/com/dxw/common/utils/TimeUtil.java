@@ -25,6 +25,16 @@ public class TimeUtil {
         return f.format(date);
     }
 
+    public static String formatTime(Date date){
+        SimpleDateFormat f = new SimpleDateFormat("HH:mm:ss");
+        return f.format(date);
+    }
+
+    public static String formatDateTime(Date date){
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return f.format(date);
+    }
+
     public static Date parseDate(String source){
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
         try {
