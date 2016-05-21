@@ -21,10 +21,10 @@ public class AdvancedDistributor implements Distributor {
             float each = total / fermentBarrelNumber;
             if (each < SchedulerParams.MIXING_BARREL_MIN_WEIGHT) {
                 //如果小于 搅拌桶最小容量（140*6),那么不需要全部都做
-                int count = (int)Math.floor(total/SchedulerParams.MIXING_BARREL_MIN_WEIGHT);
+                int count = Math.round(total / SchedulerParams.MIXING_BARREL_MIN_WEIGHT);
 
                 short[] barrels = new short[fermentBarrelNumber];
-                for(int i=0;i<count;i++)
+                for (int i = 0; i < count; i++)
                     barrels[i] = 1;
                 float dry = SchedulerParams.MIXING_BARREL_MIN_WEIGHT / (1 + SchedulerParams.WATER_MATERIAL_RATIO);
                 float water = SchedulerParams.MIXING_BARREL_MIN_WEIGHT - dry;
@@ -33,7 +33,7 @@ public class AdvancedDistributor implements Distributor {
                 return new ScheduleResult(dry, water, bacteria, barrels);
 
             } else {
-
+                //否则大于等于140*6，但是小于600*6，这样每个发酵罐做1发酵桶，每发酵桶的量为140~600之间
                 float dry = each / (1 + SchedulerParams.WATER_MATERIAL_RATIO);
                 float water = each - dry;
                 float bacteria = each * SchedulerParams.BACTERIA_RATIO;
@@ -44,9 +44,28 @@ public class AdvancedDistributor implements Distributor {
                 return new ScheduleResult(dry, water, bacteria, barrels);
             }
         } else {
+            int i = 1;
+            for (; i <= SchedulerParams.FERMENT_MIXING_RATIO; i++) {
+                if (i * fermentBarrelNumber * SchedulerParams.MIXING_BARREL_CAPACITY >= total)
+                    break;
+            }
+
+            if (i > SchedulerParams.FERMENT_MIXING_RATIO) {
+                i = SchedulerParams.FERMENT_MIXING_RATIO;
+                //发送异常信息
+            }
+            float each = total / i / fermentBarrelNumber;
+
+            float dry = each / (1 + SchedulerParams.WATER_MATERIAL_RATIO);
+            float water = each - dry;
+            float bacteria = each * SchedulerParams.BACTERIA_RATIO;
+            short[] barrels = new short[fermentBarrelNumber];
+            for (int j = 0; j < barrels.length; j++)
+                barrels[j] = 1;
+            return new ScheduleResult(dry, water, bacteria, barrels);
 
             //计算一共需要做多少个搅拌桶
-            int count = Math.round(
+            /*int count = Math.round(
                     total / SchedulerParams.MIXING_BARREL_CAPACITY);
 
             float dry = SchedulerParams.MIXING_BARREL_CAPACITY / (1 + SchedulerParams.WATER_MATERIAL_RATIO);
@@ -65,7 +84,7 @@ public class AdvancedDistributor implements Distributor {
             for (int i = 0; i < count % fermentBarrelNumber; i++)
                 barrels[i] += 1;
 
-            return new ScheduleResult(dry, water, bacteria, barrels);
+            return new ScheduleResult(dry, water, bacteria, barrels);*/
         }
     }
 }
