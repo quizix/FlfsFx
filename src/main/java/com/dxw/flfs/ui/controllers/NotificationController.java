@@ -29,9 +29,6 @@ public class NotificationController {
     public void initialize() throws ServiceException {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
 
-        notificationManger = new NotificationManagerImpl();
-        registry.register(notificationManger);
-
         notificationManger = (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
 
         if (notificationManger != null) {
@@ -43,7 +40,8 @@ public class NotificationController {
         Notification n = new Notification();
         n.setContent("系统提示：请输入明天的入栏计划");
         n.setWhen( System.currentTimeMillis());
-        notificationManger.notify(NotificationTags.Remind, n);
+        if(notificationManger!= null)
+            notificationManger.notify(NotificationTags.Remind, n);
     }
 
     private void onNotify(String tag, Notification notification) {

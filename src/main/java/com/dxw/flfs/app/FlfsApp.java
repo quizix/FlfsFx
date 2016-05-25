@@ -2,16 +2,11 @@ package com.dxw.flfs.app;/**
  * Created by zhang on 2016-05-19.
  */
 
-import com.dxw.flfs.ui.controllers.ReminderController;
-import com.dxw.flfs.ui.model.Reminder;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.w3c.dom.css.Rect;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +24,7 @@ public class FlfsApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        loadReminder(stage);
+        loadMain(stage);
     }
     /*private void loadSvg(Stage stage) throws IOException {
         URL location = getClass().getClassLoader().getResource("ui/svg.fxml");
@@ -48,7 +43,7 @@ public class FlfsApp extends Application {
         Pane root = loader.load();
 
         Scene scene = new Scene(root);
-        primaryStage.setTitle("发酵式液态料饲喂系统——稻香湾科技");
+        primaryStage.setTitle("发酵式液态料饲喂系统——[稻香湾科技]");
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
 

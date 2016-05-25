@@ -18,8 +18,8 @@
                 <Menu mnemonicParsing="false" text="管理">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#onClickShedManagement" text="猪舍管理" />
-                  <MenuItem mnemonicParsing="false" onAction="#onClickBatchManagement" text="批次管理" />
-                  <MenuItem mnemonicParsing="false" onAction="#onClickPigPlan" text="进猪计划" />
+                        <MenuItem mnemonicParsing="false" onAction="#onClickBatchManagement" text="批次管理" visible="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#onClickPigPlan" text="小猪入栏" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="帮助">
@@ -38,7 +38,6 @@
                         <Button fx:id="btnStart" mnemonicParsing="false" onAction="#onClickStart" text="启动" />
                         <Button mnemonicParsing="false" onAction="#onClickStop" text="停止" />
                         <Button mnemonicParsing="false" onAction="#onClickClean" text="清洗" />
-                        <Button fx:id="btnTest" mnemonicParsing="false" onAction="#onClickTest" text="test" />
                     </items>
                 </ToolBar>
             </top>
@@ -55,23 +54,40 @@
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                           <children>
-                                               <fx:include fx:id="status" source="status.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                           </children>
+                                            <children>
+                                                <fx:include fx:id="status" source="status.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                            </children>
                                         </AnchorPane>
                                     </items>
                                 </SplitPane>
                             </children>
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="598.0">
-                     <children>
-                        <TabPane layoutX="83.0" layoutY="-80.0" prefHeight="70.0" prefWidth="598.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <tabs>
-                            <Tab text="提醒" />
-                            <Tab text="消息" />
-                          </tabs>
-                        </TabPane>
-                     </children></AnchorPane>
+                            <children>
+                                <TabPane layoutX="83.0" layoutY="-80.0" prefHeight="70.0" prefWidth="598.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <tabs>
+                                        <Tab text="提醒">
+                                           <content>
+                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                   <children>
+                                                       <fx:include fx:id="reminder" source="reminder.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                   </children>
+                                               </AnchorPane>
+                                           </content>
+                                        </Tab>
+                                        <Tab text="消息">
+                                           <content>
+                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                   <children>
+                                                       <fx:include fx:id="notification" source="notification.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                   </children>
+                                               </AnchorPane>
+                                           </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
+                            </children>
+                        </AnchorPane>
                     </items>
                 </SplitPane>
             </center>
