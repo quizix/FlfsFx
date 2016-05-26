@@ -24,8 +24,8 @@ public class ReminderController {
 
     }
     public void addReminder(Reminder reminder){
-        ObservableList<Reminder> data = tableView.getItems();
-        data.add( reminder);
+        ObservableList<Reminder> items = tableView.getItems();
+        items.add( reminder);
     }
 
     public void removeAll(){

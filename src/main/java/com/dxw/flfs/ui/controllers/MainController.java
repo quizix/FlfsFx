@@ -64,6 +64,28 @@ public class MainController {
     }
 
     public void onClickShedManagement(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/shedManagement.fxml"));
+            Parent root = loader.load();
+
+
+            Stage stage = new Stage();
+            stage.setTitle("猪舍管理");
+            stage.setScene(new Scene(root, 640, 480));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.initOwner(null);
+            stage.setOnCloseRequest( e->{
+                ShedManagementController controller = loader.getController();
+                controller.dispose();
+
+
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -76,9 +98,8 @@ public class MainController {
     }
 
     public void onClickAbout(){
-        Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("ui/aboutDialog.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("ui/dialogs/about.fxml"));
             Stage stage = new Stage();
             stage.setTitle("关于发酵式液态料饲喂系统");
             stage.setScene(new Scene(root, 450, 320));
