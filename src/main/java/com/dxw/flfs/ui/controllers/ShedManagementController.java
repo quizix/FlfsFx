@@ -9,9 +9,16 @@ import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.Shed;
 import com.dxw.flfs.data.models.Sty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -60,5 +67,48 @@ public class ShedManagementController {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void onClickAddShed(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/shed.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("添加猪舍");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.showAndWait();
+
+            ShedController controller = loader.getController();
+            if( controller.isDialogResult()){
+                String name = controller.getTextFieldName();
+                String code = controller.getTextFieldCode();
+                String address = controller.getTextFieldAddress();
+
+                Shed shed = new Shed();
+                Date now = new Date();
+                shed.setModifyTime(now);
+                shed.setCreateTime(now);
+                shed.setCode(code);
+                shed.setAddress(address);
+                shed.setName(name);
+
+                unitOfWork.getShedRepository().save(shed);
+
+                shedTableView.getItems().add(shed);
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onClickEditShed(){
+
     }
 }

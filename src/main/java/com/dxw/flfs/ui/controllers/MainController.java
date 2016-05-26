@@ -68,7 +68,6 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/shedManagement.fxml"));
             Parent root = loader.load();
 
-
             Stage stage = new Stage();
             stage.setTitle("猪舍管理");
             stage.setScene(new Scene(root, 640, 480));
@@ -78,8 +77,6 @@ public class MainController {
             stage.setOnCloseRequest( e->{
                 ShedManagementController controller = loader.getController();
                 controller.dispose();
-
-
             });
             stage.show();
 
