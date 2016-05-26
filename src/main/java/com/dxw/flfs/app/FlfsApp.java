@@ -2,6 +2,8 @@ package com.dxw.flfs.app;/**
  * Created by zhang on 2016-05-19.
  */
 
+import com.dxw.common.services.ServiceException;
+import com.dxw.common.services.ServiceRegistryImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -24,7 +26,15 @@ public class FlfsApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        loadMain(stage);
+
+        try {
+            new AppInitiator(ServiceRegistryImpl.getInstance()).initServices();
+            loadMain(stage);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+
+        }
+
     }
     /*private void loadSvg(Stage stage) throws IOException {
         URL location = getClass().getClassLoader().getResource("ui/svg.fxml");

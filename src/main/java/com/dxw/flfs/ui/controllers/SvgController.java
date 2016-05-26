@@ -21,7 +21,7 @@ public class SvgController {
     @FXML
     private void initialize() {
         WebEngine engine = webView.getEngine();
-        String url = getClass().getResource("/svg/flfs.svg").toExternalForm();
+        String url = getClass().getResource("/svg/flfs.html").toExternalForm();
         engine.load(url);
 
         addPlcListener();

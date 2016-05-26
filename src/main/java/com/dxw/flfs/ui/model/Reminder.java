@@ -16,6 +16,7 @@ public class Reminder {
 
     }
     public Reminder(String tag, String when, String content){
+        this.setTag(tag);
         this.setWhen(when);
         this.setContent(content);
     }

@@ -2,7 +2,6 @@ package com.dxw.flfs.ui.controllers;
 
 import com.dxw.common.ms.Notification;
 import com.dxw.common.ms.NotificationManager;
-import com.dxw.common.ms.NotificationManagerImpl;
 import com.dxw.common.ms.NotificationTags;
 import com.dxw.common.services.ServiceException;
 import com.dxw.common.services.ServiceRegistry;
@@ -36,12 +35,6 @@ public class NotificationController {
                 onNotify(tag, notification);
             });
         }
-
-        Notification n = new Notification();
-        n.setContent("系统提示：请输入明天的入栏计划");
-        n.setWhen( System.currentTimeMillis());
-        if(notificationManger!= null)
-            notificationManger.notify(NotificationTags.Remind, n);
     }
 
     private void onNotify(String tag, Notification notification) {
@@ -51,7 +44,7 @@ public class NotificationController {
             String datetime= TimeUtil.formatDateTime( new Date(notification.getWhen()));
             String content = notification.getContent().toString();
 
-            items.add( new Reminder(tag, datetime,content));
+            items.add( new Reminder("["+tag+"]", datetime,content));
         }
     }
 

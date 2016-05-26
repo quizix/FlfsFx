@@ -27,6 +27,11 @@
                         <MenuItem mnemonicParsing="false" onAction="#onClickAbout" text="关于" />
                     </items>
                 </Menu>
+            <Menu mnemonicParsing="false" text="测试">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#onSendNotification" text="发送提醒" />
+              </items>
+            </Menu>
             </menus>
         </MenuBar>
     </top>
@@ -46,14 +51,14 @@
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                             <children>
-                                <SplitPane dividerPositions="0.8" layoutX="191.0" layoutY="32.0" prefHeight="223.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <SplitPane dividerPositions="0.6105527638190955" layoutX="191.0" layoutY="32.0" prefHeight="223.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                             <children>
                                                 <fx:include fx:id="svg" source="svg.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                             </children>
                                         </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                        <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="330.0">
                                             <children>
                                                 <fx:include fx:id="status" source="status.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                             </children>
@@ -62,9 +67,9 @@
                                 </SplitPane>
                             </children>
                         </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="598.0">
+                        <AnchorPane maxHeight="160.0" minHeight="0.0" minWidth="0.0" prefHeight="129.0" prefWidth="798.0">
                             <children>
-                                <TabPane layoutX="83.0" layoutY="-80.0" prefHeight="70.0" prefWidth="598.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <TabPane layoutX="83.0" layoutY="-80.0" prefHeight="160.0" prefWidth="598.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <tabs>
                                         <Tab text="提醒">
                                            <content>

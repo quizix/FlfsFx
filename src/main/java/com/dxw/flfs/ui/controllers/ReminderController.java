@@ -38,7 +38,6 @@ public class ReminderController {
     @FXML
     public void initialize() throws ServiceException {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
-
         notificationManger = (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
 
         if (notificationManger != null) {
@@ -47,11 +46,7 @@ public class ReminderController {
             });
         }
 
-        Notification n = new Notification();
-        n.setContent("系统提示：请输入明天的入栏计划");
-        n.setWhen( System.currentTimeMillis());
-        if(notificationManger!= null)
-            notificationManger.notify(NotificationTags.Remind, n);
+
     }
 
     private void onNotify(String tag, Notification notification) {

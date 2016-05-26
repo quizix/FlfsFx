@@ -81,12 +81,12 @@
                             <center>
                                 <TableView fx:id="tableView" prefHeight="309.0" prefWidth="453.0" BorderPane.alignment="CENTER">
                                     <columns>
-                                        <TableColumn prefWidth="214.0" text="发酵罐#">
+                                        <TableColumn prefWidth="111.00000154972076" text="发酵罐#">
                                             <cellValueFactory>
                                                 <PropertyValueFactory property="no" />
                                             </cellValueFactory>
                                         </TableColumn>
-                                        <TableColumn minWidth="0.0" prefWidth="188.0" text="状态">
+                                        <TableColumn minWidth="0.0" prefWidth="152.99996185302734" text="状态">
                                             <cellValueFactory>
                                                 <PropertyValueFactory property="status" />
                                             </cellValueFactory>

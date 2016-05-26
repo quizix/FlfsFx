@@ -23,6 +23,10 @@ public class ServiceRegistryImpl implements ServiceRegistry{
         }
         return registry;
     }
+
+    private ServiceRegistryImpl(){
+
+    }
     @Override
     public void register(Service service) throws ServiceException{
         if( service ==null)

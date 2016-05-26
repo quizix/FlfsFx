@@ -6,12 +6,9 @@ import com.dxw.common.ms.NotificationTags;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -21,7 +18,6 @@ import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -117,5 +113,18 @@ public class MainController {
 
         myDialog.setScene(myDialogScene);
         myDialog.show();
+    }
+
+    public void onSendNotification(){
+        ServiceRegistry registry = ServiceRegistryImpl.getInstance();
+
+        NotificationManager notificationManager = (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
+        if(notificationManager!=null) {
+            Notification n = new Notification();
+            n.setContent("系统提示：请输入明天的入栏计划");
+            n.setWhen(System.currentTimeMillis());
+            notificationManager.notify(NotificationTags.Remind, n);
+        }
+
     }
 }
