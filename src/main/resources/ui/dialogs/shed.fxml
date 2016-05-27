@@ -9,7 +9,7 @@
       <Pane prefHeight="44.0" prefWidth="475.0" style="-fx-background-color: #eeeeee;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="buttonCancel" layoutX="403.0" layoutY="13.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="23.0" prefWidth="52.0" text="取消" />
-            <Button fx:id="buttonOk" layoutX="342.0" layoutY="13.0" mnemonicParsing="false" onAction="#onOk" prefHeight="23.0" prefWidth="55.0" text="添加" />
+            <Button fx:id="buttonOk" layoutX="342.0" layoutY="13.0" mnemonicParsing="false" onAction="#onOk" prefHeight="23.0" prefWidth="55.0" text="确定" />
          </children>
       </Pane>
    </bottom>

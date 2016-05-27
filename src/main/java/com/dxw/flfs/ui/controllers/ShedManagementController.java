@@ -52,9 +52,12 @@ public class ShedManagementController {
 
         shedTableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    Set<Sty> sties = newValue.getSties();
                     styTableView.getItems().clear();
-                    styTableView.getItems().addAll(sties);
+                    if(newValue != null){
+                        Set<Sty> sties = newValue.getSties();
+                        if( sties!=null)
+                            styTableView.getItems().addAll(sties);
+                    }
                 }
         );
     }
@@ -96,11 +99,9 @@ public class ShedManagementController {
                 shed.setCode(code);
                 shed.setAddress(address);
                 shed.setName(name);
-
                 unitOfWork.getShedRepository().save(shed);
 
                 shedTableView.getItems().add(shed);
-
             }
 
         } catch (IOException e) {
@@ -109,6 +110,60 @@ public class ShedManagementController {
     }
 
     public void onClickEditShed(){
+        Shed shed = shedTableView.getSelectionModel().getSelectedItem();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/shed.fxml"));
+            Parent root = loader.load();
+
+            ShedController controller = loader.getController();
+            controller.setShed(shed);
+            Stage stage = new Stage();
+            stage.setTitle("修改猪舍");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.showAndWait();
+
+
+
+            if( controller.isDialogResult()){
+                String name = controller.getTextFieldName();
+                String code = controller.getTextFieldCode();
+                String address = controller.getTextFieldAddress();
+
+                Date now = new Date();
+                shed.setModifyTime(now);
+
+                shed.setCode(code);
+                shed.setAddress(address);
+                shed.setName(name);
+                unitOfWork.getShedRepository().save(shed);
+
+                refreshShedTable();
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void refreshShedTable() {
+        //int index = shedTableView.getSelectionModel().getSelectedIndex();
+
+        /*ObservableList<Shed> items = shedTableView.getItems();
+
+
+        shedTableView.setItems(null);
+        shedTableView.setItems(items);*/
+
+        shedTableView.getColumns().get(0).setVisible(false);
+        shedTableView.getColumns().get(0).setVisible(true);
+
+        //shedTableView.getSelectionModel().select(index);
 
     }
 }

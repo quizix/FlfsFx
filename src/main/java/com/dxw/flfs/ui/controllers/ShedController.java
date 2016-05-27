@@ -1,5 +1,6 @@
 package com.dxw.flfs.ui.controllers;
 
+import com.dxw.flfs.data.models.Shed;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -26,6 +27,7 @@ public class ShedController {
     private Button buttonOk;
 
     private boolean dialogResult;
+    private Shed shed;
 
     public void onOk(){
         dialogResult = true;
@@ -57,5 +59,16 @@ public class ShedController {
 
     public boolean isDialogResult() {
         return dialogResult;
+    }
+
+    public void setShed(Shed shed) {
+        this.shed = shed;
+
+        if(shed != null){
+            this.textFieldAddress.setText(shed.getAddress());
+            this.textFieldCode.setText(shed.getCode());
+            this.textFieldName.setText(shed.getName());
+
+        }
     }
 }

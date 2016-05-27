@@ -17,7 +17,7 @@
                                 <ToolBar>
                                     <items>
                                         <Button mnemonicParsing="false" onAction="#onClickAddShed" text="添加猪舍..." />
-                                        <Button layoutY="23.0" mnemonicParsing="false" text="修改猪舍..." />
+                                        <Button layoutY="23.0" mnemonicParsing="false" onAction="#onClickEditShed" text="修改猪舍..." />
                                     </items>
                                 </ToolBar>
                                 <TableView fx:id="shedTableView" prefHeight="234.0" prefWidth="576.0">
