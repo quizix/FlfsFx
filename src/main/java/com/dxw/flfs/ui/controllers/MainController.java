@@ -7,21 +7,14 @@ import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.VBoxBuilder;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by zhang on 2016-05-19.
@@ -115,7 +108,7 @@ public class MainController {
 
     }
 
-    public void popupErrorMsg() {
+    /*public void popupErrorMsg() {
         final Stage myDialog = new Stage();
         myDialog.initModality(Modality.APPLICATION_MODAL);
         Button okButton = new Button("Ok");
@@ -131,7 +124,7 @@ public class MainController {
 
         myDialog.setScene(myDialogScene);
         myDialog.show();
-    }
+    }*/
 
     public void onSendNotification(){
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();

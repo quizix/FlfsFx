@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -241,7 +243,19 @@ public class ShedManagementController {
     }
 
     public void onClickDeleteSty(){
+        Sty sty = styTableView.getSelectionModel().getSelectedItem();
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个栏位？");
+            alert.setHeaderText(null);
+            alert.showAndWait().filter(response -> response == ButtonType.OK)
+                    .ifPresent(response ->{
+                        unitOfWork.begin();
+                        unitOfWork.getStyRepository().delete(sty);
+                        unitOfWork.commit();
+
+                        styTableView.getItems().remove(sty);
+
+                    });
     }
 
     private void refreshShedTable() {
