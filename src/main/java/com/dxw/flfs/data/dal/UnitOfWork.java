@@ -1,9 +1,6 @@
 package com.dxw.flfs.data.dal;
 
-import com.dxw.flfs.data.models.PigletPlan;
-import com.dxw.flfs.data.models.Shed;
-import com.dxw.flfs.data.models.SiteConfig;
-import com.dxw.flfs.data.models.User;
+import com.dxw.flfs.data.models.*;
 import org.hibernate.Session;
 
 import java.util.Collection;
@@ -18,6 +15,7 @@ public class UnitOfWork implements AutoCloseable {
 
     private DefaultGenericRepository<User> userRepository;
     private DefaultGenericRepository<Shed> shedRepository;
+    private DefaultGenericRepository<Sty> styRepository;
     private DefaultGenericRepository<SiteConfig> siteConfigRepository;
     private DefaultGenericRepository<PigletPlan> pigletPlanRepository;
 
@@ -69,6 +67,12 @@ public class UnitOfWork implements AutoCloseable {
         if( shedRepository == null)
             shedRepository = new DefaultGenericRepository<>(session, Shed.class);
         return shedRepository;
+    }
+
+    public DefaultGenericRepository<Sty> getStyRepository() {
+        if( styRepository == null)
+            styRepository = new DefaultGenericRepository<>(session, Sty.class);
+        return styRepository;
     }
 
     public DefaultGenericRepository<PigletPlan> getPigletPlanRepository() {

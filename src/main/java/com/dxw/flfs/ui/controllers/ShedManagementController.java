@@ -187,7 +187,7 @@ public class ShedManagementController {
                 sty.setShed(shed);
 
                 unitOfWork.begin();
-                unitOfWork.getShedRepository().save(shed);
+                unitOfWork.getStyRepository().save(sty);
                 unitOfWork.commit();
 
                 styTableView.getItems().add(sty);
@@ -199,7 +199,45 @@ public class ShedManagementController {
     }
 
     public void onClickEditSty(){
+        Sty sty = styTableView.getSelectionModel().getSelectedItem();
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/sty.fxml"));
+            Parent root = loader.load();
+
+            StyController controller = loader.getController();
+            controller.setSty(sty);
+            Stage stage = new Stage();
+            stage.setTitle("修改栏位");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.showAndWait();
+
+            if( controller.isDialogResult()){
+                String name = controller.getName();
+                String code = controller.getCode();
+                int no = controller.getNo();
+
+                Date now = new Date();
+                sty.setModifyTime(now);
+
+                sty.setCode(code);
+                sty.setNo(no);
+                sty.setName(name);
+                unitOfWork.begin();
+                unitOfWork.getStyRepository().save(sty);
+                unitOfWork.commit();
+
+                refreshStyTable();
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onClickDeleteSty(){
@@ -212,8 +250,8 @@ public class ShedManagementController {
     }
 
     private void refreshStyTable(){
-        shedTableView.getColumns().get(0).setVisible(false);
-        shedTableView.getColumns().get(0).setVisible(true);
+        styTableView.getColumns().get(0).setVisible(false);
+        styTableView.getColumns().get(0).setVisible(true);
     }
 
 }
