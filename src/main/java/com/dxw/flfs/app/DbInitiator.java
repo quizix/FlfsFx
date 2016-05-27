@@ -42,7 +42,7 @@ public class DbInitiator {
             dao.update(shed);
 
             Date now = new Date();
-            LocalDate later = TimeUtil.fromDate(now);
+            LocalDate later = TimeUtil.toLocalDate(now);
             later.plusDays(10);
             Batch batch = new Batch();
             batch.setCode("1");

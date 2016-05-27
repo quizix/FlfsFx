@@ -7,6 +7,7 @@ import com.dxw.common.services.ServiceRegistryImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -59,6 +60,7 @@ public class FlfsApp extends Application {
 
         Scene scene = new Scene(root);
         primaryStage.setTitle("发酵式液态料饲喂系统——[稻香湾科技]");
+        primaryStage.getIcons().add(new Image("images/piggy-bank-icon.png"));
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
 

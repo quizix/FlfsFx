@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * Created by zhang on 2016-05-26.
  */
-public class StyController {
+public class StyDetailController {
 
     @FXML
     private TextField textFieldName;

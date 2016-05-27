@@ -21,54 +21,55 @@ import java.io.IOException;
  */
 public class MainController {
 
-    public void onClickTest(){
-       // PlcDelegate delegate = PlcDelegateFactory.getPlcDelegate();
-       // delegate.getModel().setSystemStatus((short)2);
+    public void onClickTest() {
+        // PlcDelegate delegate = PlcDelegateFactory.getPlcDelegate();
+        // delegate.getModel().setSystemStatus((short)2);
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
 
         NotificationManager notificationManager = (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
         Notification n = new Notification();
         n.setContent("系统提示：请输入明天的入栏计划");
-        n.setWhen( System.currentTimeMillis());
-        if(notificationManager!=null)
+        n.setWhen(System.currentTimeMillis());
+        if (notificationManager != null)
             notificationManager.notify(NotificationTags.Remind, n);
     }
 
-    public void onClickStart(){
+    public void onClickStart() {
 
     }
 
-    public void onClickStop(){
+    public void onClickStop() {
 
     }
 
-    public void onClickClean(){
+    public void onClickClean() {
 
     }
 
-    public void onClickExit(){
+    public void onClickExit() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要退出系统吗？");
         alert.setHeaderText(null);
         alert.showAndWait().filter(response -> response == ButtonType.OK)
-                .ifPresent(response ->{
+                .ifPresent(response -> {
                     System.exit(0);
                 });
 
     }
 
-    public void onClickShedManagement(){
+    public void onClickShedManagement() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/shedManagement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/shed.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
             stage.setTitle("猪舍管理");
-            stage.setScene(new Scene(root, 640, 480));
+            stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
+            stage.sizeToScene();
             stage.initOwner(null);
-            stage.setOnCloseRequest( e->{
-                ShedManagementController controller = loader.getController();
+            stage.setOnCloseRequest(e -> {
+                ShedController controller = loader.getController();
                 controller.dispose();
             });
             stage.show();
@@ -79,15 +80,34 @@ public class MainController {
 
     }
 
-    public void onClickBatchManagement(){
+    public void onClickBatchManagement() {
 
     }
 
-    public void onClickPigPlan(){
+    public void onClickPigletPlan() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/pigletPlan.fxml"));
+            Parent root = loader.load();
 
+            Stage stage = new Stage();
+            stage.setTitle("小猪入栏计划");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.setOnCloseRequest(e -> {
+                PigletPlanController controller = loader.getController();
+                controller.dispose();
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void onClickAbout(){
+    public void onClickAbout() {
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("ui/dialogs/about.fxml"));
             Stage stage = new Stage();
@@ -126,11 +146,11 @@ public class MainController {
         myDialog.show();
     }*/
 
-    public void onSendNotification(){
+    public void onSendNotification() {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
 
         NotificationManager notificationManager = (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
-        if(notificationManager!=null) {
+        if (notificationManager != null) {
             Notification n = new Notification();
             n.setContent("系统提示：请输入明天的入栏计划");
             n.setWhen(System.currentTimeMillis());

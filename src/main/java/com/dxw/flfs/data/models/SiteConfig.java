@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by zhang on 2016/4/6.
  */
 @Entity
-@Table(name="flfs_site_config")
+@Table(name="flfs_site")
 public class SiteConfig{
     /**
      * 内部id
@@ -35,7 +35,7 @@ public class SiteConfig{
     /**
      * app Id
      */
-    @Column(name="siteCode")
+    @Column(name="code")
     private String siteCode;
 
     /**

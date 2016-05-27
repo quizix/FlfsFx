@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.PigletPlanController">
+   <top>
+      <ToolBar prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button mnemonicParsing="false" onAction="#onAdd" text="添加" />
+            <Button mnemonicParsing="false" onAction="#onEdit" text="修改" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button mnemonicParsing="false" onAction="#onFinish" text="完成入栏" />
+        </items>
+      </ToolBar>
+   </top>
+   <center>
+      <TableView fx:id="tableViewPlan" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="122.0" text="编号" >
+              <cellValueFactory>
+                  <PropertyValueFactory property="id" />
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn minWidth="0.0" prefWidth="250.0" text="预计入栏日期" >
+              <cellValueFactory>
+                  <PropertyValueFactory property="date" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="169.0" text="入栏数量" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="count" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>

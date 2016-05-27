@@ -7,7 +7,6 @@ package com.dxw.common.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -74,7 +73,7 @@ public class TimeUtil {
             return false;
     }
 
-    public static LocalDate fromDate(Date date){
+    public static LocalDate toLocalDate(Date date){
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 

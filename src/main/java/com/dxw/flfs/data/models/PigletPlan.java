@@ -10,8 +10,6 @@ import java.util.Date;
 @Entity
 @Table(name="flfs_piglet_plan")
 public class PigletPlan {
-
-
     /**
      * 内部id
      */

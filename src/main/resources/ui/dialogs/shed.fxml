@@ -1,28 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.ShedController">
-   <bottom>
-      <Pane prefHeight="44.0" prefWidth="475.0" style="-fx-background-color: #eeeeee;" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="buttonCancel" layoutX="483.0" layoutY="7.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="23.0" prefWidth="52.0" text="取消" />
-            <Button fx:id="buttonOk" layoutX="422.0" layoutY="7.0" mnemonicParsing="false" onAction="#onOk" prefHeight="23.0" prefWidth="55.0" text="确定" />
-         </children>
-      </Pane>
-   </bottom>
-   <center>
-      <Pane prefHeight="119.0" prefWidth="475.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="21.0" layoutY="27.0" text="名称" />
-            <TextField fx:id="textFieldName" layoutX="69.0" layoutY="23.0" promptText="猪舍名称" />
-            <TextField fx:id="textFieldAddress" layoutX="69.0" layoutY="60.0" promptText="猪舍地址" />
-            <TextField fx:id="textFieldCode" layoutX="355.0" layoutY="23.0" promptText="猪舍编码" />
-            <Label layoutX="311.0" layoutY="27.0" text="编码" />
-            <Label layoutX="21.0" layoutY="64.0" text="地址" />
-         </children>
-      </Pane>
-   </center>
-</BorderPane>
+<SplitPane dividerPositions="0.5725806451612904" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.ShedController">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0">
+            <children>
+                <TitledPane collapsible="false" layoutY="46.0" text="猪舍信息" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <content>
+                        <VBox>
+                            <children>
+                                <ToolBar>
+                                    <items>
+                                        <Button mnemonicParsing="false" onAction="#onAddShed" text="添加猪舍..." />
+                                        <Button layoutY="23.0" mnemonicParsing="false" onAction="#onEditShed" text="修改猪舍..." />
+                                    </items>
+                                </ToolBar>
+                                <TableView fx:id="shedTableView" prefHeight="299.0" prefWidth="790.0">
+                                    <columns>
+                                        <TableColumn prefWidth="101.0" text="猪舍编号">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="id" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="96.0" text="名称">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="name" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="150.0" text="编码">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="code" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="199.0" text="创建时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="createTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="204.0" text="修改时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="modifyTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+            </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0">
+            <children>
+                <TitledPane collapsible="false" text="栏位信息" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <content>
+                        <VBox>
+                            <children>
+                                <ToolBar>
+                                    <items>
+                                        <Button mnemonicParsing="false" onAction="#onAddSty" text="添加栏位..." />
+                                        <Button layoutY="23.0" mnemonicParsing="false" onAction="#onEditSty" text="修改栏位..." />
+                                        <Button mnemonicParsing="false" onAction="#onDeleteSty" text="删除栏位" />
+                                    </items>
+                                </ToolBar>
+                                <TableView fx:id="styTableView">
+                                    <columns>
+                                        <TableColumn prefWidth="100.0" text="栏位编号">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="id" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="97.0" text="名称">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="name" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="150.0" text="编码">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="code" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="202.0" text="创建时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="createTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="198.0" text="修改时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="modifyTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>
