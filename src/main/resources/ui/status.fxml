@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.cell.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="479.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.StatusController">
     <children>
-        <TitledPane prefHeight="74.0" prefWidth="363.0" text="系统状态">
+        <TitledPane collapsible="false" prefHeight="74.0" prefWidth="363.0" text="系统状态">
             <content>
                 <GridPane prefHeight="43.0" prefWidth="403.0">
 
@@ -37,7 +36,7 @@
                 </GridPane>
             </content>
         </TitledPane>
-        <TitledPane prefHeight="73.0" prefWidth="391.0" text="料塔状态">
+        <TitledPane collapsible="false" prefHeight="73.0" prefWidth="391.0" text="料塔状态">
             <content>
                 <GridPane prefHeight="20.0" prefWidth="155.0">
                     <columnConstraints>
@@ -52,11 +51,28 @@
                     <children>
                         <Label text="料位空警报" />
                         <Label text="料位低警报" GridPane.columnIndex="2" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageViewAlarmEmpty" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                     <image>
+                        <Image url="@../images/alert-green.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="imageViewAlarmLow" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                     <image>
+                        <Image url="@../images/alert-green.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </ImageView>
                     </children>
                 </GridPane>
             </content>
         </TitledPane>
-        <TitledPane animated="false" prefHeight="75.0" prefWidth="429.0" text="搅拌罐状态">
+        <TitledPane animated="false" collapsible="false" prefHeight="75.0" prefWidth="429.0" text="搅拌罐状态">
             <content>
                 <GridPane>
                     <columnConstraints>
@@ -73,7 +89,7 @@
                 </GridPane>
             </content>
         </TitledPane>
-        <TitledPane animated="false" prefHeight="495.0" prefWidth="479.0" text="发酵罐状态">
+        <TitledPane animated="false" collapsible="false" prefHeight="495.0" prefWidth="479.0" text="发酵罐状态">
             <content>
                 <AnchorPane prefHeight="272.0" prefWidth="266.0">
                     <children>
@@ -81,12 +97,12 @@
                             <center>
                                 <TableView fx:id="tableView" prefHeight="309.0" prefWidth="453.0" BorderPane.alignment="CENTER">
                                     <columns>
-                                        <TableColumn prefWidth="111.00000154972076" text="发酵罐#">
+                                        <TableColumn prefWidth="160.0" text="发酵罐#">
                                             <cellValueFactory>
                                                 <PropertyValueFactory property="no" />
                                             </cellValueFactory>
                                         </TableColumn>
-                                        <TableColumn minWidth="0.0" prefWidth="152.99996185302734" text="状态">
+                                        <TableColumn minWidth="0.0" prefWidth="172.0" text="状态">
                                             <cellValueFactory>
                                                 <PropertyValueFactory property="status" />
                                             </cellValueFactory>
