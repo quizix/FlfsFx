@@ -99,7 +99,10 @@ public class ShedManagementController {
                 shed.setCode(code);
                 shed.setAddress(address);
                 shed.setName(name);
+
+                unitOfWork.begin();
                 unitOfWork.getShedRepository().save(shed);
+                unitOfWork.commit();
 
                 shedTableView.getItems().add(shed);
             }
@@ -127,8 +130,6 @@ public class ShedManagementController {
             stage.initOwner(null);
             stage.showAndWait();
 
-
-
             if( controller.isDialogResult()){
                 String name = controller.getTextFieldName();
                 String code = controller.getTextFieldCode();
@@ -140,7 +141,9 @@ public class ShedManagementController {
                 shed.setCode(code);
                 shed.setAddress(address);
                 shed.setName(name);
+                unitOfWork.begin();
                 unitOfWork.getShedRepository().save(shed);
+                unitOfWork.commit();
 
                 refreshShedTable();
 
@@ -151,19 +154,66 @@ public class ShedManagementController {
         }
     }
 
-    private void refreshShedTable() {
-        //int index = shedTableView.getSelectionModel().getSelectedIndex();
+    public void onClickAddSty(){
+        Shed shed = shedTableView.getSelectionModel().getSelectedItem();
 
-        /*ObservableList<Shed> items = shedTableView.getItems();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/sty.fxml"));
+            Parent root = loader.load();
 
+            Stage stage = new Stage();
+            stage.setTitle("添加栏位");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.showAndWait();
 
-        shedTableView.setItems(null);
-        shedTableView.setItems(items);*/
+            StyController controller = loader.getController();
+            if( controller.isDialogResult()){
+                String name = controller.getName();
+                String code = controller.getCode();
+                int no = controller.getNo();
 
-        shedTableView.getColumns().get(0).setVisible(false);
-        shedTableView.getColumns().get(0).setVisible(true);
+                Sty sty = new Sty();
+                Date now = new Date();
+                sty.setModifyTime(now);
+                sty.setCreateTime(now);
+                sty.setCode(code);
+                sty.setNo(no);
+                sty.setName(name);
 
-        //shedTableView.getSelectionModel().select(index);
+                sty.setShed(shed);
+
+                unitOfWork.begin();
+                unitOfWork.getShedRepository().save(shed);
+                unitOfWork.commit();
+
+                styTableView.getItems().add(sty);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onClickEditSty(){
 
     }
+
+    public void onClickDeleteSty(){
+
+    }
+
+    private void refreshShedTable() {
+        shedTableView.getColumns().get(0).setVisible(false);
+        shedTableView.getColumns().get(0).setVisible(true);
+    }
+
+    private void refreshStyTable(){
+        shedTableView.getColumns().get(0).setVisible(false);
+        shedTableView.getColumns().get(0).setVisible(true);
+    }
+
 }

@@ -34,7 +34,7 @@ public class Sty{
      * 猪舍
      */
     @ManyToOne
-    @JoinColumn(name="styId")
+    @JoinColumn(name="shedId")
     private Shed shed;
 
     /**
@@ -106,6 +106,7 @@ public class Sty{
 
     public void setShed(Shed shed) {
         this.shed = shed;
+        this.shed.getSties().add(this);
     }
     
     public String getName() {

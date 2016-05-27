@@ -7,6 +7,7 @@ package com.dxw.flfs.data.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -64,9 +65,9 @@ public class Shed{
     /**
      * 栏位
      */
-    @OneToMany(mappedBy = "shed")
+    @OneToMany(mappedBy = "shed", cascade = CascadeType.PERSIST)
     @OrderBy("id")
-    private Set<Sty> sties;
+    private Set<Sty> sties = new HashSet<>();
 
     public Long getId() {
         return id;

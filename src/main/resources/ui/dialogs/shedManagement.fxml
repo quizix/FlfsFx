@@ -63,9 +63,9 @@
                             <children>
                                 <ToolBar>
                                     <items>
-                                        <Button mnemonicParsing="false" text="添加栏位..." />
-                                        <Button layoutY="23.0" mnemonicParsing="false" text="修改栏位..." />
-                                        <Button mnemonicParsing="false" text="删除栏位" />
+                                        <Button mnemonicParsing="false" onAction="#onClickAddSty" text="添加栏位..." />
+                                        <Button layoutY="23.0" mnemonicParsing="false" onAction="#onClickEditSty" text="修改栏位..." />
+                                        <Button mnemonicParsing="false" onAction="#onClickDeleteSty" text="删除栏位" />
                                     </items>
                                 </ToolBar>
                                 <TableView fx:id="styTableView" prefHeight="200.0" prefWidth="200.0">
