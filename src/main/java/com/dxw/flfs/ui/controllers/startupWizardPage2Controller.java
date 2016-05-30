@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -30,11 +32,11 @@ public class StartupWizardPage2Controller {
     private UnitOfWork unitOfWork;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
-        HibernateService hibernateService = (HibernateService)registry.getService(Services.HIBERNATE_SERVICE);
+        HibernateService hibernateService = (HibernateService) registry.getService(Services.HIBERNATE_SERVICE);
         unitOfWork = new UnitOfWork(hibernateService.getSession());
-        try{
+        try {
             DefaultGenericRepository<PigletPlan> repository = unitOfWork.getPigletPlanRepository();
             Collection<PigletPlan> plans = repository.findAll();
             tableView.getItems().addAll(plans);
@@ -49,7 +51,7 @@ public class StartupWizardPage2Controller {
     }
 
     @FXML
-    public void onAdd(){
+    public void onAdd() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader()
                     .getResource("ui/dialogs/pigletPlanDetail.fxml"));
@@ -70,14 +72,14 @@ public class StartupWizardPage2Controller {
 
             stage.showAndWait();
 
-            if( controller.isDialogResult()){
+            if (controller.isDialogResult()) {
 
                 PigletPlan plan = new PigletPlan();
 
                 Date now = new Date();
                 plan.setModifyTime(now);
                 plan.setCreateTime(now);
-                plan.setCount( controller.getCount());
+                plan.setCount(controller.getCount());
                 plan.setDate(controller.getDate());
 
                 unitOfWork.begin();
@@ -93,7 +95,7 @@ public class StartupWizardPage2Controller {
     }
 
     @FXML
-    public void onEdit(){
+    public void onEdit() {
         PigletPlan plan = tableView.getSelectionModel().getSelectedItem();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader()
@@ -114,10 +116,10 @@ public class StartupWizardPage2Controller {
 
             stage.showAndWait();
 
-            if( controller.isDialogResult()){
+            if (controller.isDialogResult()) {
                 plan.setModifyTime(new Date());
-                plan.setCount( controller.getCount());
-                plan.setDate( controller.getDate());
+                plan.setCount(controller.getCount());
+                plan.setDate(controller.getDate());
 
                 unitOfWork.begin();
                 unitOfWork.getPigletPlanRepository().save(plan);
@@ -138,23 +140,29 @@ public class StartupWizardPage2Controller {
     }
 
     @FXML
-    public void onDelete(){
-        PigletPlan plan = tableView.getSelectionModel().getSelectedItem();
+    public void onDelete() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个入栏计划？");
+        alert.setHeaderText(null);
+        alert.showAndWait().filter(response -> response == ButtonType.OK)
+                .ifPresent(response -> {
+                    PigletPlan plan = tableView.getSelectionModel().getSelectedItem();
 
-        try{
-            unitOfWork.begin();
-            unitOfWork.getPigletPlanRepository().delete(plan);
-            unitOfWork.commit();
+                    try {
+                        unitOfWork.begin();
+                        unitOfWork.getPigletPlanRepository().delete(plan);
+                        unitOfWork.commit();
 
-            tableView.getItems().remove(plan);
-        }
-        catch(Exception ex){
-            ex.printStackTrace();
-        }
+                        tableView.getItems().remove(plan);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                });
+
+
     }
 
     public void setUnitOfWork(UnitOfWork unitOfWork) {
-        if(this.unitOfWork == null)
+        if (this.unitOfWork == null)
             return;
 
         this.unitOfWork = unitOfWork;

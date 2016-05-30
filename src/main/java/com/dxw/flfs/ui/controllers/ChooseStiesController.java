@@ -97,16 +97,21 @@ public class ChooseStiesController {
                 (observable, oldValue, newValue) -> {
                     tableViewSty.getItems().clear();
                     if(newValue != null){
-                        Set<Sty> sties = newValue.getSties();
+
                         unitOfWork.begin();
+                        Set<Sty> sties = newValue.getSties();
                         DefaultGenericRepository<Site> siteRepository = unitOfWork.getSiteConfigRepository();
                         Site site = siteRepository.findByNaturalId(FlfsApp.getContext().getSiteCode());
-
-                        sties.removeAll(site.getSties());
                         unitOfWork.commit();
+                        //sties.removeAll(site.getSties());
+
 
                         if( sties!=null)
-                            tableViewSty.getItems().addAll(sties);
+                            tableViewSty.getItems().addAll(
+                                    sties.stream()
+                                            .filter(sty-> !site.getSties().contains(sty))
+                                            .collect(Collectors.toList())
+                            );
                     }
                 }
         );
