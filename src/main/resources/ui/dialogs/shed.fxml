@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
+
 <SplitPane dividerPositions="0.5725806451612904" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.ShedController">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0">
@@ -14,7 +16,6 @@
                                 <ToolBar>
                                     <items>
                                         <Button mnemonicParsing="false" onAction="#onAddShed" text="添加猪舍..." />
-                                        <Button layoutY="23.0" mnemonicParsing="false" onAction="#onEditShed" text="修改猪舍..." />
                                     </items>
                                 </ToolBar>
                                 <TableView fx:id="shedTableView" prefHeight="299.0" prefWidth="790.0">
@@ -45,6 +46,13 @@
                                             </cellValueFactory>
                                         </TableColumn>
                                     </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#onEditShed" text="修改猪舍..." />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
                                 </TableView>
                             </children>
                         </VBox>
@@ -61,8 +69,6 @@
                                 <ToolBar>
                                     <items>
                                         <Button mnemonicParsing="false" onAction="#onAddSty" text="添加栏位..." />
-                                        <Button layoutY="23.0" mnemonicParsing="false" onAction="#onEditSty" text="修改栏位..." />
-                                        <Button mnemonicParsing="false" onAction="#onDeleteSty" text="删除栏位" />
                                     </items>
                                 </ToolBar>
                                 <TableView fx:id="styTableView">
@@ -93,6 +99,14 @@
                                             </cellValueFactory>
                                         </TableColumn>
                                     </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#onEditSty" text="修改栏位..." />
+                                    <MenuItem mnemonicParsing="false" onAction="#onDeleteSty" text="删除栏位" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
                                 </TableView>
                             </children>
                         </VBox>
