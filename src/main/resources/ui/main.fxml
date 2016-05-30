@@ -98,7 +98,15 @@
             </center>
         </BorderPane>
     </center>
-    <bottom>
-        <Pane prefHeight="26.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
-    </bottom>
+   <bottom>
+      <GridPane style="-fx-background-color: #eeeeee;" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+   </bottom>
 </BorderPane>

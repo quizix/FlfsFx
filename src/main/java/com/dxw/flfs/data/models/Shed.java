@@ -5,6 +5,8 @@
  */
 package com.dxw.flfs.data.models;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -46,6 +48,7 @@ public class Shed{
     /**
      * 编码
      */
+    @NaturalId
     @Column(name="code")
     private String code;
 

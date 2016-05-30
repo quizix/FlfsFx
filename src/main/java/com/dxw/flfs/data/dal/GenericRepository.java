@@ -11,5 +11,7 @@ public interface GenericRepository<ENTITY> {
     ENTITY edit(ENTITY entity);
     ENTITY find(Long id);
 
+    ENTITY findByNaturalId(String id);
+
     Collection<ENTITY> findAll();
 }

@@ -16,7 +16,7 @@ public class UnitOfWork implements AutoCloseable {
     private DefaultGenericRepository<User> userRepository;
     private DefaultGenericRepository<Shed> shedRepository;
     private DefaultGenericRepository<Sty> styRepository;
-    private DefaultGenericRepository<SiteConfig> siteConfigRepository;
+    private DefaultGenericRepository<Site> siteConfigRepository;
     private DefaultGenericRepository<PigletPlan> pigletPlanRepository;
 
     //private DefaultGenericRepository<User> userRepository;
@@ -35,9 +35,9 @@ public class UnitOfWork implements AutoCloseable {
         return userRepository;
     }
 
-    public DefaultGenericRepository<SiteConfig> getSiteConfigRepository() {
+    public DefaultGenericRepository<Site> getSiteConfigRepository() {
         if(siteConfigRepository==null )
-            siteConfigRepository = new DefaultGenericRepository<>(session, SiteConfig.class);
+            siteConfigRepository = new DefaultGenericRepository<>(session, Site.class);
         return siteConfigRepository;
     }
 
@@ -81,11 +81,11 @@ public class UnitOfWork implements AutoCloseable {
         return pigletPlanRepository;
     }
 
-    public SiteConfig getSiteConfig(String siteCode){
-        DefaultGenericRepository<SiteConfig> r = getSiteConfigRepository();
-        Collection<SiteConfig> configs = r.findAll();
+    public Site getSiteConfig(String siteCode){
+        DefaultGenericRepository<Site> r = getSiteConfigRepository();
+        Collection<Site> configs = r.findAll();
 
-        Optional<SiteConfig> config = configs.stream()
+        Optional<Site> config = configs.stream()
                 .filter(c -> c.getSiteCode().equals(siteCode))
                 .findFirst();
 

@@ -1,8 +1,10 @@
 package com.dxw.flfs.data.models;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name="flfs_site")
-public class SiteConfig{
+public class Site {
     /**
      * 内部id
      */
@@ -33,8 +35,9 @@ public class SiteConfig{
     protected Date modifyTime;
 
     /**
-     * app Id
+     * site code
      */
+    @NaturalId
     @Column(name="code")
     private String siteCode;
 
@@ -61,7 +64,7 @@ public class SiteConfig{
     private int stage;
 
     /**
-     * 本批次所对应的栏位
+     *本站点所对应的栏位
      */
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="flfs_site_sty",
@@ -69,11 +72,13 @@ public class SiteConfig{
     @OrderBy("id")
     private Set<Sty> sties = new HashSet<>();
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    /*@ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="flfs_site_plan",
-            joinColumns=@JoinColumn(name="siteId"), inverseJoinColumns=@JoinColumn(name="planId"))
+            joinColumns=@JoinColumn(name="siteId"), inverseJoinColumns=@JoinColumn(name="planId"))*/
+    @OneToMany(mappedBy = "site", cascade = CascadeType.PERSIST)
     @OrderBy("id")
     private Set<PigletPlan> plans = new HashSet<>();
+
 
 
     public Long getId() {
@@ -104,7 +109,7 @@ public class SiteConfig{
         return siteCode;
     }
 
-    public void setSiteCode(String appId) {
+    public void setSiteCode(String siteCode) {
         this.siteCode = siteCode;
     }
 
@@ -130,6 +135,14 @@ public class SiteConfig{
 
     public void setSties(Set<Sty> sties) {
         this.sties = sties;
+    }
+
+    public void addSties(Collection<Sty> sties){
+        this.sties.addAll(sties);
+    }
+
+    public void removeSties(Collection<Sty> sties){
+        this.sties.removeAll(sties);
     }
 
     public Set<PigletPlan> getPlans() {

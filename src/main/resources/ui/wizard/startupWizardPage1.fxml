@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.StartupWizardPage1Controller">
+   <top>
+      <ToolBar BorderPane.alignment="CENTER">
+        <items>
+          <Button mnemonicParsing="false" onAction="#onAssociate" text="关联栏位" />
+            <Button mnemonicParsing="false" onAction="#onUnassociate" text="取消关联" />
+        </items>
+      </ToolBar>
+   </top>
+   <center>
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="110.0" text="栏位编号" >
+              <cellValueFactory>
+                  <PropertyValueFactory property="id" />
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="158.0" text="栏位名称" >
+              <cellValueFactory>
+                  <PropertyValueFactory property="name" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="154.0" text="栏位编码" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="code" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="182.0" text="创建时间" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="createTime" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="162.0" text="修改时间" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="modifyTime" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>

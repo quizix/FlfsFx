@@ -8,7 +8,7 @@ import com.dxw.flfs.data.FlfsDaoImpl;
 import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.models.Batch;
 import com.dxw.flfs.data.models.Shed;
-import com.dxw.flfs.data.models.SiteConfig;
+import com.dxw.flfs.data.models.Site;
 import com.dxw.flfs.data.models.Sty;
 
 import java.time.LocalDate;
@@ -77,7 +77,7 @@ public class DbInitiator {
 
             dao.update(batch);
 
-            SiteConfig config = new SiteConfig();
+            Site config = new Site();
             config.setCreateTime(new Date());
             config.setModifyTime(new Date());
             //config.setBatchCode("1");

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.StartupWizardPage2Controller">
+   <top>
+      <ToolBar BorderPane.alignment="CENTER">
+        <items>
+          <Button mnemonicParsing="false" onAction="#onAdd" text="添加" />
+            <Button mnemonicParsing="false" onAction="#onEdit" text="修改" />
+            <Button mnemonicParsing="false" onAction="#onDelete" text="删除" />
+        </items>
+      </ToolBar>
+   </top>
+   <center>
+      <TableView fx:id="tableView" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="75.0" text="编号" >
+              <cellValueFactory>
+                  <PropertyValueFactory property="id" />
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="218.0" text="预计入栏日期" >
+              <cellValueFactory>
+                  <PropertyValueFactory property="date" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="218.0" text="入栏数量" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="count" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>

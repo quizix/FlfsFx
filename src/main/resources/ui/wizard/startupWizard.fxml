@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.StartupWizardController">
+    <center>
+        <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                       <fx:include fx:id="startupWizardPage1" source="startupWizardPage1.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                       <fx:include fx:id="startupWizardPage2" source="startupWizardPage2.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            </children>
+        </StackPane>
+    </center>
+    <bottom>
+        <FlowPane alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="415.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#onPrev" prefHeight="30.0" prefWidth="80.0" text="上一步">
+                    <FlowPane.margin>
+                        <Insets right="10.0" />
+                    </FlowPane.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#onNext" prefWidth="80.0" text="下一步">
+                    <FlowPane.margin>
+                        <Insets right="10.0" />
+                    </FlowPane.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#onOk" prefWidth="80.0" text="完 成">
+                    <FlowPane.margin>
+                        <Insets right="10.0" />
+                    </FlowPane.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#onCancel" prefWidth="80.0" text="取 消">
+                    <FlowPane.margin>
+                        <Insets right="10.0" />
+                    </FlowPane.margin>
+                </Button>
+            </children>
+        </FlowPane>
+    </bottom>
+</BorderPane>

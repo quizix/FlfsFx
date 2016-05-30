@@ -10,7 +10,7 @@ import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.GenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.PigletPlan;
-import com.dxw.flfs.data.models.SiteConfig;
+import com.dxw.flfs.data.models.Site;
 import com.dxw.flfs.data.models.Sty;
 
 import java.util.Optional;
@@ -31,7 +31,7 @@ public class AdaptiveScheduler implements FlfsScheduler {
     }
 
     UnitOfWork uow = null;
-    SiteConfig siteConfig = null;
+    Site siteConfig = null;
 
     @Override
     public ScheduleResult schedule6AM(UnitOfWork uow) throws SchedulerException {
@@ -48,8 +48,8 @@ public class AdaptiveScheduler implements FlfsScheduler {
     }
 
     private ScheduleResult doSchedule() throws SchedulerException {
-        GenericRepository<SiteConfig> repository = uow.getSiteConfigRepository();
-        Optional<SiteConfig> config =
+        GenericRepository<Site> repository = uow.getSiteConfigRepository();
+        Optional<Site> config =
                 repository.findAll().stream().filter(x -> x.getSiteCode().equals(siteCode)).findFirst();
 
         if (config.isPresent()) {

@@ -33,7 +33,7 @@
     <mapping class="com.dxw.flfs.data.models.ProductionInstruction" />
     <mapping class="com.dxw.flfs.data.models.Shed" />
     <mapping class="com.dxw.flfs.data.models.Sty" />
-    <mapping class="com.dxw.flfs.data.models.SiteConfig" />
+    <mapping class="com.dxw.flfs.data.models.Site" />
     <mapping class="com.dxw.flfs.data.models.User" />
     <mapping class="com.dxw.flfs.data.models.WorkingCondition" />
 

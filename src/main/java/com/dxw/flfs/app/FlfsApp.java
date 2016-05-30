@@ -3,16 +3,24 @@ package com.dxw.flfs.app;/**
  */
 
 import com.dxw.common.services.ServiceException;
+import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
+import com.dxw.common.services.Services;
+import com.dxw.flfs.data.HibernateService;
+import com.dxw.flfs.data.dal.UnitOfWork;
+import com.dxw.flfs.data.models.Site;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.Properties;
 
 public class FlfsApp extends Application {
 
@@ -34,12 +42,45 @@ public class FlfsApp extends Application {
         try {
             initiator = new AppInitiator(ServiceRegistryImpl.getInstance());
             initiator.initServices();
+
+            initContext();
+
             loadMain(stage);
         } catch (ServiceException e) {
             e.printStackTrace();
 
         }
 
+    }
+
+    private void initContext() {
+
+        Properties prop = new Properties();
+        InputStream in = this.getClass().getResourceAsStream("/flfs.config");
+        try {
+            prop.load(in);
+            String siteCode = prop.getProperty("siteCode");
+            context.setSiteCode(siteCode);
+
+            ServiceRegistry registry = ServiceRegistryImpl.getInstance();
+            HibernateService hibernateService = (HibernateService)registry.getService(Services.HIBERNATE_SERVICE);
+            UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession());
+
+            Site site = unitOfWork.getSiteConfigRepository().findByNaturalId(siteCode);
+
+            if(site==null){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "无法获取站点数据！");
+                alert.setHeaderText(null);
+                alert.show();
+                System.exit(0);
+            }
+
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "无法获取站点代码！");
+            alert.setHeaderText(null);
+            alert.show();
+            System.exit(0);
+        }
     }
 
     /*private void loadSvg(Stage stage) throws IOException {

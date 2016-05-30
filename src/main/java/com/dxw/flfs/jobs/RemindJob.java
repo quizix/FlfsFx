@@ -7,7 +7,7 @@ import com.dxw.common.services.Services;
 import com.dxw.flfs.app.FlfsApp;
 import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.UnitOfWork;
-import com.dxw.flfs.data.models.SiteConfig;
+import com.dxw.flfs.data.models.Site;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
@@ -22,7 +22,7 @@ public class RemindJob extends AbstractJob {
                 ServiceRegistryImpl.getInstance().getService(Services.HIBERNATE_SERVICE);
         try (UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession())) {
             String siteCode = FlfsApp.getContext().getSiteCode();
-            SiteConfig config = unitOfWork.getSiteConfig(siteCode);
+            Site config = unitOfWork.getSiteConfig(siteCode);
 
             if( config != null){
                 //stage==0表示还是处于入栏阶段

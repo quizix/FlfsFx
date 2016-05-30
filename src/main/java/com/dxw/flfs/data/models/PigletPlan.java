@@ -42,6 +42,14 @@ public class PigletPlan {
     @Column(name="count")
     private int count;
 
+    /**
+     * 站点
+     * @return
+     */
+    @ManyToOne
+    @JoinColumn(name="siteId")
+    private Site site;
+
     public Long getId() {
         return id;
     }
@@ -80,5 +88,13 @@ public class PigletPlan {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
     }
 }

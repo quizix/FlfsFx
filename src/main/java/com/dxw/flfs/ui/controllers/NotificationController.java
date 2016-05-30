@@ -38,7 +38,7 @@ public class NotificationController {
     }
 
     private void onNotify(String tag, Notification notification) {
-        if (tag.equals(NotificationTags.Remind)) {
+        if (!tag.equals(NotificationTags.Remind)) {
             ObservableList<Reminder> items = tableView.getItems();
 
             String datetime= TimeUtil.formatDateTime( new Date(notification.getWhen()));

@@ -1,5 +1,8 @@
 package com.dxw.flfs.data.models;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -67,6 +70,9 @@ public class Sty{
      */
     @Column(name="lastNumber")
     private int lastNumber;
+
+    @Transient
+    private BooleanProperty checked = new SimpleBooleanProperty();
 
     public Long getId() {
         return id;
@@ -141,4 +147,16 @@ public class Sty{
         this.lastNumber = lastNumber;
     }
 
+
+    public boolean getChecked() {
+        return checked.get();
+    }
+
+    public BooleanProperty checkedProperty() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked.set(checked);
+    }
 }

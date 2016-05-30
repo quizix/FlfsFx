@@ -15,11 +15,12 @@ public class DefaultGenericRepository<ENTITY>
     Class<ENTITY> entityClass;
 
 
-    public DefaultGenericRepository(Session session, Class<ENTITY> entityClass){
+    public DefaultGenericRepository(Session session, Class<ENTITY> entityClass) {
         this.session = session;
         this.entityClass = entityClass;
 
     }
+
     @Override
     public ENTITY save(ENTITY entity) {
         session.persist(entity);
@@ -29,11 +30,10 @@ public class DefaultGenericRepository<ENTITY>
 
     @Override
     public Boolean delete(ENTITY entity) {
-        try{
+        try {
             session.delete(entity);
             return true;
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             return false;
         }
     }
@@ -51,11 +51,10 @@ public class DefaultGenericRepository<ENTITY>
 
     @Override
     public ENTITY edit(ENTITY entity) {
-        try{
-            return (ENTITY)session.merge(entity);
-        }
-        catch(Exception ex){
-            return  null;
+        try {
+            return (ENTITY) session.merge(entity);
+        } catch (Exception ex) {
+            return null;
         }
 
     }
@@ -63,6 +62,12 @@ public class DefaultGenericRepository<ENTITY>
     @Override
     public ENTITY find(Long id) {
         return session.load(entityClass, id);
+    }
+
+    @Override
+    public ENTITY findByNaturalId(String id) {
+        return session.bySimpleNaturalId(entityClass)
+                .load(id);
     }
 
 
