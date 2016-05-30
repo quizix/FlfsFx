@@ -27,17 +27,17 @@
     <bottom>
         <FlowPane alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="415.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" onAction="#onPrev" prefHeight="30.0" prefWidth="80.0" text="上一步">
+                <Button fx:id="buttonPrev" disable="true" mnemonicParsing="false" onAction="#onPrev" prefHeight="30.0" prefWidth="80.0" text="上一步">
                     <FlowPane.margin>
                         <Insets right="10.0" />
                     </FlowPane.margin>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#onNext" prefWidth="80.0" text="下一步">
+                <Button fx:id="buttonNext" mnemonicParsing="false" onAction="#onNext" prefWidth="80.0" text="下一步">
                     <FlowPane.margin>
                         <Insets right="10.0" />
                     </FlowPane.margin>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#onOk" prefWidth="80.0" text="完 成">
+                <Button fx:id="buttonOk" disable="true" mnemonicParsing="false" onAction="#onOk" prefWidth="80.0" text="完 成">
                     <FlowPane.margin>
                         <Insets right="10.0" />
                     </FlowPane.margin>

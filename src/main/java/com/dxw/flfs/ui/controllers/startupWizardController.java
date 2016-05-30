@@ -3,6 +3,7 @@ package com.dxw.flfs.ui.controllers;
 import com.dxw.flfs.data.dal.UnitOfWork;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -13,6 +14,7 @@ public class StartupWizardController {
     private boolean dialogResult = false;
 
     private int currentPage = 0;
+    private int pages = 0;
     private UnitOfWork unitOfWork;
 
     /*
@@ -30,7 +32,17 @@ public class StartupWizardController {
     StackPane stackPane;
 
     @FXML
+    Button buttonNext;
+
+    @FXML
+    Button buttonPrev;
+
+    @FXML
+    Button buttonOk;
+
+    @FXML
     public void initialize() {
+        pages = stackPane.getChildren().size();
     }
 
     @FXML
@@ -38,6 +50,8 @@ public class StartupWizardController {
         if (currentPage > 0) {
             currentPage--;
 
+            enableButtons(currentPage);
+
             for (int i = 0; i < stackPane.getChildren().size(); i++) {
                 Node node = stackPane.getChildren().get(i);
                 if (i == currentPage)
@@ -48,10 +62,14 @@ public class StartupWizardController {
         }
     }
 
+
+
     @FXML
     public void onNext() {
         if (currentPage < stackPane.getChildren().size() - 1) {
             currentPage++;
+
+            enableButtons(currentPage);
 
             for (int i = 0; i < stackPane.getChildren().size(); i++) {
                 Node node = stackPane.getChildren().get(i);
@@ -61,6 +79,12 @@ public class StartupWizardController {
                     node.setVisible(false);
             }
         }
+    }
+
+    private void enableButtons(int currentPage) {
+        buttonPrev.setDisable(currentPage==0?true:false);
+        buttonNext.setDisable(currentPage==pages-1?true:false);
+        buttonOk.setDisable(currentPage==pages-1?false:true);
     }
 
     @FXML
