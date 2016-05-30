@@ -9,8 +9,14 @@ import com.dxw.common.utils.TimeUtil;
 import com.dxw.flfs.ui.model.Reminder;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -59,5 +65,29 @@ public class ReminderController {
             items.add( new Reminder(tag,datetime,content));
         }
 
+    }
+
+    @FXML
+    public void onPigletPlan(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/pigletPlan.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("小猪入栏计划");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.setOnCloseRequest(e -> {
+                PigletPlanController controller = loader.getController();
+                controller.dispose();
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

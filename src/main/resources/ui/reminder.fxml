@@ -27,6 +27,13 @@
             <items>
 
             </items>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#onPigletPlan" text="添加小猪入栏计划" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
 
         </TableView>
     </children>
