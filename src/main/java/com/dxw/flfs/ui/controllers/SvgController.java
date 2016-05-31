@@ -25,7 +25,7 @@ public class SvgController {
         String url = getClass().getResource("/svg/flfs.html").toExternalForm();
         engine.load(url);
 
-        addPlcListener();
+        //addPlcListener();
 
     }
 

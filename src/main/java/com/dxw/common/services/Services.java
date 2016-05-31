@@ -11,6 +11,8 @@ package com.dxw.common.services;
  */
 public class Services {
     public final static String NOTIFICATION_MANAGER = "notification_manager";
+
+    public final static String JOB_MANAGER = "job_manager";
     
     public final static String HIBERNATE_SERVICE = "hibernate_service";
 

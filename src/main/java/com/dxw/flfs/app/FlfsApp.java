@@ -152,13 +152,18 @@ public class FlfsApp extends Application {
 
         primaryStage.setOnCloseRequest(we -> dispose());
         primaryStage.show();
-
-
     }
 
     private void dispose() {
         if (initiator != null)
             initiator.dispose();
+
+        ServiceRegistry registry = ServiceRegistryImpl.getInstance();
+        try {
+            registry.dispose();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
     }
 
 }

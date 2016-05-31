@@ -40,9 +40,9 @@
             <top>
                 <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <items>
-                        <Button fx:id="btnStart" mnemonicParsing="false" onAction="#onClickStart" text="启动" />
-                        <Button mnemonicParsing="false" onAction="#onClickStop" text="停止" />
-                        <Button mnemonicParsing="false" onAction="#onClickClean" text="清洗" />
+                        <Button fx:id="buttonStart" mnemonicParsing="false" onAction="#onClickStart" text="启动" />
+                        <Button fx:id="buttonStop" mnemonicParsing="false" onAction="#onClickStop" text="停止" />
+                        <Button fx:id="buttonClean" mnemonicParsing="false" onAction="#onClickClean" text="清洗" />
                     </items>
                 </ToolBar>
             </top>

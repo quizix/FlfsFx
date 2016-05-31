@@ -22,16 +22,15 @@
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" percentWidth="20.0" prefWidth="95.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints />
                     </rowConstraints>
 
                     <children>
-                        <RadioButton fx:id="radioSystemStatus1" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="做料" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="radioSystemStatus2" mnemonicParsing="false" text="清洗" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="radioSystemStatus3" mnemonicParsing="false" text="冷启动" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="radioSystemStatus4" mnemonicParsing="false" text="停机" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="radioSystemStatus5" mnemonicParsing="false" text="紧停" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="radioSystemStatus1" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="做料" />
+                        <RadioButton fx:id="radioSystemStatus2" mnemonicParsing="false" text="清洗" GridPane.columnIndex="1" />
+                        <RadioButton fx:id="radioSystemStatus3" mnemonicParsing="false" text="冷启动" GridPane.columnIndex="2" />
+                        <RadioButton fx:id="radioSystemStatus4" mnemonicParsing="false" text="停机" GridPane.columnIndex="3" />
+                        <RadioButton fx:id="radioSystemStatus5" mnemonicParsing="false" text="紧停" GridPane.columnIndex="4" />
                     </children>
                 </GridPane>
             </content>
@@ -126,7 +125,7 @@
                                         <Label text="PH值" />
                                         <Label fx:id="lblPh" GridPane.columnIndex="2" />
                                         <Label text="进料发酵罐号" GridPane.rowIndex="1" />
-                                        <Label fx:id="lblFermentBarrelIn" />
+                                        <Label fx:id="lblFermentBarrelIn" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                         <Label text="出料发酵罐号" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                         <Label fx:id="lblFermentBarrelOut" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                     </children>

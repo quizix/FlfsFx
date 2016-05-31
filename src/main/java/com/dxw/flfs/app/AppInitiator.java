@@ -7,6 +7,7 @@ import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.Services;
 import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.HibernateServiceImpl;
+import com.dxw.flfs.jobs.JobManager;
 import com.dxw.flfs.scheduling.AdaptiveScheduler;
 import com.dxw.flfs.scheduling.AdvancedDistributor;
 import com.dxw.flfs.scheduling.FlfsScheduler;
@@ -32,9 +33,21 @@ public class AppInitiator {
 
         registerHibernateService();
 
-        //registerScheduler();
+        registerScheduler();
+
+        registerJobManager();
 
         //dbInitializer.prepareData();
+    }
+
+    private void registerJobManager() {
+        try {
+            JobManager jobManager = new JobManager();
+            jobManager.init();
+            registry.register(jobManager);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     private void registerScheduler() throws ServiceException {

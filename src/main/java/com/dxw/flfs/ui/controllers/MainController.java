@@ -6,20 +6,24 @@ import com.dxw.common.ms.NotificationTags;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
+import com.dxw.flfs.app.FlfsApp;
+import com.dxw.flfs.app.SiteStatus;
 import com.dxw.flfs.communication.PlcDelegate;
 import com.dxw.flfs.communication.PlcDelegateFactory;
 import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.UnitOfWork;
-import com.dxw.flfs.data.models.Sty;
+import com.dxw.flfs.data.models.Site;
+import com.dxw.flfs.jobs.JobManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.quartz.SchedulerException;
 
 import java.io.IOException;
 
@@ -29,23 +33,52 @@ import java.io.IOException;
 public class MainController {
 
     @FXML
-    private TableView<Sty> tableView;
+    private Button buttonStart;
+
+    @FXML
+    private Button buttonStop;
+
+    @FXML
+    private Button buttonClean;
+
 
     private HibernateService hibernateService;
-    //private UnitOfWork unitOfWork;
+    private UnitOfWork unitOfWork;
 
     @FXML
     public void initialize(){
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
         hibernateService = (HibernateService)registry.getService(Services.HIBERNATE_SERVICE);
-        //unitOfWork = new UnitOfWork(hibernateService.getSession());
+        this.unitOfWork = new UnitOfWork(hibernateService.getSession());
 
-        /*try{
-            unitOfWork.getSiteConfigRepository();
+        String siteCode = FlfsApp.getContext().getSiteCode();
+
+        try{
+            Site site = unitOfWork.getSiteConfigRepository().findByNaturalId(siteCode);
+
+            int status = site.getStatus();
+
+            if(status== SiteStatus.STOPPED){
+                this.buttonStart.setDisable(false);
+                this.buttonStop.setDisable(true);
+                this.buttonClean.setDisable(false);
+            }
+            else{
+                this.buttonStart.setDisable(true);
+                this.buttonStop.setDisable(false);
+                this.buttonClean.setDisable(false);
+
+                //begin jobs.
+                JobManager jobManager = (JobManager) registry.getService(Services.JOB_MANAGER);
+                if(jobManager!=null)
+                    jobManager.startAll();
+
+            }
+
         }
         catch (Exception ex){
             ex.printStackTrace();
-        }*/
+        }
     }
 
     public void onClickTest() {
@@ -77,12 +110,20 @@ public class MainController {
             stage.setResizable(false);
             stage.sizeToScene();
             stage.initOwner(null);
-
             controller.setStage(stage);
+            stage.showAndWait();
 
-            stage.show();
+            if(controller.isDialogResult()){
+                ServiceRegistry registry = ServiceRegistryImpl.getInstance();
+                //begin jobs.
+                JobManager jobManager = (JobManager) registry.getService(Services.JOB_MANAGER);
+                if(jobManager!=null)
+                    jobManager.startAll();
+            }
 
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SchedulerException e) {
             e.printStackTrace();
         }
     }
