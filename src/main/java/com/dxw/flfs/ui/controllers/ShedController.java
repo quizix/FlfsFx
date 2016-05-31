@@ -256,6 +256,8 @@ public class ShedController {
             alert.showAndWait().filter(response -> response == ButtonType.OK)
                     .ifPresent(response ->{
                         unitOfWork.begin();
+                        //unitOfWork.getStyRepository().delete(sty);
+                        sty.getShed().getSties().remove(sty);
                         unitOfWork.getStyRepository().delete(sty);
                         unitOfWork.commit();
 
