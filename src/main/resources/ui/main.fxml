@@ -51,14 +51,14 @@
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                             <children>
-                                <SplitPane dividerPositions="0.6105527638190955" layoutX="191.0" layoutY="32.0" prefHeight="223.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <SplitPane dividerPositions="0.6563786008230452" layoutX="191.0" layoutY="32.0" prefHeight="223.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="552.0" prefWidth="589.0">
                                             <children>
                                                 <fx:include fx:id="svg" source="svg.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                             </children>
                                         </AnchorPane>
-                                        <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="330.0">
+                                        <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="552.0" prefWidth="399.0">
                                             <children>
                                                 <fx:include fx:id="status" source="status.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                             </children>

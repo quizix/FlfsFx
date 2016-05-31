@@ -37,7 +37,7 @@ public class Site {
     /**
      * site code
      */
-    @NaturalId
+    @NaturalId(mutable=true)
     @Column(name="code")
     private String siteCode;
 

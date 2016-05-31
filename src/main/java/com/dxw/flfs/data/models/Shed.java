@@ -48,7 +48,7 @@ public class Shed{
     /**
      * 编码
      */
-    @NaturalId
+    @NaturalId(mutable=true)
     @Column(name="code")
     private String code;
 

@@ -2,6 +2,7 @@ package com.dxw.flfs.data.models;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -55,6 +56,7 @@ public class Sty{
     /**
      * 编号
      */
+    @NaturalId(mutable=true)
     @Column(name="no")
     private int no;
 
