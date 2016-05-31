@@ -88,20 +88,16 @@ public class FlfsApp extends Application {
             Optional<ButtonType> result = controller.getDialogResult();
 
             if (result.isPresent()) {
-                result.filter(value -> value == ButtonType.OK)
-                        .ifPresent(value -> {
-                            try {
-                                loadMain(primaryStage);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        });
-
-
-                result.filter(value -> value == ButtonType.CANCEL)
-                        .ifPresent(value -> {
-                            System.exit(0);
-                        });
+                ButtonType value = result.get();
+                if (value == ButtonType.OK) {
+                    try {
+                        loadMain(primaryStage);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    System.exit(0);
+                }
             }
         } else {
             try {
@@ -165,21 +161,4 @@ public class FlfsApp extends Application {
             initiator.dispose();
     }
 
-    private void loadReminder(Stage primaryStage) throws IOException {
-        URL location = getClass().getClassLoader().getResource("ui/reminder.fxml");
-        FXMLLoader loader = new FXMLLoader(location);
-
-        Pane root = loader.load();
-
-        /*ReminderController controller = loader.getController();
-        controller.addReminder( new Reminder("", "12121212"));
-        controller.removeAll();*/
-
-        Scene scene = new Scene(root);
-        primaryStage.setTitle("发酵式液态料饲喂系统——稻香湾科技");
-        primaryStage.setScene(scene);
-        primaryStage.setMaximized(true);
-
-        primaryStage.show();
-    }
 }
