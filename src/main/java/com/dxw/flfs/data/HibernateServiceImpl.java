@@ -29,7 +29,6 @@ public class HibernateServiceImpl implements HibernateService {
                 .build();
         try {
             sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            System.out.println(sessionFactory);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             StandardServiceRegistryBuilder.destroy(registry);
