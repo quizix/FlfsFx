@@ -3,9 +3,6 @@ package com.dxw.flfs.data.dal;
 import com.dxw.flfs.data.models.*;
 import org.hibernate.Session;
 
-import java.util.Collection;
-import java.util.Optional;
-
 /**
  * Created by zhang on 2016-04-28.
  */
@@ -79,19 +76,5 @@ public class UnitOfWork implements AutoCloseable {
         if( pigletPlanRepository == null)
             pigletPlanRepository = new DefaultGenericRepository<>(session, PigletPlan.class);
         return pigletPlanRepository;
-    }
-
-    public Site getSiteConfig(String siteCode){
-        DefaultGenericRepository<Site> r = getSiteConfigRepository();
-        Collection<Site> configs = r.findAll();
-
-        Optional<Site> config = configs.stream()
-                .filter(c -> c.getSiteCode().equals(siteCode))
-                .findFirst();
-
-        if (config.isPresent()) {
-            return config.get();
-        }
-        return null;
     }
 }

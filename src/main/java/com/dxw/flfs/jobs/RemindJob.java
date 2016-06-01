@@ -22,11 +22,14 @@ public class RemindJob extends AbstractJob {
                 ServiceRegistryImpl.getInstance().getService(Services.HIBERNATE_SERVICE);
         try (UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession())) {
             String siteCode = FlfsApp.getContext().getSiteCode();
-            Site config = unitOfWork.getSiteConfig(siteCode);
+            unitOfWork.begin();
 
-            if( config != null){
+            Site site = unitOfWork.getSiteConfigRepository().findByNaturalId(siteCode);
+
+            unitOfWork.commit();
+            if( site != null){
                 //stage==0表示还是处于入栏阶段
-                if( config.getStage() ==0){
+                if( site.getStage() ==0){
                     if(notificationManager != null){
                         Notification n = new Notification();
                         n.setContent("系统提示：请输入明天的入栏计划");

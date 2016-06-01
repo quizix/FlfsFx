@@ -5,10 +5,6 @@ package com.dxw.flfs.app;/**
 import com.dxw.common.services.ServiceException;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
-import com.dxw.common.services.Services;
-import com.dxw.flfs.data.HibernateService;
-import com.dxw.flfs.data.dal.UnitOfWork;
-import com.dxw.flfs.data.models.Site;
 import com.dxw.flfs.ui.controllers.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -117,7 +113,7 @@ public class FlfsApp extends Application {
             String siteCode = prop.getProperty("siteCode");
             context.setSiteCode(siteCode);
 
-            ServiceRegistry registry = ServiceRegistryImpl.getInstance();
+           /* ServiceRegistry registry = ServiceRegistryImpl.getInstance();
             HibernateService hibernateService = (HibernateService) registry.getService(Services.HIBERNATE_SERVICE);
             UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession());
 
@@ -128,7 +124,7 @@ public class FlfsApp extends Application {
                 alert.setHeaderText(null);
                 alert.show();
                 System.exit(0);
-            }
+            }*/
 
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "无法获取站点代码！");
