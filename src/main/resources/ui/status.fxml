@@ -26,11 +26,11 @@
                     </rowConstraints>
 
                     <children>
-                        <RadioButton fx:id="radioSystemStatus1" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="做料" />
-                        <RadioButton fx:id="radioSystemStatus2" mnemonicParsing="false" text="清洗" GridPane.columnIndex="1" />
-                        <RadioButton fx:id="radioSystemStatus3" mnemonicParsing="false" text="冷启动" GridPane.columnIndex="2" />
-                        <RadioButton fx:id="radioSystemStatus4" mnemonicParsing="false" text="停机" GridPane.columnIndex="3" />
-                        <RadioButton fx:id="radioSystemStatus5" mnemonicParsing="false" text="紧停" GridPane.columnIndex="4" />
+                        <RadioButton fx:id="radioSystemStatus1" mnemonicParsing="false" prefHeight="18.0" prefWidth="87.0" text="停机" />
+                        <RadioButton fx:id="radioSystemStatus2" mnemonicParsing="false" text="做料" GridPane.columnIndex="1" />
+                        <RadioButton fx:id="radioSystemStatus3" mnemonicParsing="false" text="清洗" GridPane.columnIndex="2" />
+                        <RadioButton fx:id="radioSystemStatus4" mnemonicParsing="false" text="紧停" GridPane.columnIndex="3" />
+                        <RadioButton fx:id="radioSystemStatus5" mnemonicParsing="false" text="冷启动" GridPane.columnIndex="4" />
                     </children>
                 </GridPane>
             </content>
