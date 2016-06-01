@@ -145,8 +145,8 @@ public class FlfsApp extends Application {
         primaryStage.getIcons().add(new Image("images/piggy-bank-icon.png"));
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
-
         primaryStage.setOnCloseRequest(we -> dispose());
+
         primaryStage.show();
     }
 

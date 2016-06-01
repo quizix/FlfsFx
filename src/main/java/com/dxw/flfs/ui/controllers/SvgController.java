@@ -1,10 +1,18 @@
 package com.dxw.flfs.ui.controllers;
 
+import com.dxw.common.ms.Notification;
+import com.dxw.common.ms.NotificationFlags;
+import com.dxw.common.ms.NotificationManager;
+import com.dxw.common.services.ServiceRegistryImpl;
+import com.dxw.common.services.Services;
 import com.dxw.flfs.communication.*;
 import javafx.application.Platform;
+import javafx.concurrent.Worker.State;
 import javafx.fxml.FXML;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+
+import java.util.Date;
 
 /**
  * Created by zhang on 2016-05-19.
@@ -20,6 +28,19 @@ public class SvgController {
         webView.setContextMenuEnabled(false);
         String url = getClass().getResource("/svg/flfs.html").toExternalForm();
         engine.load(url);
+
+        engine.getLoadWorker().stateProperty().addListener(
+                (ov, oldState, newState) -> {
+                    if (newState == State.SUCCEEDED) {
+                        NotificationManager manager =
+                                (NotificationManager) ServiceRegistryImpl.getInstance().getService(Services.NOTIFICATION_MANAGER);
+                        Notification n = new Notification();
+                        n.setFlag(NotificationFlags.SYSTEM_INITIALIZED);
+                        n.setContent("");
+                        n.setWhen(new Date().getTime());
+                        manager.notify("System", n);
+                    }
+                });
 
         addPlcListener();
 

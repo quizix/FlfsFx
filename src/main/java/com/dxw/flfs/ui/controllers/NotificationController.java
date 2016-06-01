@@ -9,6 +9,7 @@ import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
 import com.dxw.common.utils.TimeUtil;
 import com.dxw.flfs.ui.model.Reminder;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
@@ -35,17 +36,30 @@ public class NotificationController {
                 onNotify(tag, notification);
             });
         }
+
+        /*tableView.getItems().addListener((ListChangeListener<Reminder>) c -> {
+            tableView.scrollTo(c.getList().size()-1);
+        });*/
     }
 
     private void onNotify(String tag, Notification notification) {
-        if (!tag.equals(NotificationTags.Remind)) {
-            ObservableList<Reminder> items = tableView.getItems();
+        Platform.runLater( ()->{
+            if (!tag.equals(NotificationTags.Remind)) {
+                ObservableList<Reminder> items = tableView.getItems();
 
-            String datetime= TimeUtil.formatDateTime( new Date(notification.getWhen()));
-            String content = notification.getContent().toString();
+                String datetime= TimeUtil.formatDateTime( new Date(notification.getWhen()));
+                String content = notification.getContent().toString();
 
-            items.add( new Reminder("["+tag+"]", datetime,content));
-        }
+                items.add( new Reminder("["+tag+"]", datetime,content));
+
+
+                tableView.scrollTo(items.size()-1);
+                tableView.getSelectionModel().select(items.size()-1);
+                //tableView.requestFocus();
+            }
+
+        });
+
     }
 
 
