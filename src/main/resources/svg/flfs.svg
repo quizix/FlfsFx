@@ -35,18 +35,19 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1680"
-     inkscape:window-height="987"
+     inkscape:window-width="1536"
+     inkscape:window-height="801"
      id="namedview1822"
      showgrid="false"
      inkscape:zoom="1.0302704"
-     inkscape:cx="281.12404"
+     inkscape:cx="394.60536"
      inkscape:cy="319.46503"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="surface1"
-     inkscape:snap-bbox="true" />
+     inkscape:snap-bbox="true"
+     inkscape:snap-text-baseline="false" />
   <defs
      id="defs4">
     <g
@@ -2117,25 +2118,6 @@
        d="M 0.000150704 0.00202374 L 1.229209 0.00202374 "
        transform="matrix(0.708749,0,0,0.708749,103.878799,119.330597)"
        id="path776" />
-    <g
-       style="fill:rgb(18.823529%,18.823529%,18.823529%);fill-opacity:1;"
-       id="g778">
-      <use
-         xlink:href="#glyph0-2"
-         x="110.566406"
-         y="115.019531"
-         id="use780" />
-      <use
-         xlink:href="#glyph0-4"
-         x="120.016389"
-         y="115.019531"
-         id="use782" />
-      <use
-         xlink:href="#glyph0-5"
-         x="129.466372"
-         y="115.019531"
-         id="use784" />
-    </g>
     <path
        style="fill-rule:evenodd;fill:rgb(100%,100%,100%);fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(5.098039%,5.098039%,5.098039%);stroke-opacity:1;stroke-miterlimit:10;"
        d="M 0.00165775 0.00129175 L 3.655765 0.00129175 L 3.655765 3.848301 L 0.00165775 3.848301 Z M 0.00165775 0.00129175 "
@@ -2186,25 +2168,6 @@
        d="M 0.000893462 0.0000861168 L 1.301601 0.0000861168 "
        transform="matrix(0.708749,0,0,0.708749,103.749367,200.890564)"
        id="path804" />
-    <g
-       style="fill:rgb(18.823529%,18.823529%,18.823529%);fill-opacity:1;"
-       id="g806">
-      <use
-         xlink:href="#glyph0-2"
-         x="111.273438"
-         y="196.527344"
-         id="use808" />
-      <use
-         xlink:href="#glyph0-4"
-         x="120.72342"
-         y="196.527344"
-         id="use810" />
-      <use
-         xlink:href="#glyph0-5"
-         x="130.173403"
-         y="196.527344"
-         id="use812" />
-    </g>
     <path
        style="fill:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;"
        d="M -0.00218521 3.999479 C -0.00218521 3.999479 -0.00218521 0.174516 4.026702 -0.00185151 C 8.000475 0.37844 8.000475 3.999479 8.000475 3.999479 C 8.000475 3.999479 8.000475 0.361906 12.01834 -0.00185151 C 15.997624 0.207584 15.997624 3.999479 15.997624 3.999479 "
@@ -3121,25 +3084,6 @@
        d="M 0.00132505 0.002069 L 1.30021 0.00312164 "
        transform="matrix(-0.613794,0.354374,0.354374,0.613794,54.25008,258.174042)"
        id="path1374" />
-    <g
-       style="fill:rgb(18.823529%,18.823529%,18.823529%);fill-opacity:1;"
-       id="g1376">
-      <use
-         xlink:href="#glyph15-0"
-         x="21.179688"
-         y="273.074219"
-         id="use1378" />
-      <use
-         xlink:href="#glyph15-1"
-         x="29.363613"
-         y="268.349227"
-         id="use1380" />
-      <use
-         xlink:href="#glyph15-2"
-         x="37.547538"
-         y="263.624235"
-         id="use1382" />
-    </g>
     <path
        style="fill:none;stroke-width:0.32;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;"
        d="M -0.000269115 -0.000559759 L 9.363727 -0.000558643 Z M -0.000269115 -0.000559759 "
@@ -3746,29 +3690,6 @@
        id="path1648" />
     <g
        style="fill:rgb(18.823529%,18.823529%,18.823529%);fill-opacity:1;"
-       id="g1650">
-      <use
-         xlink:href="#glyph17-0"
-         x="403.988281"
-         y="385.054688"
-         id="use1652" />
-      <use
-         xlink:href="#glyph17-1"
-         x="409.030733"
-         y="385.054688"
-         id="use1654" />
-    </g>
-    <g
-       style="fill:rgb(18.823529%,18.823529%,18.823529%);fill-opacity:1;"
-       id="g1656">
-      <use
-         xlink:href="#glyph14-13"
-         x="413.910156"
-         y="384.054688"
-         id="use1658" />
-    </g>
-    <g
-       style="fill:rgb(18.823529%,18.823529%,18.823529%);fill-opacity:1;"
        id="g1660">
       <use
          xlink:href="#glyph14-14"
@@ -4085,7 +4006,7 @@
          style="font-size:10px">气囊</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:9px;line-height:100%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'sans-serif, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"
+       style="font-style:normal;font-weight:normal;font-size:9px;line-height:100%;font-family:'Microsoft YaHei UI';letter-spacing:0px;word-spacing:0px;fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Microsoft YaHei UI, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"
        x="135.88666"
        y="365.34784"
        id="textMixingBarrelStatus"
@@ -4121,18 +4042,6 @@
          id="tspan5179">料位空报警</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="330.10446"
-       y="297.79279"
-       id="textFermentBarrelStatus"
-       sodipodi:linespacing="125%"
-       inkscape:label="#text5768"><tspan
-         sodipodi:role="line"
-         id="tspan6772"
-         x="330.10446"
-         y="297.79279">发酵罐</tspan></text>
-    <text
-       xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="354.85831"
        y="485.70459"
@@ -4151,7 +4060,7 @@
        y="474.05716" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;font-size:9px;line-height:125%;font-family:'Microsoft YaHei UI';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Microsoft YaHei UI, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"
        x="375.82364"
        y="491.91653"
        id="textSystemStatus"
@@ -4161,5 +4070,82 @@
          id="tspan6736"
          x="375.82364"
          y="491.91653">状态</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:9px;line-height:125%;font-family:'Microsoft YaHei UI';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Microsoft YaHei UI, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"
+       x="407.65997"
+       y="384.76019"
+       id="textPh"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text6487"><tspan
+         sodipodi:role="line"
+         id="tspan6489"
+         x="407.65997"
+         y="384.76019"
+         style="font-size:9px;-inkscape-font-specification:'Microsoft YaHei UI, Normal';font-family:'Microsoft YaHei UI';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%;fill:#0000ff;fill-opacity:1;">PH值</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:8px;line-height:125%;font-family:'Microsoft YaHei UI';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Microsoft YaHei UI, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"
+       x="112.54479"
+       y="200.73087"
+       id="textMaterialTowerLow"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text6491"><tspan
+         sodipodi:role="line"
+         id="tspan6579">料位器</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:8px;line-height:125%;font-family:'Microsoft YaHei UI';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Microsoft YaHei UI, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"
+       x="395.0574"
+       y="412.49866"
+       id="textFermentBarrelOut"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text6513-5"><tspan
+         sodipodi:role="line"
+         id="tspan6535">出料发酵罐号</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:125%;font-family:'Microsoft YaHei UI';-inkscape-font-specification:'Microsoft YaHei UI, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="314.24722"
+       y="413.95792"
+       id="textFermentBarrelIn"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text6513-5-9"><tspan
+         sodipodi:role="line"
+         id="tspan6557">进料发酵罐号</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:125%;font-family:'Microsoft YaHei UI';-inkscape-font-specification:'Microsoft YaHei UI, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="113.45528"
+       y="123.54872"
+       id="text6513-5-9-8"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan6577">料位器</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:125%;font-family:'Microsoft YaHei UI';-inkscape-font-specification:'Microsoft YaHei UI, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="-91.541962"
+       y="262.76028"
+       id="textMaterialTowerEmpty"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text6491"
+       transform="matrix(0.92547683,-0.37880423,0.37880423,0.92547683,0,0)"
+       inkscape:transform-center-x="0.77649518"
+       inkscape:transform-center-y="-3.1059807"><tspan
+         y="262.76028"
+         x="-91.541962"
+         sodipodi:role="line"
+         id="tspan6579-7">料位器</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:125%;font-family:'Microsoft YaHei UI';-inkscape-font-specification:'Microsoft YaHei UI, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="320.45917"
+       y="255.55289"
+       id="textFermentBarrelStatus"
+       sodipodi:linespacing="125%"
+       inkscape:label="#text6513-5"><tspan
+         sodipodi:role="line"
+         id="tspan6617">发酵罐组</tspan></text>
   </g>
 </svg>

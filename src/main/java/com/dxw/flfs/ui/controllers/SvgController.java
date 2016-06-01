@@ -37,7 +37,6 @@ public class SvgController {
 
         if (field == PlcModelField.SYSTEM_STATUS) {
             Short status = model.getSystemStatus();
-
             String text = "";
             switch (status) {
                 case 1:
@@ -57,7 +56,7 @@ public class SvgController {
                     break;
             }
             engine.executeScript(
-                    String.format("document.getElementById(\"textSystemStatus\").textContent = \"%s\"",
+                    String.format("setText(\'textSystemStatus\', \'%s\');",
                             text)
             );
 
@@ -68,45 +67,53 @@ public class SvgController {
                 text += ((data[i]) ? "满" : "空") + " ";
             }
             engine.executeScript(
-                    String.format("document.getElementById(\"textFermentBarrelStatus\").textContent = \"%s\"",
+                    String.format("setText(\'textFermentBarrelStatus\', \'%s\');",
                             text)
             );
 
-        }else if (field == PlcModelField.MIXING_BARREL_STATUS) {
-            Short status = model.getMixingBarrelStatus();
-            String text = status == 0 ? "空闲" : "运行";
+        } else {
+            if (field == PlcModelField.MIXING_BARREL_STATUS) {
+                Short status = model.getMixingBarrelStatus();
+                String text = status == 0 ? "空闲" : "运行";
 
-            engine.executeScript(
-                    String.format("document.getElementById(\"textMixingBarrelStatus\").textContent = \"%s\"",
-                            text)
-            );
-        } /*else if (field == PlcModelField.MATERIAL_TOWER_ALARM) {
-            Boolean lowAlarm = model.getMaterialTowerLowAlarm();
-            Boolean emptyAlarm = model.getMaterialTowerEmptyAlarm();
-
-            if (lowAlarm) {
-                lblMaterialTowerLow.setIcon(iconAlert);
-                lblMaterialTowerLow.setText("");
+                engine.executeScript(
+                        String.format("setText(\'textMixingBarrelStatus\', \'%s\');",
+                                text)
+                );
             } else {
-                lblMaterialTowerLow.setIcon(null);
-                lblMaterialTowerLow.setText("正常");
-            }
+                if (field == PlcModelField.MATERIAL_TOWER_ALARM) {
+                    Boolean lowAlarm = model.getMaterialTowerLowAlarm();
+                    Boolean emptyAlarm = model.getMaterialTowerEmptyAlarm();
 
-            if (emptyAlarm) {
-                lblMaterialTowerEmpty.setIcon(iconAlert);
-                lblMaterialTowerEmpty.setText("");
-            } else {
-                lblMaterialTowerEmpty.setIcon(null);
-                lblMaterialTowerEmpty.setText("正常");
+                    String lowAlarmText = lowAlarm ? "料位器:报警" : "料位器:正常";
+                    String emptyAlarmText = emptyAlarm ? "料位器:报警" : "料位器:正常";
+
+                    engine.executeScript(
+                            String.format("setText(\'textMaterialTowerLow\', \'%s\');"+
+                                            "setText(\'textMaterialTowerEmpty\', \'%s\');",
+                                    lowAlarmText,emptyAlarmText)
+                    );
+
+                } else if (field == PlcModelField.FERMENT_BARREL_IN_OUT) {
+                    short in = model.getFermentBarrelInNo();
+                    short out = model.getFermentBarrelOutNo();
+
+                    String inText = "进料发酵罐号#" + in;
+                    String outText = "出料发酵罐号#" +out;
+                    engine.executeScript(
+                            String.format("setText(\'textFermentBarrelIn\', \'%s\');"+
+                                            "setText(\'textFermentBarrelOut\', \'%s\');",
+                                    inText,outText)
+                    );
+                } else if (field == PlcModelField.PH_VALUE) {
+                    float ph = model.getPh();
+                    String text = String.format("PH值:%.2f",ph);
+                    engine.executeScript(
+                            String.format("setText(\'textPh\', \'%s\');",
+                                    text)
+                    );
+                }
             }
-        } else if (field == PlcModelField.FERMENT_BARREL_IN_OUT) {
-                short in = model.getFermentBarrelInNo();
-                short out = model.getFermentBarrelOutNo();
-                lblFermentBarrelIn.setText(Short.toString(in));
-                lblFermentBarrelOut.setText(Short.toString(out));
-            }  else if (field == PlcModelField.PH_VALUE) {
-                float ph = model.getPh();
-                lblPh.setText(Float.toString(ph));
-            }*/
+        }
     }
 }
