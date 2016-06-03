@@ -129,7 +129,7 @@ public class MainController {
             controller.setUnitOfWork(unitOfWork);
 
             Stage stage = new Stage();
-            stage.setTitle("配置向导-第一步：设置栏位关联");
+            stage.setTitle("配置向导——第一步：设置栏位关联");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
