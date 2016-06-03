@@ -51,6 +51,7 @@ public class StartupWizardController {
             currentPage--;
 
             enableButtons(currentPage);
+            setTitle(currentPage);
 
             for (int i = 0; i < stackPane.getChildren().size(); i++) {
                 Node node = stackPane.getChildren().get(i);
@@ -70,7 +71,7 @@ public class StartupWizardController {
             currentPage++;
 
             enableButtons(currentPage);
-
+            setTitle(currentPage);
             for (int i = 0; i < stackPane.getChildren().size(); i++) {
                 Node node = stackPane.getChildren().get(i);
                 if (i == currentPage)
@@ -113,13 +114,13 @@ public class StartupWizardController {
     }
 
     private void dispose() {
-        if(unitOfWork !=null){
+        /*if(unitOfWork !=null){
             try {
                 unitOfWork.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
     }
 
@@ -135,5 +136,12 @@ public class StartupWizardController {
 
         this.startupWizardPage1Controller.setUnitOfWork(unitOfWork);
         this.startupWizardPage2Controller.setUnitOfWork(unitOfWork);
+    }
+
+    public void setTitle(int currentPage) {
+        if( currentPage == 0)
+            this.stage.setTitle("配置向导-第一步：设置栏位关联");
+        else if( currentPage == 1)
+            this.stage.setTitle("配置向导-第一步：设置小猪入栏计划");
     }
 }
