@@ -38,11 +38,13 @@
     <center>
         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <top>
-                <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <ToolBar prefHeight="0.0" prefWidth="976.0" BorderPane.alignment="CENTER">
                     <items>
-                        <Button fx:id="buttonStart" mnemonicParsing="false" onAction="#onClickStart" text="启动" />
-                        <Button fx:id="buttonStop" mnemonicParsing="false" onAction="#onClickStop" text="停止" />
-                        <Button fx:id="buttonClean" mnemonicParsing="false" onAction="#onClickClean" text="清洗" />
+                  <Button mnemonicParsing="false" onAction="#onConfig" text="配置向导" />
+                  <Separator orientation="VERTICAL" />
+                        <Button fx:id="buttonStart" disable="true" mnemonicParsing="false" onAction="#onClickStart" text="启动" />
+                        <Button fx:id="buttonStop" disable="true" mnemonicParsing="false" onAction="#onClickStop" text="停止" />
+                        <Button fx:id="buttonClean" disable="true" mnemonicParsing="false" onAction="#onClickClean" text="清洗" />
                     </items>
                 </ToolBar>
             </top>

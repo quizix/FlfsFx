@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dxw.flfs.communication;
+package com.dxw.flfs.communication.protocol;
 
 import com.dxw.common.ms.Notification;
 import com.dxw.common.ms.NotificationManager;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
 import com.dxw.common.utils.TimeUtil;
+import com.dxw.flfs.communication.*;
 import com.dxw.flfs.communication.base.Plc;
 import com.dxw.flfs.communication.base.PlcException;
 import com.dxw.flfs.communication.base.RegisterType;
@@ -203,6 +204,9 @@ class PlcDelegateImpl implements PlcDelegate {
         try {
             plcPrimary.setRegister(PlcRegisterAddress.SYS_COMMAND_ADDRESS, (short)code);
             sendNotification("发送指令成功");
+
+            //获取系统状态
+            getSystemStatus();
         } catch (PlcException ex) {
             sendNotification(ex.getMessage());
         }

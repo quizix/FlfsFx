@@ -6,12 +6,10 @@
 package com.dxw.flfs.jobs;
 
 import com.dxw.common.ms.NotificationFlags;
+import com.dxw.flfs.communication.protocol.PlcDelegate;
+import com.dxw.flfs.communication.protocol.PlcDelegateFactory;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import com.dxw.flfs.communication.PlcDelegate;
-import com.dxw.flfs.communication.PlcDelegateFactory;
-
-import static groovy.xml.Entity.not;
 
 /**
  * 轮询系统状态
@@ -78,7 +76,6 @@ public class PollSystemStatus extends AbstractJob {
             phCountDown = 60;
 
         }
-
 
     }
 

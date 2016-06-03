@@ -42,7 +42,7 @@ public class StartupWizardPage1Controller {
         String siteCode = FlfsApp.getContext().getSiteCode();
 
         try{
-            DefaultGenericRepository<Site> repository = unitOfWork.getSiteConfigRepository();
+            DefaultGenericRepository<Site> repository = unitOfWork.getSiteRepository();
             Site site = repository.findByNaturalId(siteCode);
             Collection<Sty> sties = site.getSties();
 
@@ -86,7 +86,7 @@ public class StartupWizardPage1Controller {
 
                 String siteCode = FlfsApp.getContext().getSiteCode();
                 unitOfWork.begin();
-                DefaultGenericRepository<Site> repository = unitOfWork.getSiteConfigRepository();
+                DefaultGenericRepository<Site> repository = unitOfWork.getSiteRepository();
                 Site site = repository.findByNaturalId(siteCode);
                 Collection<Sty> sties = site.getSties();
                 sties.addAll( selectedSties);
@@ -114,7 +114,7 @@ public class StartupWizardPage1Controller {
         try {
             unitOfWork.begin();
 
-            DefaultGenericRepository<Site> repository = unitOfWork.getSiteConfigRepository();
+            DefaultGenericRepository<Site> repository = unitOfWork.getSiteRepository();
             Site site = repository.findByNaturalId(siteCode);
             site.removeSties(selectedItems);
             unitOfWork.commit();

@@ -6,6 +6,10 @@ import com.dxw.common.ms.NotificationManager;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
 import com.dxw.flfs.communication.*;
+import com.dxw.flfs.communication.protocol.PlcDelegate;
+import com.dxw.flfs.communication.protocol.PlcDelegateFactory;
+import com.dxw.flfs.communication.protocol.PlcModel;
+import com.dxw.flfs.communication.protocol.PlcModelField;
 import javafx.application.Platform;
 import javafx.concurrent.Worker.State;
 import javafx.fxml.FXML;
@@ -35,7 +39,7 @@ public class SvgController {
                         NotificationManager manager =
                                 (NotificationManager) ServiceRegistryImpl.getInstance().getService(Services.NOTIFICATION_MANAGER);
                         Notification n = new Notification();
-                        n.setFlag(NotificationFlags.SYSTEM_INITIALIZED);
+                        n.setFlag(NotificationFlags.SOFTWARE_INITIALIZED);
                         n.setContent("");
                         n.setWhen(new Date().getTime());
                         manager.notify("System", n);

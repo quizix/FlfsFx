@@ -8,13 +8,12 @@ import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
 import com.dxw.flfs.app.FlfsApp;
-import com.dxw.flfs.app.SiteStatus;
-import com.dxw.flfs.communication.PlcDelegate;
-import com.dxw.flfs.communication.PlcDelegateFactory;
+import com.dxw.flfs.communication.protocol.*;
 import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.Site;
 import com.dxw.flfs.jobs.JobManager;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,23 +41,21 @@ public class MainController {
     @FXML
     private Button buttonClean;
 
-
     private HibernateService hibernateService;
-    private UnitOfWork unitOfWork;
-
+    //private UnitOfWork unitOfWork;
 
     @FXML
     public void initialize() {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
         hibernateService = (HibernateService) registry.getService(Services.HIBERNATE_SERVICE);
-        this.unitOfWork = new UnitOfWork(hibernateService.getSession());
+        //this.unitOfWork = new UnitOfWork(hibernateService.getSession());
 
         NotificationManager manager =
-                (NotificationManager)registry.getService(Services.NOTIFICATION_MANAGER);
+                (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
 
-        manager.addReceiver( (tag, notification)->{
-            if( tag.equals("System")){
-                if(notification.getFlag() == NotificationFlags.SYSTEM_INITIALIZED){
+        manager.addReceiver((tag, notification) -> {
+            if (tag.equals("System")) {
+                if (notification.getFlag() == NotificationFlags.SOFTWARE_INITIALIZED) {
                     initCheck();
                 }
             }
@@ -66,15 +63,38 @@ public class MainController {
 
     }
 
-    private void updateButtons(int status) {
-        if (status == SiteStatus.STOPPED) {
-            this.buttonStart.setDisable(false);
-            this.buttonStop.setDisable(true);
-            this.buttonClean.setDisable(false);
-        } else {
-            this.buttonStart.setDisable(true);
-            this.buttonStop.setDisable(false);
-            this.buttonClean.setDisable(false);
+    private void updateButtons(short status) {
+        switch (status) {
+            case PlcConsts.SYSTEM_STATUS_STARTED: {
+                this.buttonStart.setDisable(true);
+                this.buttonStop.setDisable(false);
+                this.buttonClean.setDisable(true);
+            }
+            break;
+            case PlcConsts.SYSTEM_STATUS_STOPPED: {
+                this.buttonStart.setDisable(false);
+                this.buttonStop.setDisable(true);
+                this.buttonClean.setDisable(false);
+            }
+            break;
+            case PlcConsts.SYSTEM_STATUS_EMERGENT_STOP: {
+                this.buttonStart.setDisable(false);
+                this.buttonStop.setDisable(true);
+                this.buttonClean.setDisable(false);
+            }
+            break;
+            case PlcConsts.SYSTEM_STATUS_CODE_STARTED: {
+                this.buttonStart.setDisable(true);
+                this.buttonStop.setDisable(false);
+                this.buttonClean.setDisable(true);
+            }
+            break;
+            case PlcConsts.SYSTEM_STATUS_CLEANNING: {
+                this.buttonStart.setDisable(true);
+                this.buttonStop.setDisable(true);
+                this.buttonClean.setDisable(true);
+            }
+            break;
         }
     }
 
@@ -91,17 +111,25 @@ public class MainController {
             notificationManager.notify(NotificationTags.Remind, n);
     }
 
-    public void onClickStart() {
+    public void onConfig() {
+        try (UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession())) {
+            doConfigInternal(unitOfWork);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    private void doConfigInternal(UnitOfWork unitOfWork) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/wizard/startupWizard.fxml"));
             Parent root = loader.load();
 
             StartupWizardController controller = loader.getController();
-            controller.setUnitOfWork(new UnitOfWork(hibernateService.getSession()));
-
+            controller.setUnitOfWork(unitOfWork);
 
             Stage stage = new Stage();
-            stage.setTitle("启动向导");
+            stage.setTitle("配置向导-第一步：设置栏位关联");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
@@ -109,19 +137,23 @@ public class MainController {
             stage.initOwner(null);
             controller.setStage(stage);
             stage.showAndWait();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
-            if (controller.isDialogResult()) {
-                doStart();
-                String siteCode = FlfsApp.getContext().getSiteCode();
-                unitOfWork.begin();
-                Site site = unitOfWork.getSiteRepository().findByNaturalId(siteCode);
-                site.setStatus(SiteStatus.STARTED);
-                unitOfWork.commit();
+    public void onClickStart() {
+        try {
+            doStart();
+            /*String siteCode = FlfsApp.getContext().getSiteCode();
+            unitOfWork.begin();
+            Site site = unitOfWork.getSiteRepository().findByNaturalId(siteCode);
+            site.setStatus(SiteStatus.STARTED);
+            unitOfWork.commit();
+            */
+            //updateButtons(site.getStatus());
 
-                updateButtons(site.getStatus());
-            }
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -130,21 +162,21 @@ public class MainController {
         PlcDelegate plcProxy = PlcDelegateFactory.getPlcDelegate();
         plcProxy.start();
 
-        ServiceRegistry registry = ServiceRegistryImpl.getInstance();
+        /*ServiceRegistry registry = ServiceRegistryImpl.getInstance();
         JobManager jobManager = (JobManager) registry.getService(Services.JOB_MANAGER);
         if (jobManager != null)
             try {
                 jobManager.startAll();
             } catch (SchedulerException e) {
                 e.printStackTrace();
-            }
+            }*/
     }
 
     public void onClickStop() {
         PlcDelegate plcProxy = PlcDelegateFactory.getPlcDelegate();
         plcProxy.halt();
 
-        try(UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession())){
+        /*try (UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession())) {
             String siteCode = FlfsApp.getContext().getSiteCode();
             unitOfWork.begin();
             Site site = unitOfWork.getSiteRepository().findByNaturalId(siteCode);
@@ -152,10 +184,9 @@ public class MainController {
             unitOfWork.commit();
 
             updateButtons(SiteStatus.STOPPED);
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        }*/
     }
 
     public void onClickClean() {
@@ -172,7 +203,6 @@ public class MainController {
                 .ifPresent(response -> {
                     System.exit(0);
                 });
-
     }
 
     public void onClickShedManagement() {
@@ -279,7 +309,24 @@ public class MainController {
     }
 
     public void initCheck() {
-        String siteCode = FlfsApp.getContext().getSiteCode();
+
+        try (UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession())) {
+            String siteCode = FlfsApp.getContext().getSiteCode();
+            unitOfWork.begin();
+            Site site = unitOfWork.getSiteRepository().findByNaturalId(siteCode);
+            unitOfWork.commit();
+
+            if (site.getSties().size() == 0) {
+                doConfigInternal(unitOfWork);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        doStartInternal();
+
+        /*String siteCode = FlfsApp.getContext().getSiteCode();
 
         try {
             Site site = unitOfWork.getSiteRepository().findByNaturalId(siteCode);
@@ -294,6 +341,28 @@ public class MainController {
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        }*/
+    }
+
+    private void doStartInternal() {
+        PlcDelegate delegate = PlcDelegateFactory.getPlcDelegate();
+        delegate.addModelChangedListener(event -> {
+            long field = event.getField();
+            if (field == PlcModelField.SYSTEM_STATUS) {
+                PlcModel model = event.getModel();
+                Short status = model.getSystemStatus();
+                Platform.runLater(() -> updateButtons(status));
+            }
+        });
+        delegate.getSystemStatus();
+
+        ServiceRegistry registry = ServiceRegistryImpl.getInstance();
+        JobManager jobManager = (JobManager) registry.getService(Services.JOB_MANAGER);
+        if (jobManager != null)
+            try {
+                jobManager.startAll();
+            } catch (SchedulerException e) {
+                e.printStackTrace();
+            }
     }
 }

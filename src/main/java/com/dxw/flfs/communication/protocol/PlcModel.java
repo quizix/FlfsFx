@@ -1,4 +1,6 @@
-package com.dxw.flfs.communication;
+package com.dxw.flfs.communication.protocol;
+
+import com.dxw.flfs.communication.PlcModelChangedEvent;
 
 import java.util.Date;
 

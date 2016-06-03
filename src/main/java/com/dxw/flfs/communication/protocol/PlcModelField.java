@@ -1,4 +1,4 @@
-package com.dxw.flfs.communication;
+package com.dxw.flfs.communication.protocol;
 
 /**
  * Created by zhang on 2016-04-19.

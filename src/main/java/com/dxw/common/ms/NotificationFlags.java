@@ -24,5 +24,5 @@ public class NotificationFlags {
     public final static int VALVE_PUMP_STATUS = 0x40;
 
 
-    public final static int SYSTEM_INITIALIZED = 0x1000;
+    public final static int SOFTWARE_INITIALIZED = 0x1000;
 }

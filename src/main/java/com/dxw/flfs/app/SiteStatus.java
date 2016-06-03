@@ -5,6 +5,6 @@ package com.dxw.flfs.app;
  */
 public class SiteStatus {
 
-    public final static int STOPPED = 0;
-    public final static int STARTED = 1;
+    public final static int UNCONFIGED = 0;
+    public final static int CONFIGED = 1;
 }

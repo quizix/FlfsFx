@@ -1,5 +1,7 @@
 package com.dxw.flfs.communication;
 
+import com.dxw.flfs.communication.protocol.PlcModel;
+
 /**
  * Created by zhang on 2016-04-19.
  */
