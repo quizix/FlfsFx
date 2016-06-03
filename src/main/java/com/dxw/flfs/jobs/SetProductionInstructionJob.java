@@ -39,8 +39,12 @@ public class SetProductionInstructionJob extends AbstractJob {
             boolean amOrPm = TimeUtil.isAmOrPm();
             ScheduleResult result = amOrPm ? scheduler.schedule6AM(uow) : scheduler.schedule6PM(uow);
             notify("开始下达做料信息");
+            //先设置做料信息
             delegate.setProductionParam(result.getWater(), result.getDry(), result.getBacteria(),
                     result.getBarrels());
+            //再设置做料信息更新标志
+            delegate.setProductionUpdateFlag();
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

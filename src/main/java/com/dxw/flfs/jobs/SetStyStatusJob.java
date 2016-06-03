@@ -38,7 +38,10 @@ public class SetStyStatusJob extends AbstractJob {
         short[] status = getStyStatus();
 
         if (status != null) {
+            //先设置栏位状态
             delegate.setStyStatus(status);
+            //再设置栏位设置更新标志
+            delegate.setStyStatusUpdateFlag();
         }
     }
 
