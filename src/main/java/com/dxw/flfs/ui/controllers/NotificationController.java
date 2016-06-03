@@ -36,10 +36,6 @@ public class NotificationController {
                 onNotify(tag, notification);
             });
         }
-
-        /*tableView.getItems().addListener((ListChangeListener<Reminder>) c -> {
-            tableView.scrollTo(c.getList().size()-1);
-        });*/
     }
 
     private void onNotify(String tag, Notification notification) {
@@ -48,19 +44,12 @@ public class NotificationController {
                 ObservableList<Reminder> items = tableView.getItems();
 
                 String datetime= TimeUtil.formatDateTime( new Date(notification.getWhen()));
-                String content = notification.getContent().toString();
-
+                String content = notification.getContent()==null?"":notification.getContent().toString();
                 items.add( new Reminder("["+tag+"]", datetime,content));
-
 
                 tableView.scrollTo(items.size()-1);
                 tableView.getSelectionModel().select(items.size()-1);
-                //tableView.requestFocus();
             }
-
         });
-
     }
-
-
 }

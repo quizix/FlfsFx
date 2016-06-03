@@ -5,10 +5,20 @@
  */
 package com.dxw.common.ms;
 
+import java.util.Date;
+
 /**
  * @author pronics3
  */
 public class Notification {
+
+    public Notification(){
+        this.content = null;
+        this.id = 0;
+        this.when = new Date().getTime();
+        this.flag = NotificationFlags.NOTHING;
+    }
+
     private int id;
 
     private Object content;
