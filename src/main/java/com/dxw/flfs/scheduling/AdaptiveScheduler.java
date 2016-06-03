@@ -48,7 +48,7 @@ public class AdaptiveScheduler implements FlfsScheduler {
     }
 
     private ScheduleResult doSchedule() throws SchedulerException {
-        GenericRepository<Site> repository = uow.getSiteConfigRepository();
+        GenericRepository<Site> repository = uow.getSiteRepository();
         Optional<Site> config =
                 repository.findAll().stream().filter(x -> x.getSiteCode().equals(siteCode)).findFirst();
 

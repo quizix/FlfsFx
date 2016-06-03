@@ -114,7 +114,7 @@ public class MainController {
                 doStart();
                 String siteCode = FlfsApp.getContext().getSiteCode();
                 unitOfWork.begin();
-                Site site = unitOfWork.getSiteConfigRepository().findByNaturalId(siteCode);
+                Site site = unitOfWork.getSiteRepository().findByNaturalId(siteCode);
                 site.setStatus(SiteStatus.STARTED);
                 unitOfWork.commit();
 
@@ -147,7 +147,7 @@ public class MainController {
         try(UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession())){
             String siteCode = FlfsApp.getContext().getSiteCode();
             unitOfWork.begin();
-            Site site = unitOfWork.getSiteConfigRepository().findByNaturalId(siteCode);
+            Site site = unitOfWork.getSiteRepository().findByNaturalId(siteCode);
             site.setStatus(SiteStatus.STOPPED);
             unitOfWork.commit();
 
@@ -282,7 +282,7 @@ public class MainController {
         String siteCode = FlfsApp.getContext().getSiteCode();
 
         try {
-            Site site = unitOfWork.getSiteConfigRepository().findByNaturalId(siteCode);
+            Site site = unitOfWork.getSiteRepository().findByNaturalId(siteCode);
 
             int status = site.getStatus();
 

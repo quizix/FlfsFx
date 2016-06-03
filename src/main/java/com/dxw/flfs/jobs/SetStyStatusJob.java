@@ -8,57 +8,68 @@ package com.dxw.flfs.jobs;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
+import com.dxw.flfs.app.FlfsApp;
 import com.dxw.flfs.communication.PlcDelegate;
 import com.dxw.flfs.communication.PlcDelegateFactory;
-import com.dxw.flfs.data.FlfsDao;
-import com.dxw.flfs.data.FlfsDaoImpl;
 import com.dxw.flfs.data.HibernateService;
+import com.dxw.flfs.data.dal.UnitOfWork;
+import com.dxw.flfs.data.models.Site;
+import com.dxw.flfs.data.models.Sty;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * 发送栏位空/满信息
  * 每一分钟执行一次
+ *
  * @author pronics3
  */
 public class SetStyStatusJob extends AbstractJob {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        
+
         notify("开始发送栏位空/满信息");
         PlcDelegate delegate = PlcDelegateFactory.getPlcDelegate();
 
         short[] status = getStyStatus();
 
-        if(status != null){
+        if (status != null) {
             delegate.setStyStatus(status);
         }
-
     }
 
-    private short[] getStyStatus(){
+    private short[] getStyStatus() {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
-        HibernateService hibernateService = (HibernateService)registry.getService(Services.HIBERNATE_SERVICE);
+        HibernateService hibernateService = (HibernateService) registry.getService(Services.HIBERNATE_SERVICE);
 
-        try (FlfsDao dao = new FlfsDaoImpl(hibernateService)) {
+        try (UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession())) {
+            String siteCode = FlfsApp.getContext().getSiteCode();
 
-            /*Batch batch = dao.findBatchByCode(FlfsApp.getContext().getBatchCode());
+            Site site = unitOfWork.getSiteRepository().findByNaturalId(siteCode);
 
-            Set<Sty> sties = batch.getSties();
-            int size = sties.size();
-            short[] status = new short[size];
-            int i=0;
-            for(Sty sty: sties){
-                status[i++] = (short)((sty.getCurrentNumber()==0)?0:1);
-            }*/
-            short[] status = new short[24];
-            return status;
+            if (site != null) {
+                short[] status = new short[24];
 
-        } catch (Exception e) {
-            notify("获取栏位信息失败！");
+                Set<Sty> sties = site.getSties();
+                int size = Math.min(status.length, sties.size());
+
+                for (int i = 0; i < size; i++) {
+                    final short no = (short)i;
+                    Optional<Sty> sty = sties.stream().filter(s -> s.getNo() == no)
+                            .findFirst();
+                    if (sty.isPresent()) {
+                        status[i] = (short) (sty.get().getCurrentNumber() > 0 ? 0 : 1);
+                    }
+                }
+                return status;
+            }
+        } catch (Exception ex) {
+
         }
         return null;
     }
-    
 }

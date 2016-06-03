@@ -24,7 +24,7 @@ public class RemindJob extends AbstractJob {
             String siteCode = FlfsApp.getContext().getSiteCode();
             unitOfWork.begin();
 
-            Site site = unitOfWork.getSiteConfigRepository().findByNaturalId(siteCode);
+            Site site = unitOfWork.getSiteRepository().findByNaturalId(siteCode);
 
             unitOfWork.commit();
             if( site != null){

@@ -117,7 +117,7 @@ public class FlfsApp extends Application {
             HibernateService hibernateService = (HibernateService) registry.getService(Services.HIBERNATE_SERVICE);
             UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession());
 
-            Site site = unitOfWork.getSiteConfigRepository().findByNaturalId(siteCode);
+            Site site = unitOfWork.getSiteRepository().findByNaturalId(siteCode);
 
             if (site == null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "无法获取站点数据！");

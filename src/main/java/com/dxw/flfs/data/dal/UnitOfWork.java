@@ -32,7 +32,7 @@ public class UnitOfWork implements AutoCloseable {
         return userRepository;
     }
 
-    public DefaultGenericRepository<Site> getSiteConfigRepository() {
+    public DefaultGenericRepository<Site> getSiteRepository() {
         if(siteConfigRepository==null )
             siteConfigRepository = new DefaultGenericRepository<>(session, Site.class);
         return siteConfigRepository;

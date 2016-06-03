@@ -99,7 +99,7 @@ public class ChooseStiesController {
                     if(newValue != null){
                         unitOfWork.begin();
                         Set<Sty> sties = newValue.getSties();
-                        DefaultGenericRepository<Site> siteRepository = unitOfWork.getSiteConfigRepository();
+                        DefaultGenericRepository<Site> siteRepository = unitOfWork.getSiteRepository();
                         Site site = siteRepository.findByNaturalId(FlfsApp.getContext().getSiteCode());
                         unitOfWork.commit();
 
