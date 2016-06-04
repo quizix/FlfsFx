@@ -140,8 +140,8 @@ public class StartupWizardController {
 
     public void setTitle(int currentPage) {
         if( currentPage == 0)
-            this.stage.setTitle("配置向导-第一步：设置栏位关联");
+            this.stage.setTitle("配置向导——第一步：设置栏位关联");
         else if( currentPage == 1)
-            this.stage.setTitle("配置向导-第一步：设置小猪入栏计划");
+            this.stage.setTitle("配置向导——第二步：设置小猪入栏计划");
     }
 }

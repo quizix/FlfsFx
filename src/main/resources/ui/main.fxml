@@ -15,7 +15,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#onClickExit" text="退出" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="管理">
+                <Menu mnemonicParsing="false" text="基础数据管理">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#onClickShedManagement" text="猪舍管理" />
                         <MenuItem mnemonicParsing="false" onAction="#onClickBatchManagement" text="批次管理" visible="false" />
@@ -24,14 +24,14 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="帮助">
                     <items>
+                  <Menu mnemonicParsing="false" text="测试">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#onSendNotification" text="发送提醒" />
+                    </items>
+                  </Menu>
                         <MenuItem mnemonicParsing="false" onAction="#onClickAbout" text="关于" />
                     </items>
                 </Menu>
-            <Menu mnemonicParsing="false" text="测试">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#onSendNotification" text="发送提醒" />
-              </items>
-            </Menu>
             </menus>
         </MenuBar>
     </top>
