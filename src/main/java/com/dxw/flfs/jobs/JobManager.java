@@ -35,6 +35,7 @@ public class JobManager implements Service {
         started = true;
 
         scheduleSystemStatusPollJob(scheduler);
+        scheduleDeviceConditionPollJob(scheduler);
         scheduleProductionInstructionJob(scheduler);
         scheduleSetStyStatusJob(scheduler);
         scheduleRemindJob(scheduler);
@@ -68,6 +69,21 @@ public class JobManager implements Service {
                         simpleSchedule()
                                 .withIntervalInMinutes(1)
                                 .repeatForever())
+                .build();
+        s.scheduleJob(job, trigger);
+    }
+
+    private void scheduleDeviceConditionPollJob(Scheduler s) throws SchedulerException {
+        JobDetail job = newJob(PollSystemStatus.class)
+                .withIdentity("pollDeviceConditionJob", "flfsGroup")
+                .build();
+
+        //使用cronSchedule， 0 0 6/1 * * ?，表示6点开始，每12个小时执行一次
+        Trigger trigger = newTrigger()
+                .withIdentity("pollDeviceConditionTrigger", "flfsGroup")
+                .startNow()
+                .withSchedule(
+                        cronSchedule("0 0 6/1 * * ?"))
                 .build();
         s.scheduleJob(job, trigger);
     }
