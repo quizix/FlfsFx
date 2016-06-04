@@ -5,8 +5,8 @@
  */
 package com.dxw.flfs.communication.protocol;
 
-import com.dxw.common.ms.Notification;
-import com.dxw.common.ms.NotificationManager;
+import com.dxw.common.messages.Message;
+import com.dxw.common.messages.MessageBus;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
 import com.dxw.common.utils.TimeUtil;
@@ -27,7 +27,7 @@ class PlcDelegateImpl implements PlcDelegate {
     PlcDelegateImpl(Plc plcPrimary, Plc plcSecondary) {
         this.plcPrimary = plcPrimary;
         this.plcSecondary = plcSecondary;
-        notificationManager = (NotificationManager)
+        notificationManager = (MessageBus)
                 ServiceRegistryImpl.getInstance().getService(Services.NOTIFICATION_MANAGER);
     }
     //region event related.
@@ -343,10 +343,10 @@ class PlcDelegateImpl implements PlcDelegate {
 
 
 
-    NotificationManager notificationManager;
+    MessageBus notificationManager;
     private void sendNotification(String message) {
         if (notificationManager != null) {
-            Notification n = new Notification();
+            Message n = new Message();
             n.setContent(message);
             n.setWhen(System.currentTimeMillis());
             notificationManager.notify("PLC", n);

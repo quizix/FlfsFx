@@ -5,8 +5,8 @@
  */
 package com.dxw.flfs.jobs;
 
-import com.dxw.common.ms.Notification;
-import com.dxw.common.ms.NotificationManager;
+import com.dxw.common.messages.Message;
+import com.dxw.common.messages.MessageBus;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
 import org.quartz.Job;
@@ -17,16 +17,16 @@ import org.quartz.Job;
  */
 public abstract class AbstractJob implements Job {
 
-    NotificationManager notificationManager;
+    MessageBus notificationManager;
 
     public AbstractJob() {
-        this.notificationManager = (NotificationManager) ServiceRegistryImpl.getInstance()
+        this.notificationManager = (MessageBus) ServiceRegistryImpl.getInstance()
                 .getService(Services.NOTIFICATION_MANAGER);;
     }
     
     protected void notify(String message){
         if(notificationManager != null){
-            Notification n = new Notification();
+            Message n = new Message();
             n.setContent(message);
             n.setWhen( System.currentTimeMillis());
             notificationManager.notify("JOB", n);
@@ -35,7 +35,7 @@ public abstract class AbstractJob implements Job {
 
     protected void notifyData(int flag, Object data){
         if(notificationManager != null){
-            Notification n = new Notification();
+            Message n = new Message();
             n.setFlag(flag);
             n.setContent(data);
             n.setWhen( System.currentTimeMillis());

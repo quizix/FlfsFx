@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dxw.common.ms;
+package com.dxw.common.messages;
 
 /**
  *
  * @author pronics3
  */
-public interface Receiver {
-    void notify(String tag, Notification notification);
+public interface MessageListener {
+    void onMessage(String tag, Message notification);
 }

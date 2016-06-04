@@ -5,8 +5,8 @@
  */
 package com.dxw.server.app;
 
-import com.dxw.common.ms.Notification;
-import com.dxw.common.ms.NotificationManager;
+import com.dxw.common.messages.Message;
+import com.dxw.common.messages.MessageBus;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
@@ -28,16 +28,16 @@ public class Simulator {
 
     class BasicProcessImageListener implements ProcessImageListener {
 
-        NotificationManager notificationManager;
+        MessageBus notificationManager;
 
-        public BasicProcessImageListener(NotificationManager notificationManager) {
+        public BasicProcessImageListener(MessageBus notificationManager) {
             this.notificationManager = notificationManager;
         }
 
         @Override
         public void coilWrite(int offset, boolean oldValue, boolean newValue) {
             System.out.println("Coil at " + offset + " was set from " + oldValue + " to " + newValue);
-            Notification n = new Notification();
+            Message n = new Message();
             n.setContent("Coil at " + offset + " was set from " + oldValue + " to " + newValue);
             n.setWhen(System.currentTimeMillis());
             notificationManager.notify("coilWrite", n);
@@ -53,18 +53,18 @@ public class Simulator {
             //                // no op
             //            }
             System.out.println("HR at " + offset + " was set from " + oldValue + " to " + newValue);
-            Notification n = new Notification();
+            Message n = new Message();
             n.setContent("HR at " + offset + " was set from " + oldValue + " to " + newValue);
             n.setWhen(System.currentTimeMillis());
             notificationManager.notify("holdingRegisterWrite", n);
         }
     }
 
-    NotificationManager notificationManager;
+    MessageBus notificationManager;
 
     public Simulator() {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
-        notificationManager = (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
+        notificationManager = (MessageBus) registry.getService(Services.NOTIFICATION_MANAGER);
 
     }
 

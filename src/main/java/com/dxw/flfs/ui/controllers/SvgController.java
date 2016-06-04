@@ -1,8 +1,8 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.common.ms.Notification;
-import com.dxw.common.ms.NotificationFlags;
-import com.dxw.common.ms.NotificationManager;
+import com.dxw.common.messages.Message;
+import com.dxw.common.messages.MessageFlags;
+import com.dxw.common.messages.MessageBus;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
 import com.dxw.flfs.communication.*;
@@ -36,10 +36,10 @@ public class SvgController {
         engine.getLoadWorker().stateProperty().addListener(
                 (ov, oldState, newState) -> {
                     if (newState == State.SUCCEEDED) {
-                        NotificationManager manager =
-                                (NotificationManager) ServiceRegistryImpl.getInstance().getService(Services.NOTIFICATION_MANAGER);
-                        Notification n = new Notification();
-                        n.setFlag(NotificationFlags.SOFTWARE_INITIALIZED);
+                        MessageBus manager =
+                                (MessageBus) ServiceRegistryImpl.getInstance().getService(Services.NOTIFICATION_MANAGER);
+                        Message n = new Message();
+                        n.setFlag(MessageFlags.SOFTWARE_INITIALIZED);
                         n.setContent("");
                         n.setWhen(new Date().getTime());
                         manager.notify("System", n);

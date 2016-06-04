@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dxw.common.ms;
+package com.dxw.common.messages;
 
 import java.util.Date;
 
 /**
  * @author pronics3
  */
-public class Notification {
+public class Message {
 
-    public Notification(){
+    public Message(){
         this.content = null;
         this.id = 0;
         this.when = new Date().getTime();
-        this.flag = NotificationFlags.NOTHING;
+        this.flag = MessageFlags.NOTHING;
     }
 
     private int id;

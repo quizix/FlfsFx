@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dxw.common.ms;
+package com.dxw.common.messages;
 
 import com.dxw.common.services.Service;
 
@@ -11,10 +11,10 @@ import com.dxw.common.services.Service;
  *
  * @author pronics3
  */
-public interface NotificationManager extends Service {
-    void notify(String tag, Notification notification);
+public interface MessageBus extends Service {
+    void notify(String tag, Message notification);
     
-    void addReceiver(Receiver receiver);
+    void addReceiver(MessageListener receiver);
     
-    void removeReceiver(Receiver receiver);
+    void removeReceiver(MessageListener receiver);
 }

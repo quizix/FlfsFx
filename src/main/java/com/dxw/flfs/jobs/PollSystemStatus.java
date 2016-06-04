@@ -5,7 +5,7 @@
  */
 package com.dxw.flfs.jobs;
 
-import com.dxw.common.ms.NotificationFlags;
+import com.dxw.common.messages.MessageFlags;
 import com.dxw.flfs.communication.protocol.PlcDelegate;
 import com.dxw.flfs.communication.protocol.PlcDelegateFactory;
 import org.quartz.JobExecutionContext;
@@ -31,7 +31,7 @@ public class PollSystemStatus extends AbstractJob {
         //系统状态
         {
             Short status = delegate.getSystemStatus();
-            notifyData(NotificationFlags.SYSTEM_STATUS, status);
+            notifyData(MessageFlags.SYSTEM_STATUS, status);
         }
 
         //查询料塔状态:10分钟执行一次
@@ -40,7 +40,7 @@ public class PollSystemStatus extends AbstractJob {
             boolean[] status = delegate.getMaterialTowerStatus();
 
             if (status != null) {
-                notifyData(NotificationFlags.MATERIAL_TOWER_STATUS, status);
+                notifyData(MessageFlags.MATERIAL_TOWER_STATUS, status);
 
             }
             materialTowerCountDown = 10;
@@ -48,14 +48,14 @@ public class PollSystemStatus extends AbstractJob {
         //搅拌桶状态
         {
             Short status = delegate.getMixingBarrelStatus();
-            notifyData(NotificationFlags.SYSTEM_STATUS, status);
+            notifyData(MessageFlags.SYSTEM_STATUS, status);
         }
 
         //发酵罐的空和满状态
         {
             boolean[] status = delegate.getFermentBarrelStatus();
             if (status != null) {
-                notifyData(NotificationFlags.FERMENT_BARREL_STATUS, status);
+                notifyData(MessageFlags.FERMENT_BARREL_STATUS, status);
             }
         }
 
@@ -63,7 +63,7 @@ public class PollSystemStatus extends AbstractJob {
         {
             short[] data = delegate.getFermentBarrelAction();
             if (data != null) {
-                notifyData(NotificationFlags.FERMENT_BARREL_ACTION, data);
+                notifyData(MessageFlags.FERMENT_BARREL_ACTION, data);
             }
         }
 
@@ -72,7 +72,7 @@ public class PollSystemStatus extends AbstractJob {
         if (phCountDown-- == 0) {
             Float value = delegate.getPhValue();
             if (value != null)
-                notifyData(NotificationFlags.FERMENT_BARREL_PH_VALUE, value);
+                notifyData(MessageFlags.FERMENT_BARREL_PH_VALUE, value);
             phCountDown = 60;
 
         }

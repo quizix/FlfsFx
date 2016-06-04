@@ -1,7 +1,7 @@
 package com.dxw.flfs.app;
 
-import com.dxw.common.ms.NotificationManager;
-import com.dxw.common.ms.NotificationManagerImpl;
+import com.dxw.common.messages.MessageBus;
+import com.dxw.common.messages.MessageBusImpl;
 import com.dxw.common.services.ServiceException;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.Services;
@@ -60,7 +60,7 @@ public class AppInitiator {
     }
 
     private void registerNotificationService() throws ServiceException {
-        NotificationManager notificationManager = new NotificationManagerImpl();
+        MessageBus notificationManager = new MessageBusImpl();
         notificationManager.init();
         registry.register(notificationManager);
     }

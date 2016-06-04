@@ -1,7 +1,7 @@
 package com.dxw.flfs.jobs;
 
-import com.dxw.common.ms.Notification;
-import com.dxw.common.ms.NotificationTags;
+import com.dxw.common.messages.Message;
+import com.dxw.common.messages.MessageTags;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
 import com.dxw.flfs.app.FlfsApp;
@@ -31,10 +31,10 @@ public class RemindJob extends AbstractJob {
                 //stage==0表示还是处于入栏阶段
                 if( site.getStage() ==0){
                     if(notificationManager != null){
-                        Notification n = new Notification();
+                        Message n = new Message();
                         n.setContent("系统提示：请输入明天的入栏计划");
                         n.setWhen( System.currentTimeMillis());
-                        notificationManager.notify(NotificationTags.Remind, n);
+                        notificationManager.notify(MessageTags.Remind, n);
                     }
                 }
             }

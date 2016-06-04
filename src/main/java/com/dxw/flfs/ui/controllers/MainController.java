@@ -1,9 +1,9 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.common.ms.Notification;
-import com.dxw.common.ms.NotificationFlags;
-import com.dxw.common.ms.NotificationManager;
-import com.dxw.common.ms.NotificationTags;
+import com.dxw.common.messages.Message;
+import com.dxw.common.messages.MessageFlags;
+import com.dxw.common.messages.MessageBus;
+import com.dxw.common.messages.MessageTags;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
@@ -50,12 +50,12 @@ public class MainController {
         hibernateService = (HibernateService) registry.getService(Services.HIBERNATE_SERVICE);
         //this.unitOfWork = new UnitOfWork(hibernateService.getSession());
 
-        NotificationManager manager =
-                (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
+        MessageBus manager =
+                (MessageBus) registry.getService(Services.NOTIFICATION_MANAGER);
 
         manager.addReceiver((tag, notification) -> {
             if (tag.equals("System")) {
-                if (notification.getFlag() == NotificationFlags.SOFTWARE_INITIALIZED) {
+                if (notification.getFlag() == MessageFlags.SOFTWARE_INITIALIZED) {
                     initCheck();
                 }
             }
@@ -103,12 +103,12 @@ public class MainController {
         // delegate.getModel().setSystemStatus((short)2);
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
 
-        NotificationManager notificationManager = (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
-        Notification n = new Notification();
+        MessageBus notificationManager = (MessageBus) registry.getService(Services.NOTIFICATION_MANAGER);
+        Message n = new Message();
         n.setContent("系统提示：请输入明天的入栏计划");
         n.setWhen(System.currentTimeMillis());
         if (notificationManager != null)
-            notificationManager.notify(NotificationTags.Remind, n);
+            notificationManager.notify(MessageTags.Remind, n);
     }
 
     public void onConfig() {
@@ -298,12 +298,12 @@ public class MainController {
     public void onSendNotification() {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
 
-        NotificationManager notificationManager = (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
+        MessageBus notificationManager = (MessageBus) registry.getService(Services.NOTIFICATION_MANAGER);
         if (notificationManager != null) {
-            Notification n = new Notification();
+            Message n = new Message();
             n.setContent("系统提示：请输入明天的入栏计划");
             n.setWhen(System.currentTimeMillis());
-            notificationManager.notify(NotificationTags.Remind, n);
+            notificationManager.notify(MessageTags.Remind, n);
         }
 
     }

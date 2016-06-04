@@ -1,6 +1,6 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.common.ms.*;
+import com.dxw.common.messages.*;
 import com.dxw.common.services.ServiceException;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
@@ -39,15 +39,15 @@ public class ReminderController {
         items.clear();
     }
 
-    private NotificationManager notificationManger;
+    private MessageBus notificationManger;
 
     @FXML
     public void initialize() throws ServiceException {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
-        notificationManger = (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
+        notificationManger = (MessageBus) registry.getService(Services.NOTIFICATION_MANAGER);
 
         if (notificationManger != null) {
-            notificationManger.addReceiver((String tag, Notification notification) -> {
+            notificationManger.addReceiver((String tag, Message notification) -> {
                 onNotify(tag, notification);
             });
         }
@@ -55,8 +55,8 @@ public class ReminderController {
 
     }
 
-    private void onNotify(String tag, Notification notification) {
-        if (tag.equals(NotificationTags.Remind)) {
+    private void onNotify(String tag, Message notification) {
+        if (tag.equals(MessageTags.Remind)) {
             ObservableList<Reminder> items = tableView.getItems();
 
             String datetime= TimeUtil.formatDateTime( new Date(notification.getWhen()));

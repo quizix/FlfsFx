@@ -1,8 +1,8 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.common.ms.Notification;
-import com.dxw.common.ms.NotificationManager;
-import com.dxw.common.ms.NotificationTags;
+import com.dxw.common.messages.Message;
+import com.dxw.common.messages.MessageBus;
+import com.dxw.common.messages.MessageTags;
 import com.dxw.common.services.ServiceException;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
@@ -23,24 +23,24 @@ public class NotificationController {
     @FXML
     private TableView<Reminder> tableView;
 
-    private NotificationManager notificationManger;
+    private MessageBus notificationManger;
 
     @FXML
     public void initialize() throws ServiceException {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
 
-        notificationManger = (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
+        notificationManger = (MessageBus) registry.getService(Services.NOTIFICATION_MANAGER);
 
         if (notificationManger != null) {
-            notificationManger.addReceiver((String tag, Notification notification) -> {
+            notificationManger.addReceiver((String tag, Message notification) -> {
                 onNotify(tag, notification);
             });
         }
     }
 
-    private void onNotify(String tag, Notification notification) {
+    private void onNotify(String tag, Message notification) {
         Platform.runLater( ()->{
-            if (!tag.equals(NotificationTags.Remind)) {
+            if (!tag.equals(MessageTags.Remind)) {
                 ObservableList<Reminder> items = tableView.getItems();
 
                 String datetime= TimeUtil.formatDateTime( new Date(notification.getWhen()));

@@ -5,7 +5,7 @@
  */
 package com.dxw.server.app;
 
-import com.dxw.common.ms.NotificationManagerImpl;
+import com.dxw.common.messages.MessageBusImpl;
 import com.dxw.common.services.ServiceException;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
@@ -26,7 +26,7 @@ public class PlcSimulatorApp {
 
     private void init() throws ServiceException {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
-        registry.register(new NotificationManagerImpl());
+        registry.register(new MessageBusImpl());
 
         try {
             new Simulator().start();

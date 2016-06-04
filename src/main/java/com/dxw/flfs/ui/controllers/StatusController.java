@@ -1,6 +1,6 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.common.ms.NotificationManager;
+import com.dxw.common.messages.MessageBus;
 import com.dxw.common.services.ServiceException;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
@@ -80,7 +80,7 @@ public class StatusController {
                     new FermentBarrelStatus(6, ""),
                     new FermentBarrelStatus(7, ""));
 
-    NotificationManager notificationManager;
+    MessageBus notificationManager;
     PlcDelegate delegate;
 
     @FXML
@@ -93,7 +93,7 @@ public class StatusController {
         tableView.setItems(fermentBarrelStatus);
 
         ServiceRegistry r = ServiceRegistryImpl.getInstance();
-        notificationManager = (NotificationManager) r.getService(Services.NOTIFICATION_MANAGER);
+        notificationManager = (MessageBus) r.getService(Services.NOTIFICATION_MANAGER);
 
         delegate = PlcDelegateFactory.getPlcDelegate();
         delegate.addModelChangedListener(event -> Platform.runLater(() -> updateStatus(event)));

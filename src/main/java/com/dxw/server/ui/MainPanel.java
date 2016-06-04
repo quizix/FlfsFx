@@ -1,14 +1,13 @@
 package com.dxw.server.ui;
 
-import com.dxw.common.ms.Notification;
-import com.dxw.common.ms.NotificationManager;
+import com.dxw.common.messages.Message;
+import com.dxw.common.messages.MessageBus;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
 import com.dxw.common.services.Services;
 import com.dxw.flfs.communication.base.PlcConfig;
 
 import javax.swing.*;
-import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,7 +24,7 @@ public class MainPanel {
     private JRadioButton primaryRadioButton1;
     private JRadioButton secondlyRadioButton;
 
-    NotificationManager notificationManager;
+    MessageBus notificationManager;
 
     public MainPanel() {
         init();
@@ -36,10 +35,10 @@ public class MainPanel {
     private void init() {
         ServiceRegistry registry = ServiceRegistryImpl.getInstance();
 
-        notificationManager = (NotificationManager) registry.getService(Services.NOTIFICATION_MANAGER);
+        notificationManager = (MessageBus) registry.getService(Services.NOTIFICATION_MANAGER);
 
         if (notificationManager != null) {
-            notificationManager.addReceiver((String tag, Notification notification) -> {
+            notificationManager.addReceiver((String tag, Message notification) -> {
                 String message = String.format("[%S] %s %s\r\n", tag,
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(notification.getWhen())),
                         notification.getContent().toString());

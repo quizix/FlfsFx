@@ -5,8 +5,8 @@
  */
 package com.dxw.server.app;
 
-import com.dxw.common.ms.Notification;
-import com.dxw.common.ms.NotificationManager;
+import com.dxw.common.messages.Message;
+import com.dxw.common.messages.MessageBus;
 import com.dxw.common.services.Services;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
@@ -26,10 +26,10 @@ public class TestJob implements Job{
             
             ServiceRegistry registry = ServiceRegistryImpl.getInstance();
         
-        NotificationManager notificationManger = (NotificationManager)registry.getService(Services.NOTIFICATION_MANAGER);
+        MessageBus notificationManger = (MessageBus)registry.getService(Services.NOTIFICATION_MANAGER);
         
         if(notificationManger != null){
-            Notification notification = new Notification();
+            Message notification = new Message();
             notification.setWhen(System.currentTimeMillis());
             notificationManger.notify("job", notification);
         }
