@@ -29,14 +29,14 @@ public class MessageBusImpl implements MessageBus {
     }
 
     @Override
-    public void addReceiver(MessageListener receiver) {
+    public void addListener(MessageListener receiver) {
         if (!receivers.contains(receiver)) {
             receivers.add(receiver);
         }
     }
 
     @Override
-    public void removeReceiver(MessageListener receiver) {
+    public void removeListener(MessageListener receiver) {
 
         if (receivers.contains(receiver)) {
             receivers.remove(receiver);

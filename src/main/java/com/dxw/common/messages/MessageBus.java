@@ -14,7 +14,7 @@ import com.dxw.common.services.Service;
 public interface MessageBus extends Service {
     void notify(String tag, Message notification);
     
-    void addReceiver(MessageListener receiver);
+    void addListener(MessageListener receiver);
     
-    void removeReceiver(MessageListener receiver);
+    void removeListener(MessageListener receiver);
 }

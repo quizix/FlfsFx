@@ -53,7 +53,7 @@ public class MainController {
         MessageBus manager =
                 (MessageBus) registry.getService(Services.NOTIFICATION_MANAGER);
 
-        manager.addReceiver((tag, notification) -> {
+        manager.addListener((tag, notification) -> {
             if (tag.equals("System")) {
                 if (notification.getFlag() == MessageFlags.SOFTWARE_INITIALIZED) {
                     initCheck();

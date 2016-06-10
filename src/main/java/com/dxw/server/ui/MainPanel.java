@@ -38,7 +38,7 @@ public class MainPanel {
         notificationManager = (MessageBus) registry.getService(Services.NOTIFICATION_MANAGER);
 
         if (notificationManager != null) {
-            notificationManager.addReceiver((String tag, Message notification) -> {
+            notificationManager.addListener((String tag, Message notification) -> {
                 String message = String.format("[%S] %s %s\r\n", tag,
                         new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(notification.getWhen())),
                         notification.getContent().toString());

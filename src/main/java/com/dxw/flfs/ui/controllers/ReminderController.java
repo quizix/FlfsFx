@@ -47,7 +47,7 @@ public class ReminderController {
         notificationManger = (MessageBus) registry.getService(Services.NOTIFICATION_MANAGER);
 
         if (notificationManger != null) {
-            notificationManger.addReceiver((String tag, Message notification) -> {
+            notificationManger.addListener((String tag, Message notification) -> {
                 onNotify(tag, notification);
             });
         }
