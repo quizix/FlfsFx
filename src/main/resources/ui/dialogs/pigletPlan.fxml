@@ -20,7 +20,7 @@
    <center>
       <TableView fx:id="tableViewPlan" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="122.0" text="编号">
+          <TableColumn prefWidth="122.0" text="ID">
               <cellValueFactory>
                   <PropertyValueFactory property="id" />
               </cellValueFactory>

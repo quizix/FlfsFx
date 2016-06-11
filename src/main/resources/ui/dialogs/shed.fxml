@@ -20,7 +20,7 @@
                                 </ToolBar>
                                 <TableView fx:id="shedTableView" prefHeight="299.0" prefWidth="790.0">
                                     <columns>
-                                        <TableColumn prefWidth="101.0" text="猪舍编号">
+                                        <TableColumn prefWidth="101.0" text="猪舍ID">
                                             <cellValueFactory>
                                                 <PropertyValueFactory property="id" />
                                             </cellValueFactory>

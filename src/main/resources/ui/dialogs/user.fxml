@@ -1,26 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <items>
-          <Button mnemonicParsing="false" text="添加用户" />
-        </items>
-      </ToolBar>
-   </top>
-   <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="75.0" text="用户编号" />
-          <TableColumn prefWidth="174.0" text="用户名" />
-            <TableColumn prefWidth="154.0" text="创建日期" />
-            <TableColumn prefWidth="154.0" text="修改日期" />
-        </columns>
-      </TableView>
-   </center>
-</BorderPane>
+<SplitPane dividerPositions="0.5725806451612904" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.UserController">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0">
+            <children>
+                <TitledPane collapsible="false" layoutY="46.0" text="用户信息" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <content>
+                        <VBox prefHeight="297.0" prefWidth="796.0">
+                            <children>
+                                <ToolBar>
+                                    <items>
+                                        <Button mnemonicParsing="false" onAction="#onAddUser" text="添加用户" />
+                                    </items>
+                                </ToolBar>
+                                <TableView fx:id="userTableView" prefHeight="299.0" prefWidth="790.0">
+                                    <columns>
+                                        <TableColumn prefWidth="101.0" text="用户ID">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="id" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="96.0" text="名字">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="name" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="150.0" text="编码">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="code" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="199.0" text="创建时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="createTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="204.0" text="修改时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="modifyTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#onEditUser" text="修改用户" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onDeleteUser" text="删除用户" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+            </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0">
+            <children>
+                <TitledPane collapsible="false" text="用户权限" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <content>
+                        <VBox>
+                            <children>
+                                <ToolBar>
+                                    <items>
+                                        <Button mnemonicParsing="false" onAction="#onAddSty" text="添加权限" />
+                                    </items>
+                                </ToolBar>
+                                <TableView fx:id="privilegeTableView">
+                                    <columns>
+                                        <TableColumn prefWidth="100.0" text="权限ID">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="id" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="97.0" text="名称">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="name" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="150.0" text="编码">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="code" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="202.0" text="创建时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="createTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="198.0" text="修改时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="modifyTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#onEditSty" text="修改权限" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onDeleteSty" text="删除权限" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>
