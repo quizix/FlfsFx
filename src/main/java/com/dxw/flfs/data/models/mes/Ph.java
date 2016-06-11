@@ -1,21 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.dxw.flfs.data.models;
+package com.dxw.flfs.data.models.mes;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 用户操作日志 记录用户何时对系统
+ * PH值
  *
- * @author Administrator
+ * @author pronics3
+ *
  */
 @Entity
-@Table(name="flfs_operation_log")
-public class OperationLog{
+@Table(name="mes_ph")
+@Access(AccessType.FIELD)
+public class Ph{
     /**
      * 内部id
      */
@@ -35,17 +32,19 @@ public class OperationLog{
     @Column(name="modifyTime")
     protected Date modifyTime;
 
-    @ManyToOne(targetEntity = User.class)
-    private User user;
+    /**
+     * ph值
+     */
+    @Column(name="value")
+    private float value;
 
-    @ManyToOne(targetEntity = Shed.class)
+    /**
+     * 猪舍
+     */
+    @ManyToOne
+    @JoinColumn(name="shedId")
     private Shed shed;
 
-    @Column(name="module")
-    private String module;
-
-    @Column(name="resource")
-    private String resource;
 
     public Long getId() {
         return id;
@@ -70,13 +69,6 @@ public class OperationLog{
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
     }
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public Shed getShed() {
         return shed;
@@ -86,20 +78,12 @@ public class OperationLog{
         this.shed = shed;
     }
 
-    public String getModule() {
-        return module;
+    public float getValue() {
+        return value;
     }
 
-    public void setModule(String module) {
-        this.module = module;
-    }
-
-    public String getResource() {
-        return resource;
-    }
-
-    public void setResource(String resource) {
-        this.resource = resource;
+    public void setValue(float value) {
+        this.value = value;
     }
 
     @Override

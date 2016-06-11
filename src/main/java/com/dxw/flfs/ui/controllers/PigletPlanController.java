@@ -6,7 +6,7 @@ import com.dxw.common.services.Services;
 import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.DefaultGenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
-import com.dxw.flfs.data.models.PigletPlan;
+import com.dxw.flfs.data.models.mes.PigletPlan;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -3,19 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dxw.flfs.data.models;
+package com.dxw.flfs.data.models.erp;
+
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 小猪入栏计划
  *
- * @author pronics3
+ * @author Administrator
  */
 @Entity
-@Table(name="flfs_in_sty_plan")
-public class InStyPlan{
+@Table(name="erp_user")
+@Access(AccessType.FIELD)
+public class User{
     /**
      * 内部id
      */
@@ -36,22 +38,23 @@ public class InStyPlan{
     protected Date modifyTime;
 
     /**
-     * 计划入栏日期
+     * 编码
      */
-    @Column(name="date")
-    private Date date;
-    /**
-     * 计划栏位
-     */
-    @ManyToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name="styId")
-    private Sty sty;
+    @NaturalId(mutable=true)
+    @Column(name="code")
+    private String code;
 
     /**
-     * 计划入栏数量
+     * 用户名
      */
-    @Column(name="value")
-    private int value;
+    @Column(name="name")
+    private String name;
+
+     /**
+     * 密码
+     */
+     @Column(name="password")
+    private String password;
 
     public Long getId() {
         return id;
@@ -76,33 +79,33 @@ public class InStyPlan{
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
     }
-    public Date getDate() {
-        return date;
+
+    public String getName() {
+        return name;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Sty getSty() {
-        return sty;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSty(Sty sty) {
-        this.sty = sty;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    @Override 
+    public String toString(){
+        return "";
     }
 
-    public int getValue() {
-        return value;
+    public String getCode() {
+        return code;
     }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("{id:%d, createTime:%s, modifyTime:%s}",
-                this.id, this.createTime, this.modifyTime);
+    public void setCode(String code) {
+        this.code = code;
     }
 }

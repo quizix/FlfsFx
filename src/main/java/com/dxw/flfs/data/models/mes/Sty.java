@@ -1,4 +1,4 @@
-package com.dxw.flfs.data.models;
+package com.dxw.flfs.data.models.mes;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -14,7 +14,8 @@ import java.util.Date;
  *
  */
 @Entity
-@Table(name="flfs_sty")
+@Table(name="mes_sty")
+@Access(AccessType.FIELD)
 public class Sty{
     /**
      * 内部id

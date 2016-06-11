@@ -1,4 +1,4 @@
-package com.dxw.flfs.data.models;
+package com.dxw.flfs.data.models.mes;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,7 +8,8 @@ import java.util.Date;
  * * Created by zhang on 2016-04-28.
  */
 @Entity
-@Table(name="flfs_piglet_plan")
+@Table(name="mes_piglet_plan")
+@Access(AccessType.FIELD)
 public class PigletPlan {
     /**
      * 内部id

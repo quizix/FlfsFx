@@ -1,4 +1,4 @@
-package com.dxw.flfs.data.models;
+package com.dxw.flfs.data.models.mes;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.NaturalId;
@@ -13,7 +13,7 @@ import java.util.Set;
  * Created by zhang on 2016/4/6.
  */
 @Entity
-@Table(name="flfs_site")
+@Table(name="mes_site")
 public class Site {
     /**
      * 内部id
@@ -67,7 +67,7 @@ public class Site {
      *本站点所对应的栏位
      */
     @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="flfs_site_sty",
+    @JoinTable(name="mes_site_sty",
             joinColumns=@JoinColumn(name="siteId"), inverseJoinColumns=@JoinColumn(name="styId"))
     @OrderBy("id")
     private Set<Sty> sties = new HashSet<>();

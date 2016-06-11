@@ -1,6 +1,7 @@
 package com.dxw.flfs.data.dal;
 
-import com.dxw.flfs.data.models.*;
+import com.dxw.flfs.data.models.erp.User;
+import com.dxw.flfs.data.models.mes.*;
 import org.hibernate.Session;
 
 /**

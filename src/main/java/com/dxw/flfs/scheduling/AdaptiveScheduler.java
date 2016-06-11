@@ -9,9 +9,9 @@ import com.dxw.flfs.communication.protocol.PlcModel;
 import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.GenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
-import com.dxw.flfs.data.models.PigletPlan;
-import com.dxw.flfs.data.models.Site;
-import com.dxw.flfs.data.models.Sty;
+import com.dxw.flfs.data.models.mes.PigletPlan;
+import com.dxw.flfs.data.models.mes.Site;
+import com.dxw.flfs.data.models.mes.Sty;
 
 import java.util.Optional;
 

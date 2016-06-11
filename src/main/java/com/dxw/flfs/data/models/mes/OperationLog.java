@@ -3,18 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dxw.flfs.data.models;
+package com.dxw.flfs.data.models.mes;
+
+import com.dxw.flfs.data.models.erp.User;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
+ * 用户操作日志 记录用户何时对系统
  *
  * @author Administrator
  */
 @Entity
-@Table(name="flfs_user")
-public class User{
+@Table(name="mes_operation_log")
+@Access(AccessType.FIELD)
+public class OperationLog{
     /**
      * 内部id
      */
@@ -34,17 +38,17 @@ public class User{
     @Column(name="modifyTime")
     protected Date modifyTime;
 
-    /**
-     * 用户名
-     */
-    @Column(name="name")
-    private String name;
+    @ManyToOne(targetEntity = User.class)
+    private User user;
 
-     /**
-     * 密码
-     */
-     @Column(name="password")
-    private String password;
+    @ManyToOne(targetEntity = Shed.class)
+    private Shed shed;
+
+    @Column(name="module")
+    private String module;
+
+    @Column(name="resource")
+    private String resource;
 
     public Long getId() {
         return id;
@@ -69,26 +73,40 @@ public class User{
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
     }
-
-    public String getName() {
-        return name;
+    public User getUser() {
+        return user;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getPassword() {
-        return password;
+    public Shed getShed() {
+        return shed;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setShed(Shed shed) {
+        this.shed = shed;
     }
-    
-    @Override 
-    public String toString(){
+
+    public String getModule() {
+        return module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
+    }
+
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
+    }
+
+    @Override
+    public String toString() {
         return "";
     }
-   
 }

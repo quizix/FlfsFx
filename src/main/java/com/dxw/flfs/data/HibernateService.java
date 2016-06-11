@@ -13,5 +13,5 @@ import org.hibernate.Session;
  * @author Administrator
  */
 public interface HibernateService extends Service {
-    public Session getSession();
+    Session getSession();
 }

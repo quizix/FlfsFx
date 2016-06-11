@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dxw.flfs.data.models;
+package com.dxw.flfs.data.models.mes;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,7 +14,8 @@ import java.util.Date;
  * @author zhang
  */
 @Entity
-@Table(name="flfs_working_condition")
+@Table(name="mes_working_condition")
+@Access(AccessType.FIELD)
 public class WorkingCondition{
     /**
      * 内部id

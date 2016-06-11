@@ -1,17 +1,15 @@
-package com.dxw.flfs.data.models;
+package com.dxw.flfs.data.models.mes;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * PH值
- *
- * @author pronics3
- *
+ * Created by zhang on 2016-04-19.
  */
 @Entity
-@Table(name="flfs_ph")
-public class Ph{
+@Table(name="mes_sty_operation")
+@Access(AccessType.FIELD)
+public class StyOperation {
     /**
      * 内部id
      */
@@ -32,18 +30,14 @@ public class Ph{
     protected Date modifyTime;
 
     /**
-     * ph值
-     */
-    @Column(name="value")
-    private float value;
-
-    /**
      * 猪舍
      */
     @ManyToOne
-    @JoinColumn(name="shedId")
-    private Shed shed;
+    @JoinColumn(name="styId")
+    private Sty sty;
 
+    @Column(name="delta")
+    protected int delta;
 
     public Long getId() {
         return id;
@@ -53,12 +47,12 @@ public class Ph{
         this.id = id;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Sty getSty() {
+        return sty;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setSty(Sty sty) {
+        this.sty = sty;
     }
 
     public Date getModifyTime() {
@@ -69,24 +63,19 @@ public class Ph{
         this.modifyTime = modifyTime;
     }
 
-    public Shed getShed() {
-        return shed;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setShed(Shed shed) {
-        this.shed = shed;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public float getValue() {
-        return value;
+    public int getDelta() {
+        return delta;
     }
 
-    public void setValue(float value) {
-        this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return "";
+    public void setDelta(int delta) {
+        this.delta = delta;
     }
 }

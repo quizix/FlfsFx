@@ -1,4 +1,4 @@
-package com.dxw.flfs.data.models;
+package com.dxw.flfs.data.models.mes;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,7 +9,7 @@ import java.util.Set;
  * Created by zhang on 2016-04-18.
  */
 @Entity
-@Table(name="flfs_batch")
+@Table(name="mes_batch")
 @Access(AccessType.FIELD)
 public class Batch{
     /**
@@ -59,7 +59,7 @@ public class Batch{
      * 本批次所对应的栏位
      */
     @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="flfs_batch_sty",
+    @JoinTable(name="mes_batch_sty",
             joinColumns=@JoinColumn(name="batchId"), inverseJoinColumns=@JoinColumn(name="styId"))
     @OrderBy("id")
     private Set<Sty> sties;

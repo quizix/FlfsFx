@@ -1,7 +1,7 @@
 package com.dxw.flfs.ui.controllers;
 
 import com.dxw.flfs.data.dal.UnitOfWork;
-import com.dxw.flfs.data.models.User;
+import com.dxw.flfs.data.models.erp.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 

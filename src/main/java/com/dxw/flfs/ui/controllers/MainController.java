@@ -11,7 +11,7 @@ import com.dxw.flfs.app.FlfsApp;
 import com.dxw.flfs.communication.protocol.*;
 import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.UnitOfWork;
-import com.dxw.flfs.data.models.Site;
+import com.dxw.flfs.data.models.mes.Site;
 import com.dxw.flfs.jobs.JobManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
