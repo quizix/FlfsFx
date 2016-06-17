@@ -18,11 +18,6 @@
    <center>
       <TableView fx:id="tableView" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="编号">
-              <cellValueFactory>
-                  <PropertyValueFactory property="id" />
-              </cellValueFactory>
-          </TableColumn>
           <TableColumn prefWidth="218.0" text="预计入栏日期">
               <cellValueFactory>
                   <PropertyValueFactory property="date" />

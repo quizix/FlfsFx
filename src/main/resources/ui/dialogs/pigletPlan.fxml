@@ -20,11 +20,6 @@
    <center>
       <TableView fx:id="tableViewPlan" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="122.0" text="ID">
-              <cellValueFactory>
-                  <PropertyValueFactory property="id" />
-              </cellValueFactory>
-          </TableColumn>
           <TableColumn minWidth="0.0" prefWidth="250.0" text="预计入栏日期">
               <cellValueFactory>
                   <PropertyValueFactory property="date" />

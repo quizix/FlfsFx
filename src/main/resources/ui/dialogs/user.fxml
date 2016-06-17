@@ -21,11 +21,6 @@
                                 </ToolBar>
                                 <TableView fx:id="userTableView" prefHeight="299.0" prefWidth="790.0">
                                     <columns>
-                                        <TableColumn prefWidth="101.0" text="用户ID">
-                                            <cellValueFactory>
-                                                <PropertyValueFactory property="id" />
-                                            </cellValueFactory>
-                                        </TableColumn>
                                         <TableColumn prefWidth="96.0" text="名字">
                                             <cellValueFactory>
                                                 <PropertyValueFactory property="name" />
@@ -75,11 +70,6 @@
                                 </ToolBar>
                                 <TableView fx:id="privilegeTableView">
                                     <columns>
-                                        <TableColumn prefWidth="100.0" text="权限ID">
-                                            <cellValueFactory>
-                                                <PropertyValueFactory property="id" />
-                                            </cellValueFactory>
-                                        </TableColumn>
                                         <TableColumn prefWidth="97.0" text="模块名称">
                                             <cellValueFactory>
                                                 <PropertyValueFactory property="module" />
