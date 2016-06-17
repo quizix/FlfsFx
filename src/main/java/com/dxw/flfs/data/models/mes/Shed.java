@@ -74,11 +74,18 @@ public class Shed{
     private Set<Sty> sties = new HashSet<>();
 
     /**
-     * 栏位
+     * 仓库
      */
     @OneToMany(mappedBy = "shed", cascade = CascadeType.PERSIST)
     @OrderBy("id")
     private Set<Warehouse> warehouses = new HashSet<>();
+
+    /**
+     * 仓库
+     */
+    @OneToMany(mappedBy = "shed", cascade = CascadeType.PERSIST)
+    @OrderBy("id")
+    private Set<Device> devices = new HashSet<>();
 
     /**
      * 负责人
@@ -183,11 +190,29 @@ public class Shed{
         warehouse.setShed(null);
     }
 
+    public void addDevice(Device device){
+        this.getDevices().add(device);
+        device.setShed(this);
+    }
+
+    public void removeDevice(Device device){
+        this.getDevices().remove(device);
+        device.setShed(null);
+    }
+
     public User getHead() {
         return head;
     }
 
     public void setHead(User head) {
         this.head = head;
+    }
+
+    public Set<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(Set<Device> devices) {
+        this.devices = devices;
     }
 }

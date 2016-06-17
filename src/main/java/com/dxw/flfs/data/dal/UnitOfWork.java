@@ -1,10 +1,7 @@
 package com.dxw.flfs.data.dal;
 
 import com.dxw.flfs.data.models.erp.*;
-import com.dxw.flfs.data.models.mes.PigletPlan;
-import com.dxw.flfs.data.models.mes.Shed;
-import com.dxw.flfs.data.models.mes.Site;
-import com.dxw.flfs.data.models.mes.Sty;
+import com.dxw.flfs.data.models.mes.*;
 import org.hibernate.Session;
 
 /**
@@ -23,6 +20,8 @@ public class UnitOfWork implements AutoCloseable {
     private DefaultGenericRepository<Pig> pigRepository;
     private DefaultGenericRepository<Medicine> medicineRepository;
     private DefaultGenericRepository<Feed> feedRepository;
+    private DefaultGenericRepository<Warehouse> warehouseRepository;
+    private DefaultGenericRepository<Device> deviceRepository;
 
     public UnitOfWork(Session session){
         this.session = session;
@@ -82,6 +81,18 @@ public class UnitOfWork implements AutoCloseable {
         if( feedRepository == null)
             feedRepository = new DefaultGenericRepository<>(session, Feed.class);
         return feedRepository;
+    }
+
+    public DefaultGenericRepository<Warehouse> getWarehouseRepository() {
+        if( warehouseRepository == null)
+            warehouseRepository = new DefaultGenericRepository<>(session, Warehouse.class);
+        return warehouseRepository;
+    }
+
+    public DefaultGenericRepository<Device> getDeviceRepository() {
+        if( deviceRepository == null)
+            deviceRepository = new DefaultGenericRepository<>(session, Device.class);
+        return deviceRepository;
     }
 
     @Override

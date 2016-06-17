@@ -63,18 +63,25 @@ public class Device {
     private Unit unit;
 
     /**
-     * 供应商
+     * 所属的供应商
      */
     @ManyToOne
     @JoinColumn(name="vendorId")
     private Vendor vendor;
 
     /**
-     * 分类
+     * 所属的分类
      */
     @ManyToOne
     @JoinColumn(name="categoryId")
     private Category category;
+
+    /**
+     * 所属的猪舍
+     */
+    @ManyToOne
+    @JoinColumn(name="shedId")
+    private Shed shed;
 
     public Long getId() {
         return id;
@@ -146,5 +153,13 @@ public class Device {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Shed getShed() {
+        return shed;
+    }
+
+    public void setShed(Shed shed) {
+        this.shed = shed;
     }
 }
