@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="435.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.FeedController">
+   <children>
+            <VBox prefWidth="796.0">
+                <children>
+                    <ToolBar>
+                        <items>
+                            <Button mnemonicParsing="false" onAction="#onAddFeed" text="添加饲料" />
+                        </items>
+                    </ToolBar>
+                    <TableView fx:id="feedTableView" prefHeight="394.0" prefWidth="796.0">
+                        <columns>
+                            <TableColumn prefWidth="152.0" text="名字">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="name" />
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn minWidth="0.0" prefWidth="138.0" text="编码">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="code" />
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn minWidth="0.0" prefWidth="233.0" text="创建时间">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="createTime" />
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn prefWidth="174.0" text="修改时间">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="modifyTime" />
+                                </cellValueFactory>
+                            </TableColumn>
+                        </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#onEditFeed" text="修改饲料" />
+                        <MenuItem mnemonicParsing="false" onAction="#onDeleteFeed" text="删除饲料" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+                    </TableView>
+                </children>
+            </VBox>
+   </children>
+</Pane>

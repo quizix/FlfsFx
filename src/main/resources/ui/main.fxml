@@ -19,10 +19,12 @@
                     <items>
                   <MenuItem mnemonicParsing="false" onAction="#onClickPigManagement" text="猪种管理" />
                   <MenuItem mnemonicParsing="false" onAction="#onClickMedicineManagement" text="药品管理" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickFeedManagement" text="饲料管理" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickUserManagement" text="用户管理" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" onAction="#onClickShedManagement" text="猪舍管理" />
                         <MenuItem mnemonicParsing="false" onAction="#onClickBatchManagement" text="批次管理" visible="false" />
                         <MenuItem mnemonicParsing="false" onAction="#onClickPigletPlan" text="小猪入栏计划" />
-                  <MenuItem mnemonicParsing="false" onAction="#onClickUserManagement" text="用户管理" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="帮助">

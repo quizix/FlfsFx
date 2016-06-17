@@ -1,9 +1,6 @@
 package com.dxw.flfs.data.dal;
 
-import com.dxw.flfs.data.models.erp.Medicine;
-import com.dxw.flfs.data.models.erp.Pig;
-import com.dxw.flfs.data.models.erp.Privilege;
-import com.dxw.flfs.data.models.erp.User;
+import com.dxw.flfs.data.models.erp.*;
 import com.dxw.flfs.data.models.mes.PigletPlan;
 import com.dxw.flfs.data.models.mes.Shed;
 import com.dxw.flfs.data.models.mes.Site;
@@ -25,6 +22,7 @@ public class UnitOfWork implements AutoCloseable {
     private DefaultGenericRepository<PigletPlan> pigletPlanRepository;
     private DefaultGenericRepository<Pig> pigRepository;
     private DefaultGenericRepository<Medicine> medicineRepository;
+    private DefaultGenericRepository<Feed> feedRepository;
 
     public UnitOfWork(Session session){
         this.session = session;
@@ -78,6 +76,12 @@ public class UnitOfWork implements AutoCloseable {
         if( medicineRepository == null)
             medicineRepository = new DefaultGenericRepository<>(session, Medicine.class);
         return medicineRepository;
+    }
+
+    public DefaultGenericRepository<Feed> getFeedRepository() {
+        if( feedRepository == null)
+            feedRepository = new DefaultGenericRepository<>(session, Feed.class);
+        return feedRepository;
     }
 
     @Override
