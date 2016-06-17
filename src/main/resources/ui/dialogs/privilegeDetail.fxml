@@ -16,8 +16,8 @@
    <center>
       <Pane prefHeight="62.0" prefWidth="571.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="21.0" layoutY="27.0" text="名称" />
-            <TextField fx:id="textFieldName" layoutX="69.0" layoutY="23.0" promptText="权限名称" />
+            <Label layoutX="21.0" layoutY="27.0" text="功能模块名称" />
+            <TextField fx:id="textFieldName" layoutX="131.0" layoutY="22.0" promptText="功能模块名称" />
          </children>
       </Pane>
    </center>

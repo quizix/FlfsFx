@@ -4,13 +4,13 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 模块
+ * 计量单位
  * Created by zhang on 2016-06-17.
  */
 @Entity
-@Table(name="erp_module")
+@Table(name="erp_unit")
 @Access(AccessType.FIELD)
-public class Module {
+public class Unit {
     /**
      * 内部id
      */
@@ -31,13 +31,16 @@ public class Module {
     private Date modifyTime;
 
     /**
-     * 模块名称
+     * 计量单位名称
      */
     @Column(name="name")
     private String name;
 
-    public Module() {
-    }
+    /**
+     * 计量单位符号
+     */
+    @Column(name="symbol")
+    private String symbol;
 
     public Long getId() {
         return id;
@@ -69,5 +72,13 @@ public class Module {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 }

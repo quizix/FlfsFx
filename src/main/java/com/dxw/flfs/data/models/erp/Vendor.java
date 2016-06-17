@@ -4,40 +4,43 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 模块
+ * 供应商/厂家
  * Created by zhang on 2016-06-17.
  */
 @Entity
-@Table(name="erp_module")
+@Table(name = "erp_vendor")
 @Access(AccessType.FIELD)
-public class Module {
+public class Vendor {
     /**
      * 内部id
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * 创建时间
      */
-    @Column(name="createTime")
+    @Column(name = "createTime")
     private Date createTime;
 
     /**
      * 修改时间
      */
-    @Column(name="modifyTime")
+    @Column(name = "modifyTime")
     private Date modifyTime;
 
     /**
-     * 模块名称
+     * 供应商名称
      */
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    public Module() {
-    }
+    /**
+     * 供应商描述
+     */
+    @Column(name = "description")
+    private String description;
 
     public Long getId() {
         return id;
@@ -69,5 +72,13 @@ public class Module {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

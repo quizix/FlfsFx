@@ -13,50 +13,61 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
  * @author Administrator
  */
 @Entity
-@Table(name="erp_user")
+@Table(name = "erp_user")
 @Access(AccessType.FIELD)
-public class User{
+public class User {
     /**
      * 内部id
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    protected Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     /**
      * 创建时间
      */
-    @Column(name="createTime")
-    protected Date createTime;
+    @Column(name = "createTime")
+    private Date createTime;
 
     /**
      * 修改时间
      */
-    @Column(name="modifyTime")
-    protected Date modifyTime;
+    @Column(name = "modifyTime")
+    private Date modifyTime;
 
     /**
      * 编码
      */
-    @NaturalId(mutable=true)
-    @Column(name="code")
+    @NaturalId(mutable = true)
+    @Column(name = "code")
     private String code;
 
     /**
      * 用户名
      */
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-     /**
+    /**
      * 密码
      */
-     @Column(name="password")
+    @Column(name = "password")
     private String password;
+
+    /**
+     * 手机
+     */
+    @Column(name = "mobile")
+    private String mobile;
+
+    /**
+     * 电子邮件
+     */
+    @Column(name = "email")
+    private String email;
 
     /**
      * 权限
@@ -104,9 +115,9 @@ public class User{
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    @Override 
-    public String toString(){
+
+    @Override
+    public String toString() {
         return "";
     }
 
@@ -124,5 +135,13 @@ public class User{
 
     public void setPrivileges(Set<Privilege> privileges) {
         this.privileges = privileges;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

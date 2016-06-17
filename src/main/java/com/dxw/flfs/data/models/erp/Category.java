@@ -4,13 +4,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 模块
  * Created by zhang on 2016-06-17.
  */
 @Entity
-@Table(name="erp_module")
+@Table(name="erp_category")
 @Access(AccessType.FIELD)
-public class Module {
+public class Category {
     /**
      * 内部id
      */
@@ -31,13 +30,10 @@ public class Module {
     private Date modifyTime;
 
     /**
-     * 模块名称
+     * 名称
      */
     @Column(name="name")
     private String name;
-
-    public Module() {
-    }
 
     public Long getId() {
         return id;

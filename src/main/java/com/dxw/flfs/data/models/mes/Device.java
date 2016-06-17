@@ -1,18 +1,21 @@
-package com.dxw.flfs.data.models.erp;
+package com.dxw.flfs.data.models.mes;
 
+import com.dxw.flfs.data.models.erp.Category;
+import com.dxw.flfs.data.models.erp.Unit;
+import com.dxw.flfs.data.models.erp.Vendor;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 猪的品种
+ * 设备
  * Created by zhang on 2016-06-11.
  */
 @Entity
-@Table(name = "erp_pig")
+@Table(name="mes_device")
 @Access(AccessType.FIELD)
-public class Pig {
+public class Device {
     /**
      * 内部id
      */

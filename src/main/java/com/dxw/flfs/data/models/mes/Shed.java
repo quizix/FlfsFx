@@ -5,6 +5,7 @@
  */
 package com.dxw.flfs.data.models.mes;
 
+import com.dxw.flfs.data.models.erp.User;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -71,6 +72,20 @@ public class Shed{
     @OneToMany(mappedBy = "shed", cascade = CascadeType.PERSIST)
     @OrderBy("id")
     private Set<Sty> sties = new HashSet<>();
+
+    /**
+     * 栏位
+     */
+    @OneToMany(mappedBy = "shed", cascade = CascadeType.PERSIST)
+    @OrderBy("id")
+    private Set<Warehouse> warehouses = new HashSet<>();
+
+    /**
+     * 负责人
+     */
+    @ManyToOne
+    @JoinColumn(name="headId")
+    private User head;
 
     public Long getId() {
         return id;
@@ -139,5 +154,40 @@ public class Shed{
     @Override
     public String toString() {
         return this.name;
+    }
+
+    public Set<Warehouse> getWarehouses() {
+        return warehouses;
+    }
+
+    public void setWarehouses(Set<Warehouse> warehouses) {
+        this.warehouses = warehouses;
+    }
+
+    public void addSty(Sty sty){
+        this.getSties().add(sty);
+        sty.setShed(this);
+    }
+
+    public void removeSty(Sty sty){
+        this.getSties().remove(sty);
+        sty.setShed(null);
+    }
+    public void addWarehouse(Warehouse warehouse){
+        this.getWarehouses().add(warehouse);
+        warehouse.setShed(this);
+    }
+
+    public void removeWarehouse(Warehouse warehouse){
+        this.getWarehouses().remove(warehouse);
+        warehouse.setShed(null);
+    }
+
+    public User getHead() {
+        return head;
+    }
+
+    public void setHead(User head) {
+        this.head = head;
     }
 }
