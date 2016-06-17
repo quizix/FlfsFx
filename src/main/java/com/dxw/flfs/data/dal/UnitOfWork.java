@@ -1,5 +1,6 @@
 package com.dxw.flfs.data.dal;
 
+import com.dxw.flfs.data.models.erp.Privilege;
 import com.dxw.flfs.data.models.erp.User;
 import com.dxw.flfs.data.models.mes.*;
 import org.hibernate.Session;
@@ -12,13 +13,11 @@ public class UnitOfWork implements AutoCloseable {
     private Session session;
 
     private DefaultGenericRepository<User> userRepository;
+    private DefaultGenericRepository<Privilege> privilegeRepository;
     private DefaultGenericRepository<Shed> shedRepository;
     private DefaultGenericRepository<Sty> styRepository;
     private DefaultGenericRepository<Site> siteConfigRepository;
     private DefaultGenericRepository<PigletPlan> pigletPlanRepository;
-
-    //private DefaultGenericRepository<User> userRepository;
-    //private DefaultGenericRepository<User> userRepository;
 
     public UnitOfWork(Session session){
         this.session = session;
@@ -31,6 +30,12 @@ public class UnitOfWork implements AutoCloseable {
         if( userRepository == null)
             userRepository = new DefaultGenericRepository<>(session, User.class);
         return userRepository;
+    }
+
+    public DefaultGenericRepository<Privilege> getPrivilegeRepository() {
+        if( privilegeRepository == null)
+            privilegeRepository = new DefaultGenericRepository<>(session, Privilege.class);
+        return privilegeRepository;
     }
 
     public DefaultGenericRepository<Site> getSiteRepository() {

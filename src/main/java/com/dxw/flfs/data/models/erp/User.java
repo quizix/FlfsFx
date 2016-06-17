@@ -9,6 +9,8 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -55,6 +57,13 @@ public class User{
      */
      @Column(name="password")
     private String password;
+
+    /**
+     * 权限
+     */
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OrderBy("id")
+    private Set<Privilege> privileges = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -107,5 +116,13 @@ public class User{
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Set<Privilege> getPrivileges() {
+        return privileges;
+    }
+
+    public void setPrivileges(Set<Privilege> privileges) {
+        this.privileges = privileges;
     }
 }

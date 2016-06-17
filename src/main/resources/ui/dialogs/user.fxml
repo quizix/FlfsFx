@@ -80,14 +80,9 @@
                                                 <PropertyValueFactory property="id" />
                                             </cellValueFactory>
                                         </TableColumn>
-                                        <TableColumn prefWidth="97.0" text="名称">
+                                        <TableColumn prefWidth="97.0" text="模块名称">
                                             <cellValueFactory>
-                                                <PropertyValueFactory property="name" />
-                                            </cellValueFactory>
-                                        </TableColumn>
-                                        <TableColumn minWidth="0.0" prefWidth="150.0" text="编码">
-                                            <cellValueFactory>
-                                                <PropertyValueFactory property="code" />
+                                                <PropertyValueFactory property="module" />
                                             </cellValueFactory>
                                         </TableColumn>
                                         <TableColumn minWidth="0.0" prefWidth="202.0" text="创建时间">
@@ -104,7 +99,6 @@
                            <contextMenu>
                               <ContextMenu>
                                 <items>
-                                  <MenuItem mnemonicParsing="false" onAction="#onEditPrivilege" text="修改权限" />
                                     <MenuItem mnemonicParsing="false" onAction="#onDeletePrivilege" text="删除权限" />
                                 </items>
                               </ContextMenu>

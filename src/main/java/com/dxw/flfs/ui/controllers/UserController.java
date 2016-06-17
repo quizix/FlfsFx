@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by zhang on 2016-05-26.
@@ -61,9 +62,9 @@ public class UserController {
                 (observable, oldValue, newValue) -> {
                     privilegeTableView.getItems().clear();
                     if(newValue != null){
-                        /*Set<Sty> sties = newValue.getSties();
-                        if( sties!=null)
-                            privilegeTableView.getItems().addAll(sties);*/
+                        Set<Privilege> privileges = newValue.getPrivileges();
+                        if( privileges != null)
+                            privilegeTableView.getItems().addAll(privileges);
                     }
                 }
         );
@@ -163,7 +164,7 @@ public class UserController {
         //删除用户
         User user = userTableView.getSelectionModel().getSelectedItem();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个栏位？");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个用户？");
             alert.setHeaderText(null);
             alert.showAndWait().filter(response -> response == ButtonType.OK)
                     .ifPresent(response ->{
@@ -176,14 +177,14 @@ public class UserController {
     }
 
     public void onAddPrivilege(){
-        /*Shed shed = userTableView.getSelectionModel().getSelectedItem();
+        User user = userTableView.getSelectionModel().getSelectedItem();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/styDetail.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/privilegeDetail.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("添加栏位");
+            stage.setTitle("添加权限");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
@@ -191,92 +192,48 @@ public class UserController {
             stage.initOwner(null);
             stage.showAndWait();
 
-            StyDetailController controller = loader.getController();
+            PrivilegeDetailController controller = loader.getController();
             if( controller.isDialogResult()){
                 String name = controller.getName();
-                String code = controller.getCode();
-                int no = controller.getNo();
 
-                Sty sty = new Sty();
+                Privilege privilege = new Privilege();
                 Date now = new Date();
-                sty.setModifyTime(now);
-                sty.setCreateTime(now);
-                sty.setCode(code);
-                sty.setNo(no);
-                sty.setName(name);
+                privilege.setModifyTime(now);
+                privilege.setCreateTime(now);
+                privilege.setModule(name);
 
-                sty.setShed(shed);
+                privilege.setUser(user);
+                privilege.getUser().getPrivileges().add(privilege);
 
                 unitOfWork.begin();
-                unitOfWork.getStyRepository().save(sty);
+                unitOfWork.getUserRepository().save(user);
                 unitOfWork.commit();
 
-                privilegeTableView.getItems().add(sty);
+                privilegeTableView.getItems().add(privilege);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
-    public void onEditPrivilege(){
-        /*Sty sty = privilegeTableView.getSelectionModel().getSelectedItem();
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/styDetail.fxml"));
-            Parent root = loader.load();
-
-            StyDetailController controller = loader.getController();
-            controller.setSty(sty);
-            Stage stage = new Stage();
-            stage.setTitle("修改栏位");
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
-            stage.sizeToScene();
-            stage.initOwner(null);
-            stage.showAndWait();
-
-            if( controller.isDialogResult()){
-                String name = controller.getName();
-                String code = controller.getCode();
-                int no = controller.getNo();
-
-                Date now = new Date();
-                sty.setModifyTime(now);
-
-                sty.setCode(code);
-                sty.setNo(no);
-                sty.setName(name);
-                unitOfWork.begin();
-                unitOfWork.getStyRepository().save(sty);
-                unitOfWork.commit();
-
-                refreshStyTable();
-
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-    }
 
     public void onDeletePrivilege(){
-       /* Sty sty = privilegeTableView.getSelectionModel().getSelectedItem();
+       Privilege privilege = privilegeTableView.getSelectionModel().getSelectedItem();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个栏位？");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个权限？");
             alert.setHeaderText(null);
             alert.showAndWait().filter(response -> response == ButtonType.OK)
                     .ifPresent(response ->{
                         unitOfWork.begin();
-                        //unitOfWork.getStyRepository().delete(sty);
-                        sty.getShed().getSties().remove(sty);
-                        unitOfWork.getStyRepository().delete(sty);
+                        privilege.getUser().getPrivileges().remove(privilege);
+                        unitOfWork.getPrivilegeRepository().delete(privilege);
                         unitOfWork.commit();
 
-                        privilegeTableView.getItems().remove(sty);
+                        privilegeTableView.getItems().remove(privilege);
 
-                    });*/
+                    });
     }
 
     private void refreshShedTable() {
@@ -284,7 +241,7 @@ public class UserController {
         userTableView.getColumns().get(0).setVisible(true);
     }
 
-    private void refreshStyTable(){
+    private void refreshPrivilegeTable(){
         privilegeTableView.getColumns().get(0).setVisible(false);
         privilegeTableView.getColumns().get(0).setVisible(true);
     }
