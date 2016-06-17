@@ -1,8 +1,12 @@
 package com.dxw.flfs.data.dal;
 
+import com.dxw.flfs.data.models.erp.Pig;
 import com.dxw.flfs.data.models.erp.Privilege;
 import com.dxw.flfs.data.models.erp.User;
-import com.dxw.flfs.data.models.mes.*;
+import com.dxw.flfs.data.models.mes.PigletPlan;
+import com.dxw.flfs.data.models.mes.Shed;
+import com.dxw.flfs.data.models.mes.Site;
+import com.dxw.flfs.data.models.mes.Sty;
 import org.hibernate.Session;
 
 /**
@@ -18,6 +22,7 @@ public class UnitOfWork implements AutoCloseable {
     private DefaultGenericRepository<Sty> styRepository;
     private DefaultGenericRepository<Site> siteConfigRepository;
     private DefaultGenericRepository<PigletPlan> pigletPlanRepository;
+    private DefaultGenericRepository<Pig> pigRepository;
 
     public UnitOfWork(Session session){
         this.session = session;
@@ -43,6 +48,29 @@ public class UnitOfWork implements AutoCloseable {
             siteConfigRepository = new DefaultGenericRepository<>(session, Site.class);
         return siteConfigRepository;
     }
+    public DefaultGenericRepository<Shed> getShedRepository() {
+        if( shedRepository == null)
+            shedRepository = new DefaultGenericRepository<>(session, Shed.class);
+        return shedRepository;
+    }
+
+    public DefaultGenericRepository<Sty> getStyRepository() {
+        if( styRepository == null)
+            styRepository = new DefaultGenericRepository<>(session, Sty.class);
+        return styRepository;
+    }
+
+    public DefaultGenericRepository<PigletPlan> getPigletPlanRepository() {
+        if( pigletPlanRepository == null)
+            pigletPlanRepository = new DefaultGenericRepository<>(session, PigletPlan.class);
+        return pigletPlanRepository;
+    }
+
+    public DefaultGenericRepository<Pig> getPigRepository() {
+        if( pigRepository == null)
+            pigRepository = new DefaultGenericRepository<>(session, Pig.class);
+        return pigRepository;
+    }
 
     @Override
     public void close() throws Exception {
@@ -66,21 +94,5 @@ public class UnitOfWork implements AutoCloseable {
     }
 
 
-    public DefaultGenericRepository<Shed> getShedRepository() {
-        if( shedRepository == null)
-            shedRepository = new DefaultGenericRepository<>(session, Shed.class);
-        return shedRepository;
-    }
 
-    public DefaultGenericRepository<Sty> getStyRepository() {
-        if( styRepository == null)
-            styRepository = new DefaultGenericRepository<>(session, Sty.class);
-        return styRepository;
-    }
-
-    public DefaultGenericRepository<PigletPlan> getPigletPlanRepository() {
-        if( pigletPlanRepository == null)
-            pigletPlanRepository = new DefaultGenericRepository<>(session, PigletPlan.class);
-        return pigletPlanRepository;
-    }
 }

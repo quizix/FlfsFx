@@ -17,6 +17,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="基础数据管理">
                     <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onClickPigManagement" text="猪种管理" />
                         <MenuItem mnemonicParsing="false" onAction="#onClickShedManagement" text="猪舍管理" />
                         <MenuItem mnemonicParsing="false" onAction="#onClickBatchManagement" text="批次管理" visible="false" />
                         <MenuItem mnemonicParsing="false" onAction="#onClickPigletPlan" text="小猪入栏计划" />
