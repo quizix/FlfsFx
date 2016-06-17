@@ -5,13 +5,13 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5725806451612904" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.ShedController">
+<SplitPane dividerPositions="0.5006587615283268" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="761.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.ShedController">
     <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="396.0" prefWidth="976.0">
             <children>
                 <TitledPane collapsible="false" layoutY="46.0" text="猪舍信息" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <content>
-                        <VBox>
+                        <VBox prefHeight="314.0" prefWidth="974.0">
                             <children>
                                 <ToolBar>
                                     <items>
@@ -62,56 +62,110 @@
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0">
             <children>
-                <TitledPane collapsible="false" text="栏位信息" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <content>
-                        <VBox>
-                            <children>
-                                <ToolBar>
-                                    <items>
-                                        <Button mnemonicParsing="false" onAction="#onAddSty" text="添加栏位..." />
-                                    </items>
-                                </ToolBar>
-                                <TableView fx:id="styTableView">
-                                    <columns>
-                                        <TableColumn prefWidth="100.0" text="栏位编号">
-                                            <cellValueFactory>
-                                                <PropertyValueFactory property="id" />
-                                            </cellValueFactory>
-                                        </TableColumn>
-                                        <TableColumn prefWidth="97.0" text="名称">
-                                            <cellValueFactory>
-                                                <PropertyValueFactory property="name" />
-                                            </cellValueFactory>
-                                        </TableColumn>
-                                        <TableColumn minWidth="0.0" prefWidth="150.0" text="编码">
-                                            <cellValueFactory>
-                                                <PropertyValueFactory property="code" />
-                                            </cellValueFactory>
-                                        </TableColumn>
-                                        <TableColumn minWidth="0.0" prefWidth="202.0" text="创建时间">
-                                            <cellValueFactory>
-                                                <PropertyValueFactory property="createTime" />
-                                            </cellValueFactory>
-                                        </TableColumn>
-                                        <TableColumn prefWidth="198.0" text="修改时间">
-                                            <cellValueFactory>
-                                                <PropertyValueFactory property="modifyTime" />
-                                            </cellValueFactory>
-                                        </TableColumn>
-                                    </columns>
-                           <contextMenu>
-                              <ContextMenu>
-                                <items>
-                                  <MenuItem mnemonicParsing="false" onAction="#onEditSty" text="修改栏位..." />
-                                    <MenuItem mnemonicParsing="false" onAction="#onDeleteSty" text="删除栏位" />
-                                </items>
-                              </ContextMenu>
-                           </contextMenu>
-                                </TableView>
-                            </children>
-                        </VBox>
-                    </content>
-                </TitledPane>
+            <TabPane prefHeight="269.0" prefWidth="798.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab text="栏位">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                                    <VBox prefHeight="230.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <children>
+                                            <ToolBar>
+                                                <items>
+                                                    <Button mnemonicParsing="false" onAction="#onAddSty" text="添加栏位..." />
+                                                </items>
+                                            </ToolBar>
+                                            <TableView fx:id="styTableView">
+                                                <columns>
+                                                    <TableColumn prefWidth="109.0" text="栏位编号">
+                                                        <cellValueFactory>
+                                                            <PropertyValueFactory property="id" />
+                                                        </cellValueFactory>
+                                                    </TableColumn>
+                                                    <TableColumn prefWidth="121.0" text="名称">
+                                                        <cellValueFactory>
+                                                            <PropertyValueFactory property="name" />
+                                                        </cellValueFactory>
+                                                    </TableColumn>
+                                                    <TableColumn minWidth="0.0" prefWidth="165.0" text="编码">
+                                                        <cellValueFactory>
+                                                            <PropertyValueFactory property="code" />
+                                                        </cellValueFactory>
+                                                    </TableColumn>
+                                                    <TableColumn minWidth="0.0" prefWidth="154.0" text="创建时间">
+                                                        <cellValueFactory>
+                                                            <PropertyValueFactory property="createTime" />
+                                                        </cellValueFactory>
+                                                    </TableColumn>
+                                                    <TableColumn prefWidth="198.0" text="修改时间">
+                                                        <cellValueFactory>
+                                                            <PropertyValueFactory property="modifyTime" />
+                                                        </cellValueFactory>
+                                                    </TableColumn>
+                                                </columns>
+                                       <contextMenu>
+                                          <ContextMenu>
+                                            <items>
+                                              <MenuItem mnemonicParsing="false" onAction="#onEditSty" text="修改栏位..." />
+                                                <MenuItem mnemonicParsing="false" onAction="#onDeleteSty" text="删除栏位" />
+                                            </items>
+                                          </ContextMenu>
+                                       </contextMenu>
+                                            </TableView>
+                                        </children>
+                                    </VBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="仓库">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox layoutX="74.0" layoutY="-8.0" prefHeight="230.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ToolBar prefHeight="40.0" prefWidth="200.0">
+                                      <items>
+                                        <Button mnemonicParsing="false" text="添加仓库" />
+                                      </items>
+                                    </ToolBar>
+                                    <TableView prefHeight="289.0" prefWidth="976.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="C1" />
+                                        <TableColumn prefWidth="75.0" text="C2" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="设备">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox layoutX="74.0" layoutY="-8.0" prefHeight="230.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ToolBar prefHeight="40.0" prefWidth="200.0">
+                                       <items>
+                                          <Button mnemonicParsing="false" text="添加设备" />
+                                       </items>
+                                    </ToolBar>
+                                    <TableView>
+                                       <columns>
+                                          <TableColumn prefWidth="75.0" text="C1" />
+                                          <TableColumn prefWidth="75.0" text="C2" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
             </children>
         </AnchorPane>
     </items>

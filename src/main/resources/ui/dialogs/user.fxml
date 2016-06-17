@@ -70,7 +70,7 @@
                             <children>
                                 <ToolBar>
                                     <items>
-                                        <Button mnemonicParsing="false" onAction="#onAddSty" text="添加权限" />
+                                        <Button mnemonicParsing="false" onAction="#onAddPrivilege" text="添加权限" />
                                     </items>
                                 </ToolBar>
                                 <TableView fx:id="privilegeTableView">
@@ -104,8 +104,8 @@
                            <contextMenu>
                               <ContextMenu>
                                 <items>
-                                  <MenuItem mnemonicParsing="false" onAction="#onEditSty" text="修改权限" />
-                                    <MenuItem mnemonicParsing="false" onAction="#onDeleteSty" text="删除权限" />
+                                  <MenuItem mnemonicParsing="false" onAction="#onEditPrivilege" text="修改权限" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onDeletePrivilege" text="删除权限" />
                                 </items>
                               </ContextMenu>
                            </contextMenu>
