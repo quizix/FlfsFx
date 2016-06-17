@@ -1,6 +1,7 @@
 package com.dxw.flfs.ui.controllers;
 
 import com.dxw.flfs.data.models.erp.User;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -26,6 +27,12 @@ public class UserDetailController {
     @FXML
     private Button buttonOk;
 
+    @FXML
+    public void initialize(){
+        Platform.runLater(() -> {
+            textFieldName.requestFocus();
+        });
+    }
     private boolean dialogResult;
     private User user;
 
@@ -68,7 +75,7 @@ public class UserDetailController {
             this.textFieldPassword.setText(shed.getPassword());
             this.textFieldCode.setText(shed.getCode());
             this.textFieldName.setText(shed.getName());
-
         }
+
     }
 }
