@@ -1,6 +1,6 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.flfs.data.models.erp.Pig;
+import com.dxw.flfs.data.models.erp.Medicine;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * Created by zhang on 2016-05-26.
  */
-public class PigDetailController {
+public class MedicineDetailController {
 
     @FXML
     private TextField textFieldName;
@@ -24,7 +24,7 @@ public class PigDetailController {
     private Button buttonOk;
 
     private boolean dialogResult;
-    private Pig pig;
+    private Medicine medicine;
 
     public void onOk(){
         dialogResult = true;
@@ -53,12 +53,12 @@ public class PigDetailController {
         return dialogResult;
     }
 
-    public void setPig(Pig pig) {
-        this.pig = pig;
+    public void setMedicine(Medicine medicine) {
+        this.medicine = medicine;
 
-        if(pig != null){
-            this.textFieldCode.setText(pig.getCode());
-            this.textFieldName.setText(pig.getName());
+        if(medicine != null){
+            this.textFieldCode.setText(medicine.getCode());
+            this.textFieldName.setText(medicine.getName());
         }
     }
 }

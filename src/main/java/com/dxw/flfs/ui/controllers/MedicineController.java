@@ -6,7 +6,7 @@ import com.dxw.common.services.Services;
 import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.DefaultGenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
-import com.dxw.flfs.data.models.erp.Pig;
+import com.dxw.flfs.data.models.erp.Medicine;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,14 +25,14 @@ import java.util.Date;
 /**
  * Created by zhang on 2016-05-26.
  */
-public class PigController {
+public class MedicineController {
 
     private HibernateService hibernateService;
 
     private UnitOfWork unitOfWork;
 
     @FXML
-    TableView<Pig> pigTableView;
+    TableView<Medicine> medicineTableView;
 
     @FXML
     public void initialize(){
@@ -41,13 +41,13 @@ public class PigController {
         unitOfWork = new UnitOfWork(hibernateService.getSession());
 
         try{
-            DefaultGenericRepository<Pig> pigRepository = unitOfWork.getPigRepository();
-            Collection<Pig> pigs = pigRepository.findAll();
-            pigTableView.getItems().addAll(pigs);
+            DefaultGenericRepository<Medicine> medicineRepository = unitOfWork.getMedicineRepository();
+            Collection<Medicine> medicines = medicineRepository.findAll();
+            medicineTableView.getItems().addAll(medicines);
 
             Platform.runLater(() -> {
-                pigTableView.requestFocus();
-                pigTableView.getSelectionModel().select(0);
+                medicineTableView.requestFocus();
+                medicineTableView.getSelectionModel().select(0);
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,13 +64,13 @@ public class PigController {
         }
     }
 
-    public void onAddPig(){
+    public void onAddMedicine(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/pigDetail.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/medicineDetail.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("添加猪种");
+            stage.setTitle("添加药品");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
@@ -78,23 +78,23 @@ public class PigController {
             stage.initOwner(null);
             stage.showAndWait();
 
-            PigDetailController controller = loader.getController();
+            MedicineDetailController controller = loader.getController();
             if( controller.isDialogResult()){
                 String name = controller.getTextFieldName();
                 String code = controller.getTextFieldCode();
 
-                Pig pig = new Pig();
+                Medicine medicine = new Medicine();
                 Date now = new Date();
-                pig.setModifyTime(now);
-                pig.setCreateTime(now);
-                pig.setCode(code);
-                pig.setName(name);
+                medicine.setModifyTime(now);
+                medicine.setCreateTime(now);
+                medicine.setCode(code);
+                medicine.setName(name);
 
                 unitOfWork.begin();
-                unitOfWork.getPigRepository().save(pig);
+                unitOfWork.getMedicineRepository().save(medicine);
                 unitOfWork.commit();
 
-                pigTableView.getItems().add(pig);
+                medicineTableView.getItems().add(medicine);
             }
 
         } catch (IOException e) {
@@ -102,17 +102,17 @@ public class PigController {
         }
     }
 
-    public void onEditPig(){
-        Pig pig = pigTableView.getSelectionModel().getSelectedItem();
+    public void onEditMedicine(){
+        Medicine medicine = medicineTableView.getSelectionModel().getSelectedItem();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/pigDetail.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/medicineDetail.fxml"));
             Parent root = loader.load();
 
-            PigDetailController controller = loader.getController();
-            controller.setPig(pig);
+            MedicineDetailController controller = loader.getController();
+            controller.setMedicine(medicine);
             Stage stage = new Stage();
-            stage.setTitle("修改猪种");
+            stage.setTitle("修改药品");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
@@ -125,12 +125,12 @@ public class PigController {
                 String code = controller.getTextFieldCode();
 
                 Date now = new Date();
-                pig.setModifyTime(now);
+                medicine.setModifyTime(now);
 
-                pig.setCode(code);
-                pig.setName(name);
+                medicine.setCode(code);
+                medicine.setName(name);
                 unitOfWork.begin();
-                unitOfWork.getPigRepository().save(pig);
+                unitOfWork.getMedicineRepository().save(medicine);
                 unitOfWork.commit();
 
                 refreshShedTable();
@@ -140,26 +140,26 @@ public class PigController {
             e.printStackTrace();
         }
     }
-    public void onDeletePig(){
+    public void onDeleteMedicine(){
         //删除用户
-        Pig pig = pigTableView.getSelectionModel().getSelectedItem();
+        Medicine medicine = medicineTableView.getSelectionModel().getSelectedItem();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个猪种？");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个药品？");
             alert.setHeaderText(null);
             alert.showAndWait().filter(response -> response == ButtonType.OK)
                     .ifPresent(response ->{
                         unitOfWork.begin();
-                        unitOfWork.getPigRepository().delete(pig);
+                        unitOfWork.getMedicineRepository().delete(medicine);
                         unitOfWork.commit();
 
-                        pigTableView.getItems().remove(pig);
+                        medicineTableView.getItems().remove(medicine);
                     });
     }
 
 
 
     private void refreshShedTable() {
-        pigTableView.getColumns().get(0).setVisible(false);
-        pigTableView.getColumns().get(0).setVisible(true);
+        medicineTableView.getColumns().get(0).setVisible(false);
+        medicineTableView.getColumns().get(0).setVisible(true);
     }
 }

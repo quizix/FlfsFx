@@ -275,6 +275,30 @@ public class MainController {
             e.printStackTrace();
         }
     }
+
+    public void onClickMedicineManagement(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/medicine.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("药品管理");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+
+            stage.setOnCloseRequest(e -> {
+                MedicineController controller = loader.getController();
+                controller.dispose();
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void onClickBatchManagement() {
 
     }
