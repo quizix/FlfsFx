@@ -17,6 +17,8 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="基础数据管理">
                     <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onClickUnitManagement" text="单位管理" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#onClickPigManagement" text="猪种管理" />
                   <MenuItem mnemonicParsing="false" onAction="#onClickMedicineManagement" text="药品管理" />
                   <MenuItem mnemonicParsing="false" onAction="#onClickFeedManagement" text="饲料管理" />

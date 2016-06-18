@@ -22,6 +22,7 @@ public class UnitOfWork implements AutoCloseable {
     private DefaultGenericRepository<Feed> feedRepository;
     private DefaultGenericRepository<Warehouse> warehouseRepository;
     private DefaultGenericRepository<Device> deviceRepository;
+    private DefaultGenericRepository<Unit> unitRepository;
 
     public UnitOfWork(Session session){
         this.session = session;
@@ -93,6 +94,12 @@ public class UnitOfWork implements AutoCloseable {
         if( deviceRepository == null)
             deviceRepository = new DefaultGenericRepository<>(session, Device.class);
         return deviceRepository;
+    }
+
+    public DefaultGenericRepository<Unit> getUnitRepository() {
+        if( unitRepository == null)
+            unitRepository = new DefaultGenericRepository<>(session, Unit.class);
+        return unitRepository;
     }
 
     @Override
