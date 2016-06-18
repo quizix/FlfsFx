@@ -29,9 +29,7 @@ public class UserDetailController {
 
     @FXML
     public void initialize(){
-        Platform.runLater(() -> {
-            textFieldName.requestFocus();
-        });
+        Platform.runLater(() -> textFieldName.requestFocus());
     }
     private boolean dialogResult;
     private User user;

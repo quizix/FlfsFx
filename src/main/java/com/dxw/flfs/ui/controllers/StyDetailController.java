@@ -1,6 +1,7 @@
 package com.dxw.flfs.ui.controllers;
 
 import com.dxw.flfs.data.models.mes.Sty;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -29,6 +30,10 @@ public class StyDetailController {
     private boolean dialogResult;
     private Sty sty;
 
+    @FXML
+    public void initialize(){
+        Platform.runLater(() -> textFieldName.requestFocus());
+    }
     public void onOk(){
         dialogResult = true;
         close();

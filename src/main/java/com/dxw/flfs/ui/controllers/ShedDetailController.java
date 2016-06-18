@@ -1,6 +1,7 @@
 package com.dxw.flfs.ui.controllers;
 
 import com.dxw.flfs.data.models.mes.Shed;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -25,6 +26,11 @@ public class ShedDetailController {
 
     @FXML
     private Button buttonOk;
+
+    @FXML
+    public void initialize(){
+        Platform.runLater(() -> textFieldName.requestFocus());
+    }
 
     private boolean dialogResult;
     private Shed shed;

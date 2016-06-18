@@ -42,6 +42,12 @@ public class Vendor {
     @Column(name = "description")
     private String description;
 
+    /**
+     * 供应商编码
+     */
+    @Column(name = "code")
+    private String code;
+
     public Long getId() {
         return id;
     }
@@ -80,5 +86,13 @@ public class Vendor {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

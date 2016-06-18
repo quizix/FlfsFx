@@ -1,6 +1,6 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.flfs.data.models.erp.Feed;
+import com.dxw.flfs.data.models.erp.Vendor;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 /**
  * Created by zhang on 2016-05-26.
  */
-public class FeedDetailController {
+public class VendorDetailController {
 
     @FXML
     private TextField textFieldName;
@@ -24,13 +24,13 @@ public class FeedDetailController {
     @FXML
     private Button buttonOk;
 
-    private boolean dialogResult;
-    private Feed feed;
-
     @FXML
     public void initialize(){
         Platform.runLater(() -> textFieldName.requestFocus());
     }
+
+    private boolean dialogResult;
+    private Vendor vendor;
 
     public void onOk(){
         dialogResult = true;
@@ -59,12 +59,12 @@ public class FeedDetailController {
         return dialogResult;
     }
 
-    public void setFeed(Feed feed) {
-        this.feed = feed;
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
 
-        if(feed != null){
-            this.textFieldCode.setText(feed.getCode());
-            this.textFieldName.setText(feed.getName());
+        if(vendor != null){
+            this.textFieldCode.setText(vendor.getCode());
+            this.textFieldName.setText(vendor.getName());
         }
     }
 }

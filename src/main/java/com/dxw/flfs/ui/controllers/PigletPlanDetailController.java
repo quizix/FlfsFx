@@ -2,6 +2,7 @@ package com.dxw.flfs.ui.controllers;
 
 import com.dxw.common.utils.TimeUtil;
 import com.dxw.flfs.data.models.mes.PigletPlan;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -20,10 +21,7 @@ public class PigletPlanDetailController {
     @FXML
     private TextField textFieldCount;
 
-    @FXML
-    public void initialize() {
 
-    }
 
     private boolean dialogResult;
 
@@ -37,6 +35,11 @@ public class PigletPlanDetailController {
     public void onCancel() {
         this.dialogResult = false;
         close();
+    }
+
+    @FXML
+    public void initialize(){
+        Platform.runLater(() -> textFieldCount.requestFocus());
     }
 
     private PigletPlan plan;
