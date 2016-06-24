@@ -108,7 +108,7 @@
                                 </AnchorPane>
                             </content>
                         </Tab>
-                        <Tab text="仓库">
+                        <Tab text="药品仓库">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
@@ -116,10 +116,10 @@
                                             <children>
                                                 <ToolBar prefHeight="40.0" prefWidth="200.0">
                                                     <items>
-                                                        <Button mnemonicParsing="false" onAction="#onAddWarehouse" text="添加仓库" />
+                                                        <Button mnemonicParsing="false" onAction="#onAddMedicineWarehouse" text="添加药品仓库" />
                                                     </items>
                                                 </ToolBar>
-                                                <TableView fx:id="warehouseTableView" prefHeight="289.0" prefWidth="976.0">
+                                                <TableView fx:id="medicineWarehouseTableView" prefHeight="289.0" prefWidth="976.0">
                                                     <columns>
                                                         <TableColumn prefWidth="156.0" text="名称">
                                                             <cellValueFactory>
@@ -155,8 +155,8 @@
                                                     <contextMenu>
                                                         <ContextMenu>
                                                             <items>
-                                                                <MenuItem mnemonicParsing="false" onAction="#onEditWarehouse" text="修改仓库" />
-                                                                <MenuItem mnemonicParsing="false" onAction="#onDeleteWarehouse" text="删除仓库" />
+                                                                <MenuItem mnemonicParsing="false" onAction="#onEditMedicineWarehouse" text="修改药品仓库" />
+                                                                <MenuItem mnemonicParsing="false" onAction="#onDeleteWarehouse" text="删除药品仓库" />
                                                             </items>
                                                         </ContextMenu>
                                                     </contextMenu>
@@ -167,6 +167,65 @@
                                 </AnchorPane>
                             </content>
                         </Tab>
+                  <Tab text="饲料仓库">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox layoutX="74.0" layoutY="-8.0" prefHeight="230.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ToolBar prefHeight="40.0" prefWidth="200.0">
+                                       <items>
+                                          <Button mnemonicParsing="false" onAction="#onAddMedicineWarehouse" text="添加饲料仓库" />
+                                       </items>
+                                    </ToolBar>
+                                    <TableView fx:id="warehouseTableView1" prefHeight="289.0" prefWidth="976.0">
+                                       <columns>
+                                          <TableColumn prefWidth="156.0" text="名称">
+                                             <cellValueFactory>
+                                                <PropertyValueFactory property="name" />
+                                             </cellValueFactory>
+                                          </TableColumn>
+                                          <TableColumn prefWidth="156.0" text="编码">
+                                             <cellValueFactory>
+                                                <PropertyValueFactory property="code" />
+                                             </cellValueFactory>
+                                          </TableColumn>
+                                          <TableColumn prefWidth="152.0" text="库位号">
+                                             <cellValueFactory>
+                                                <PropertyValueFactory property="no" />
+                                             </cellValueFactory>
+                                          </TableColumn>
+                                          <TableColumn minWidth="1.0" prefWidth="127.0" text="属性">
+                                             <cellValueFactory>
+                                                <PropertyValueFactory property="property" />
+                                             </cellValueFactory>
+                                          </TableColumn>
+                                          <TableColumn prefWidth="166.0" text="创建时间">
+                                             <cellValueFactory>
+                                                <PropertyValueFactory property="createTime" />
+                                             </cellValueFactory>
+                                          </TableColumn>
+                                          <TableColumn prefWidth="218.0" text="修改时间">
+                                             <cellValueFactory>
+                                                <PropertyValueFactory property="modifyTime" />
+                                             </cellValueFactory>
+                                          </TableColumn>
+                                       </columns>
+                                       <contextMenu>
+                                          <ContextMenu>
+                                             <items>
+                                                <MenuItem mnemonicParsing="false" onAction="#onEditMedicineWarehouse" text="修改饲料仓库" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onDeleteWarehouse" text="删除饲料仓库" />
+                                             </items>
+                                          </ContextMenu>
+                                       </contextMenu>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
                         <Tab text="设备">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">

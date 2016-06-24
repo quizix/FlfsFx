@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.WarehouseDetailController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.MedicineWarehouseDetailController">
    <bottom>
       <Pane prefHeight="44.0" prefWidth="475.0" style="-fx-background-color: #eeeeee;" BorderPane.alignment="CENTER">
          <children>

@@ -49,7 +49,7 @@
     <mapping class="com.dxw.flfs.data.models.mes.Sty" />
     <mapping class="com.dxw.flfs.data.models.mes.StyOperation" />
     <mapping class="com.dxw.flfs.data.models.mes.Site" />
-    <mapping class="com.dxw.flfs.data.models.mes.Warehouse" />
+    <mapping class="com.dxw.flfs.data.models.erp.MedicineWarehouse" />
     <mapping class="com.dxw.flfs.data.models.mes.WorkingCondition" />
 
   </session-factory>

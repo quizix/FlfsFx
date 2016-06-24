@@ -1,19 +1,19 @@
-package com.dxw.flfs.data.models.mes;
+package com.dxw.flfs.data.models.erp;
 
-import com.dxw.flfs.data.models.erp.User;
+import com.dxw.flfs.data.models.mes.Shed;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 仓库
+ * 饲料仓库
  * Created by zhang on 2016-06-11.
  */
 @Entity
-@Table(name = "mes_warehouse")
+@Table(name = "erp_medicine_warehouse")
 @Access(AccessType.FIELD)
-public class Warehouse {
+public class MedicineWarehouse {
     /**
      * 内部id
      */

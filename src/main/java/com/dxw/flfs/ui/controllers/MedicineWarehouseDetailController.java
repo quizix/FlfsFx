@@ -1,6 +1,6 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.flfs.data.models.mes.Warehouse;
+import com.dxw.flfs.data.models.erp.MedicineWarehouse;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * Created by zhang on 2016-05-26.
  */
-public class WarehouseDetailController {
+public class MedicineWarehouseDetailController {
 
     @FXML
     private TextField textFieldName;
@@ -27,7 +27,7 @@ public class WarehouseDetailController {
     private Button buttonOk;
 
     private boolean dialogResult;
-    private Warehouse sty;
+    private MedicineWarehouse sty;
 
     public void onOk(){
         dialogResult = true;
@@ -61,7 +61,7 @@ public class WarehouseDetailController {
         return dialogResult;
     }
 
-    public void setWarehouse(Warehouse warehouse) {
+    public void setWarehouse(MedicineWarehouse warehouse) {
         this.sty = warehouse;
 
         if(warehouse != null){

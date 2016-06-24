@@ -6,6 +6,7 @@
 package com.dxw.flfs.data.models.mes;
 
 import com.dxw.flfs.data.models.erp.User;
+import com.dxw.flfs.data.models.erp.MedicineWarehouse;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -74,11 +75,11 @@ public class Shed{
     private Set<Sty> sties = new HashSet<>();
 
     /**
-     * 仓库
+     * 药品仓库
      */
     @OneToMany(mappedBy = "shed", cascade = CascadeType.PERSIST)
     @OrderBy("id")
-    private Set<Warehouse> warehouses = new HashSet<>();
+    private Set<MedicineWarehouse> medicineWarehouses = new HashSet<>();
 
     /**
      * 仓库
@@ -163,12 +164,12 @@ public class Shed{
         return this.name;
     }
 
-    public Set<Warehouse> getWarehouses() {
-        return warehouses;
+    public Set<MedicineWarehouse> getMedicineWarehouses() {
+        return medicineWarehouses;
     }
 
-    public void setWarehouses(Set<Warehouse> warehouses) {
-        this.warehouses = warehouses;
+    public void setMedicineWarehouses(Set<MedicineWarehouse> medicineWarehouses) {
+        this.medicineWarehouses = medicineWarehouses;
     }
 
     public void addSty(Sty sty){
@@ -180,13 +181,13 @@ public class Shed{
         this.getSties().remove(sty);
         sty.setShed(null);
     }
-    public void addWarehouse(Warehouse warehouse){
-        this.getWarehouses().add(warehouse);
+    public void addWarehouse(MedicineWarehouse warehouse){
+        this.getMedicineWarehouses().add(warehouse);
         warehouse.setShed(this);
     }
 
-    public void removeWarehouse(Warehouse warehouse){
-        this.getWarehouses().remove(warehouse);
+    public void removeWarehouse(MedicineWarehouse warehouse){
+        this.getMedicineWarehouses().remove(warehouse);
         warehouse.setShed(null);
     }
 

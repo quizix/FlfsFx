@@ -9,7 +9,7 @@ import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.mes.Device;
 import com.dxw.flfs.data.models.mes.Shed;
 import com.dxw.flfs.data.models.mes.Sty;
-import com.dxw.flfs.data.models.mes.Warehouse;
+import com.dxw.flfs.data.models.erp.MedicineWarehouse;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +46,7 @@ public class ShedController {
     TableView<Device> deviceTableView;
 
     @FXML
-    TableView<Warehouse> warehouseTableView;
+    TableView<MedicineWarehouse> medicineWarehouseTableView;
 
     @FXML
     TabPane tabPane;
@@ -82,11 +82,11 @@ public class ShedController {
                             }
                             break;
                         case 1:
-                            warehouseTableView.getItems().clear();
+                            medicineWarehouseTableView.getItems().clear();
                             if(newValue != null){
-                                Set<Warehouse> warehouses = newValue.getWarehouses();
+                                Set<MedicineWarehouse> warehouses = newValue.getMedicineWarehouses();
                                 if( warehouses!=null)
-                                    warehouseTableView.getItems().addAll(warehouses);
+                                    medicineWarehouseTableView.getItems().addAll(warehouses);
                             }
                             break;
                         case 2:
@@ -116,11 +116,11 @@ public class ShedController {
                     }
                     break;
                 case 1:
-                    warehouseTableView.getItems().clear();
+                    medicineWarehouseTableView.getItems().clear();
                     if(newValue != null){
-                        Set<Warehouse> warehouses = shed.getWarehouses();
+                        Set<MedicineWarehouse> warehouses = shed.getMedicineWarehouses();
                         if( warehouses!=null)
-                            warehouseTableView.getItems().addAll(warehouses);
+                            medicineWarehouseTableView.getItems().addAll(warehouses);
                     }
                     break;
                 case 2:
@@ -271,15 +271,15 @@ public class ShedController {
         }
     }
 
-    public void onAddWarehouse(){
+    public void onAddMedicineWarehouse(){
         Shed shed = shedTableView.getSelectionModel().getSelectedItem();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/warehouseDetail.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/medicineWarehouseDetail.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("添加仓库");
+            stage.setTitle("添加药品仓库");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
@@ -287,13 +287,13 @@ public class ShedController {
             stage.initOwner(null);
             stage.showAndWait();
 
-            WarehouseDetailController controller = loader.getController();
+            MedicineWarehouseDetailController controller = loader.getController();
             if( controller.isDialogResult()){
                 String name = controller.getName();
                 String code = controller.getCode();
                 int no = controller.getNo();
 
-                Warehouse warehouse = new Warehouse();
+                MedicineWarehouse warehouse = new MedicineWarehouse();
                 Date now = new Date();
                 warehouse.setModifyTime(now);
                 warehouse.setCreateTime(now);
@@ -307,7 +307,7 @@ public class ShedController {
                 unitOfWork.getShedRepository().save(shed);
                 unitOfWork.commit();
 
-                warehouseTableView.getItems().add(warehouse);
+                medicineWarehouseTableView.getItems().add(warehouse);
             }
 
         } catch (IOException e) {
@@ -398,17 +398,17 @@ public class ShedController {
         }
     }
 
-    public void onEditWarehouse(){
-        Warehouse warehouse = warehouseTableView.getSelectionModel().getSelectedItem();
+    public void onEditMedicineWarehouse(){
+        MedicineWarehouse warehouse = medicineWarehouseTableView.getSelectionModel().getSelectedItem();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/warehouseDetail.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/medicineWarehouseDetail.fxml"));
             Parent root = loader.load();
 
-            WarehouseDetailController controller = loader.getController();
+            MedicineWarehouseDetailController controller = loader.getController();
             controller.setWarehouse(warehouse);
             Stage stage = new Stage();
-            stage.setTitle("修改仓库");
+            stage.setTitle("修改药品仓库");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
@@ -428,10 +428,10 @@ public class ShedController {
                 warehouse.setNo(no);
                 warehouse.setName(name);
                 unitOfWork.begin();
-                unitOfWork.getWarehouseRepository().save(warehouse);
+                unitOfWork.getFeedWarehouseRepository().save(warehouse);
                 unitOfWork.commit();
 
-                refreshWarehouseTable();
+                refreshMedicineWarehouseTable();
             }
 
         } catch (IOException e) {
@@ -497,7 +497,7 @@ public class ShedController {
     }
 
     public void onDeleteWarehouse(){
-        Warehouse warehouse = warehouseTableView.getSelectionModel().getSelectedItem();
+        MedicineWarehouse warehouse = medicineWarehouseTableView.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个仓库？");
         alert.setHeaderText(null);
@@ -509,7 +509,7 @@ public class ShedController {
                     unitOfWork.getShedRepository().save(shed);
                     unitOfWork.commit();
 
-                    warehouseTableView.getItems().remove(warehouse);
+                    medicineWarehouseTableView.getItems().remove(warehouse);
 
                 });
     }
@@ -542,9 +542,9 @@ public class ShedController {
         styTableView.getColumns().get(0).setVisible(true);
     }
 
-    private void refreshWarehouseTable(){
-        warehouseTableView.getColumns().get(0).setVisible(false);
-        warehouseTableView.getColumns().get(0).setVisible(true);
+    private void refreshMedicineWarehouseTable(){
+        medicineWarehouseTableView.getColumns().get(0).setVisible(false);
+        medicineWarehouseTableView.getColumns().get(0).setVisible(true);
     }
 
     private void refreshDeviceTable(){

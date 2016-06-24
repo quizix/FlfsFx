@@ -20,7 +20,7 @@ public class UnitOfWork implements AutoCloseable {
     private DefaultGenericRepository<Pig> pigRepository;
     private DefaultGenericRepository<Medicine> medicineRepository;
     private DefaultGenericRepository<Feed> feedRepository;
-    private DefaultGenericRepository<Warehouse> warehouseRepository;
+    private DefaultGenericRepository<MedicineWarehouse> feedWarehouseRepository;
     private DefaultGenericRepository<Device> deviceRepository;
     private DefaultGenericRepository<Unit> unitRepository;
     private DefaultGenericRepository<Vendor> vendorRepository;
@@ -85,10 +85,10 @@ public class UnitOfWork implements AutoCloseable {
         return feedRepository;
     }
 
-    public DefaultGenericRepository<Warehouse> getWarehouseRepository() {
-        if( warehouseRepository == null)
-            warehouseRepository = new DefaultGenericRepository<>(session, Warehouse.class);
-        return warehouseRepository;
+    public DefaultGenericRepository<MedicineWarehouse> getFeedWarehouseRepository() {
+        if( feedWarehouseRepository == null)
+            feedWarehouseRepository = new DefaultGenericRepository<>(session, MedicineWarehouse.class);
+        return feedWarehouseRepository;
     }
 
     public DefaultGenericRepository<Device> getDeviceRepository() {
