@@ -1,6 +1,7 @@
 package com.dxw.flfs.data.models.mes;
 
 import com.dxw.flfs.data.models.erp.Category;
+import com.dxw.flfs.data.models.erp.Shed;
 import com.dxw.flfs.data.models.erp.Unit;
 import com.dxw.flfs.data.models.erp.Vendor;
 import org.hibernate.annotations.NaturalId;

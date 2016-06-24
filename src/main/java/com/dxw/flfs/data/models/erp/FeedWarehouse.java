@@ -10,9 +10,9 @@ import java.util.Date;
  * Created by zhang on 2016-06-11.
  */
 @Entity
-@Table(name = "erp_medicine_warehouse")
+@Table(name = "erp_feed_warehouse")
 @Access(AccessType.FIELD)
-public class MedicineWarehouse {
+public class FeedWarehouse {
     /**
      * 内部id
      */

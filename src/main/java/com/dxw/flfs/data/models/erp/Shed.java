@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dxw.flfs.data.models.mes;
+package com.dxw.flfs.data.models.erp;
 
-import com.dxw.flfs.data.models.erp.User;
-import com.dxw.flfs.data.models.erp.MedicineWarehouse;
+import com.dxw.flfs.data.models.mes.Device;
+import com.dxw.flfs.data.models.mes.Sty;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -20,7 +20,7 @@ import java.util.Set;
  * @author Administrator
  */
 @Entity
-@Table(name="mes_shed")
+@Table(name="erp_shed")
 public class Shed{
     /**
      * 内部id
@@ -82,7 +82,14 @@ public class Shed{
     private Set<MedicineWarehouse> medicineWarehouses = new HashSet<>();
 
     /**
-     * 仓库
+     * 药品仓库
+     */
+    @OneToMany(mappedBy = "shed", cascade = CascadeType.PERSIST)
+    @OrderBy("id")
+    private Set<FeedWarehouse> feedWarehouses = new HashSet<>();
+
+    /**
+     * 设备
      */
     @OneToMany(mappedBy = "shed", cascade = CascadeType.PERSIST)
     @OrderBy("id")
@@ -181,12 +188,12 @@ public class Shed{
         this.getSties().remove(sty);
         sty.setShed(null);
     }
-    public void addWarehouse(MedicineWarehouse warehouse){
+    public void addMedicineWarehouse(MedicineWarehouse warehouse){
         this.getMedicineWarehouses().add(warehouse);
         warehouse.setShed(this);
     }
 
-    public void removeWarehouse(MedicineWarehouse warehouse){
+    public void removeMedicineWarehouse(MedicineWarehouse warehouse){
         this.getMedicineWarehouses().remove(warehouse);
         warehouse.setShed(null);
     }
@@ -215,5 +222,23 @@ public class Shed{
 
     public void setDevices(Set<Device> devices) {
         this.devices = devices;
+    }
+
+    public Set<FeedWarehouse> getFeedWarehouses() {
+        return feedWarehouses;
+    }
+
+    public void setFeedWarehouses(Set<FeedWarehouse> feedWarehouses) {
+        this.feedWarehouses = feedWarehouses;
+    }
+
+    public void addFeedWarehouse(FeedWarehouse warehouse){
+        this.getFeedWarehouses().add(warehouse);
+        warehouse.setShed(this);
+    }
+
+    public void removeFeedWarehouse(FeedWarehouse warehouse){
+        this.getFeedWarehouses().remove(warehouse);
+        warehouse.setShed(null);
     }
 }

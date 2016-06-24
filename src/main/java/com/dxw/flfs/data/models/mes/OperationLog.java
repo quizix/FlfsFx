@@ -5,6 +5,7 @@
  */
 package com.dxw.flfs.data.models.mes;
 
+import com.dxw.flfs.data.models.erp.Shed;
 import com.dxw.flfs.data.models.erp.User;
 
 import javax.persistence.*;

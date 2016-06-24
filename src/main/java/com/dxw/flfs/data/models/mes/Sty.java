@@ -1,5 +1,6 @@
 package com.dxw.flfs.data.models.mes;
 
+import com.dxw.flfs.data.models.erp.Shed;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import org.hibernate.annotations.NaturalId;

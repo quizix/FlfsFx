@@ -3,7 +3,7 @@ package com.dxw.flfs.ui.controllers;
 import com.dxw.flfs.app.FlfsApp;
 import com.dxw.flfs.data.dal.DefaultGenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
-import com.dxw.flfs.data.models.mes.Shed;
+import com.dxw.flfs.data.models.erp.Shed;
 import com.dxw.flfs.data.models.mes.Site;
 import com.dxw.flfs.data.models.mes.Sty;
 import javafx.application.Platform;

@@ -1,5 +1,7 @@
 package com.dxw.flfs.data.models.mes;
 
+import com.dxw.flfs.data.models.erp.Shed;
+
 import javax.persistence.*;
 import java.util.Date;
 

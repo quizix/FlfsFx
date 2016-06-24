@@ -6,10 +6,11 @@ import com.dxw.common.services.Services;
 import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.DefaultGenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
-import com.dxw.flfs.data.models.mes.Device;
-import com.dxw.flfs.data.models.mes.Shed;
-import com.dxw.flfs.data.models.mes.Sty;
+import com.dxw.flfs.data.models.erp.FeedWarehouse;
 import com.dxw.flfs.data.models.erp.MedicineWarehouse;
+import com.dxw.flfs.data.models.erp.Shed;
+import com.dxw.flfs.data.models.mes.Device;
+import com.dxw.flfs.data.models.mes.Sty;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,6 +48,9 @@ public class ShedController {
 
     @FXML
     TableView<MedicineWarehouse> medicineWarehouseTableView;
+
+    @FXML
+    TableView<FeedWarehouse> feedWarehouseTableView;
 
     @FXML
     TabPane tabPane;
@@ -90,6 +94,14 @@ public class ShedController {
                             }
                             break;
                         case 2:
+                            feedWarehouseTableView.getItems().clear();
+                            if(newValue != null){
+                                Set<FeedWarehouse> warehouses = newValue.getFeedWarehouses();
+                                if( warehouses!=null)
+                                    feedWarehouseTableView.getItems().addAll(warehouses);
+                            }
+                            break;
+                        case 3:
                             deviceTableView.getItems().clear();
                             if(newValue != null){
                                 Set<Device> devices = newValue.getDevices();
@@ -124,6 +136,14 @@ public class ShedController {
                     }
                     break;
                 case 2:
+                    feedWarehouseTableView.getItems().clear();
+                    if(newValue != null){
+                        Set<FeedWarehouse> warehouses = shed.getFeedWarehouses();
+                        if( warehouses!=null)
+                            feedWarehouseTableView.getItems().addAll(warehouses);
+                    }
+                    break;
+                case 3:
                     deviceTableView.getItems().clear();
                     if(newValue != null){
                         Set<Device> devices = shed.getDevices();
@@ -301,13 +321,57 @@ public class ShedController {
                 warehouse.setNo(no);
                 warehouse.setName(name);
 
-                shed.addWarehouse(warehouse);
+                shed.addMedicineWarehouse(warehouse);
 
                 unitOfWork.begin();
                 unitOfWork.getShedRepository().save(shed);
                 unitOfWork.commit();
 
                 medicineWarehouseTableView.getItems().add(warehouse);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onAddFeedWarehouse(){
+        Shed shed = shedTableView.getSelectionModel().getSelectedItem();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/feedWarehouseDetail.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("添加饲料仓库");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.showAndWait();
+
+            FeedWarehouseDetailController controller = loader.getController();
+            if( controller.isDialogResult()){
+                String name = controller.getName();
+                String code = controller.getCode();
+                int no = controller.getNo();
+
+                FeedWarehouse warehouse = new FeedWarehouse();
+                Date now = new Date();
+                warehouse.setModifyTime(now);
+                warehouse.setCreateTime(now);
+                warehouse.setCode(code);
+                warehouse.setNo(no);
+                warehouse.setName(name);
+
+                shed.addFeedWarehouse(warehouse);
+
+                unitOfWork.begin();
+                unitOfWork.getShedRepository().save(shed);
+                unitOfWork.commit();
+
+                feedWarehouseTableView.getItems().add(warehouse);
             }
 
         } catch (IOException e) {
@@ -428,10 +492,51 @@ public class ShedController {
                 warehouse.setNo(no);
                 warehouse.setName(name);
                 unitOfWork.begin();
-                unitOfWork.getFeedWarehouseRepository().save(warehouse);
+                unitOfWork.getMedicineWarehouseRepository().save(warehouse);
                 unitOfWork.commit();
 
                 refreshMedicineWarehouseTable();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onEditFeedWarehouse(){
+        FeedWarehouse warehouse = feedWarehouseTableView.getSelectionModel().getSelectedItem();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/feedWarehouseDetail.fxml"));
+            Parent root = loader.load();
+
+            FeedWarehouseDetailController controller = loader.getController();
+            controller.setWarehouse(warehouse);
+            Stage stage = new Stage();
+            stage.setTitle("修改饲料仓库");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.showAndWait();
+
+            if( controller.isDialogResult()){
+                String name = controller.getName();
+                String code = controller.getCode();
+                int no = controller.getNo();
+
+                Date now = new Date();
+                warehouse.setModifyTime(now);
+
+                warehouse.setCode(code);
+                warehouse.setNo(no);
+                warehouse.setName(name);
+                unitOfWork.begin();
+                unitOfWork.getFeedWarehouseRepository().save(warehouse);
+                unitOfWork.commit();
+
+                refreshFeedWarehouseTable();
             }
 
         } catch (IOException e) {
@@ -496,7 +601,7 @@ public class ShedController {
                     });
     }
 
-    public void onDeleteWarehouse(){
+    public void onDeleteMedicineWarehouse(){
         MedicineWarehouse warehouse = medicineWarehouseTableView.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个仓库？");
@@ -505,11 +610,29 @@ public class ShedController {
                 .ifPresent(response ->{
                     Shed shed = warehouse.getShed();
                     unitOfWork.begin();
-                    shed.removeWarehouse(warehouse);
+                    shed.removeMedicineWarehouse(warehouse);
                     unitOfWork.getShedRepository().save(shed);
                     unitOfWork.commit();
 
                     medicineWarehouseTableView.getItems().remove(warehouse);
+
+                });
+    }
+
+    public void onDeleteFeedWarehouse(){
+        FeedWarehouse warehouse = feedWarehouseTableView.getSelectionModel().getSelectedItem();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个仓库？");
+        alert.setHeaderText(null);
+        alert.showAndWait().filter(response -> response == ButtonType.OK)
+                .ifPresent(response ->{
+                    Shed shed = warehouse.getShed();
+                    unitOfWork.begin();
+                    shed.removeFeedWarehouse(warehouse);
+                    unitOfWork.getShedRepository().save(shed);
+                    unitOfWork.commit();
+
+                    feedWarehouseTableView.getItems().remove(warehouse);
 
                 });
     }
@@ -545,6 +668,11 @@ public class ShedController {
     private void refreshMedicineWarehouseTable(){
         medicineWarehouseTableView.getColumns().get(0).setVisible(false);
         medicineWarehouseTableView.getColumns().get(0).setVisible(true);
+    }
+
+    private void refreshFeedWarehouseTable(){
+        feedWarehouseTableView.getColumns().get(0).setVisible(false);
+        feedWarehouseTableView.getColumns().get(0).setVisible(true);
     }
 
     private void refreshDeviceTable(){

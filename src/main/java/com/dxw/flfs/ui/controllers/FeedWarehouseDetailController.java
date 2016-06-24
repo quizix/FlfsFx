@@ -1,7 +1,6 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.flfs.data.models.erp.Shed;
-import javafx.application.Platform;
+import com.dxw.flfs.data.models.erp.FeedWarehouse;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -10,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * Created by zhang on 2016-05-26.
  */
-public class ShedDetailController {
+public class FeedWarehouseDetailController {
 
     @FXML
     private TextField textFieldName;
@@ -19,7 +18,7 @@ public class ShedDetailController {
     private TextField textFieldCode;
 
     @FXML
-    private TextField textFieldAddress;
+    private TextField textFieldNo;
 
     @FXML
     private Button buttonCancel;
@@ -27,13 +26,8 @@ public class ShedDetailController {
     @FXML
     private Button buttonOk;
 
-    @FXML
-    public void initialize(){
-        Platform.runLater(() -> textFieldName.requestFocus());
-    }
-
     private boolean dialogResult;
-    private Shed shed;
+    private FeedWarehouse feedWarehouse;
 
     public void onOk(){
         dialogResult = true;
@@ -50,30 +44,30 @@ public class ShedDetailController {
         stage.close();
     }
 
-    public String getTextFieldName() {
+    public String getName() {
         return textFieldName.getText();
     }
 
-    public String getTextFieldCode() {
+    public String getCode() {
         return textFieldCode.getText();
     }
 
-    public String getTextFieldAddress() {
+    public int getNo() {
 
-        return textFieldAddress.getText();
+        return Integer.parseInt(textFieldNo.getText());
     }
 
     public boolean isDialogResult() {
         return dialogResult;
     }
 
-    public void setShed(Shed shed) {
-        this.shed = shed;
+    public void setWarehouse(FeedWarehouse warehouse) {
+        this.feedWarehouse = warehouse;
 
-        if(shed != null){
-            this.textFieldAddress.setText(shed.getAddress());
-            this.textFieldCode.setText(shed.getCode());
-            this.textFieldName.setText(shed.getName());
+        if(warehouse != null){
+            this.textFieldNo.setText(Integer.toString(warehouse.getNo()));
+            this.textFieldCode.setText(warehouse.getCode());
+            this.textFieldName.setText(warehouse.getName());
 
         }
     }

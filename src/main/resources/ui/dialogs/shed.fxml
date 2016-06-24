@@ -156,7 +156,7 @@
                                                         <ContextMenu>
                                                             <items>
                                                                 <MenuItem mnemonicParsing="false" onAction="#onEditMedicineWarehouse" text="修改药品仓库" />
-                                                                <MenuItem mnemonicParsing="false" onAction="#onDeleteWarehouse" text="删除药品仓库" />
+                                                                <MenuItem mnemonicParsing="false" onAction="#onDeleteMedicineWarehouse" text="删除药品仓库" />
                                                             </items>
                                                         </ContextMenu>
                                                     </contextMenu>
@@ -175,10 +175,10 @@
                                  <children>
                                     <ToolBar prefHeight="40.0" prefWidth="200.0">
                                        <items>
-                                          <Button mnemonicParsing="false" onAction="#onAddMedicineWarehouse" text="添加饲料仓库" />
+                                          <Button mnemonicParsing="false" onAction="#onAddFeedWarehouse" text="添加饲料仓库" />
                                        </items>
                                     </ToolBar>
-                                    <TableView fx:id="warehouseTableView1" prefHeight="289.0" prefWidth="976.0">
+                                    <TableView fx:id="feedWarehouseTableView" prefHeight="289.0" prefWidth="976.0">
                                        <columns>
                                           <TableColumn prefWidth="156.0" text="名称">
                                              <cellValueFactory>
@@ -214,8 +214,8 @@
                                        <contextMenu>
                                           <ContextMenu>
                                              <items>
-                                                <MenuItem mnemonicParsing="false" onAction="#onEditMedicineWarehouse" text="修改饲料仓库" />
-                                                <MenuItem mnemonicParsing="false" onAction="#onDeleteWarehouse" text="删除饲料仓库" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onEditFeedWarehouse" text="修改饲料仓库" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onDeleteFeedWarehouse" text="删除饲料仓库" />
                                              </items>
                                           </ContextMenu>
                                        </contextMenu>

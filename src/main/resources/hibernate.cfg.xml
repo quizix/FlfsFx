@@ -38,6 +38,8 @@
     <mapping class="com.dxw.flfs.data.models.erp.Unit" />
     <mapping class="com.dxw.flfs.data.models.erp.User" />
     <mapping class="com.dxw.flfs.data.models.erp.Vendor" />
+    <mapping class="com.dxw.flfs.data.models.erp.MedicineWarehouse" />
+    <mapping class="com.dxw.flfs.data.models.erp.FeedWarehouse" />
 
     <mapping class="com.dxw.flfs.data.models.mes.Batch" />
     <mapping class="com.dxw.flfs.data.models.mes.Device" />
@@ -45,11 +47,11 @@
     <mapping class="com.dxw.flfs.data.models.mes.PigletPlan" />
     <mapping class="com.dxw.flfs.data.models.mes.Ph" />
     <mapping class="com.dxw.flfs.data.models.mes.ProductionInstruction" />
-    <mapping class="com.dxw.flfs.data.models.mes.Shed" />
+    <mapping class="com.dxw.flfs.data.models.erp.Shed" />
     <mapping class="com.dxw.flfs.data.models.mes.Sty" />
     <mapping class="com.dxw.flfs.data.models.mes.StyOperation" />
     <mapping class="com.dxw.flfs.data.models.mes.Site" />
-    <mapping class="com.dxw.flfs.data.models.erp.MedicineWarehouse" />
+
     <mapping class="com.dxw.flfs.data.models.mes.WorkingCondition" />
 
   </session-factory>
