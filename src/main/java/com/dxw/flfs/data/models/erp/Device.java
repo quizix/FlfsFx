@@ -1,9 +1,7 @@
-package com.dxw.flfs.data.models.mes;
+package com.dxw.flfs.data.models.erp;
 
-import com.dxw.flfs.data.models.erp.Category;
-import com.dxw.flfs.data.models.erp.Shed;
-import com.dxw.flfs.data.models.erp.Unit;
-import com.dxw.flfs.data.models.erp.Vendor;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -14,7 +12,7 @@ import java.util.Date;
  * Created by zhang on 2016-06-11.
  */
 @Entity
-@Table(name="mes_device")
+@Table(name="erp_device")
 @Access(AccessType.FIELD)
 public class Device {
     /**
@@ -83,6 +81,9 @@ public class Device {
     @ManyToOne
     @JoinColumn(name="shedId")
     private Shed shed;
+
+    @Transient
+    private BooleanProperty checked = new SimpleBooleanProperty();
 
     public Long getId() {
         return id;
@@ -162,5 +163,17 @@ public class Device {
 
     public void setShed(Shed shed) {
         this.shed = shed;
+    }
+
+    public boolean getChecked() {
+        return checked.get();
+    }
+
+    public BooleanProperty checkedProperty() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked.set(checked);
     }
 }

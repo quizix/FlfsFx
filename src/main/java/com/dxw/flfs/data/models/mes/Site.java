@@ -1,5 +1,8 @@
 package com.dxw.flfs.data.models.mes;
 
+import com.dxw.flfs.data.models.erp.Device;
+import com.dxw.flfs.data.models.erp.FeedWarehouse;
+import com.dxw.flfs.data.models.erp.Sty;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.NaturalId;
 
@@ -71,6 +74,19 @@ public class Site {
             joinColumns=@JoinColumn(name="siteId"), inverseJoinColumns=@JoinColumn(name="styId"))
     @OrderBy("id")
     private Set<Sty> sties = new HashSet<>();
+
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="mes_site_device",
+            joinColumns=@JoinColumn(name="siteId"), inverseJoinColumns=@JoinColumn(name="deviceId"))
+    @OrderBy("id")
+    private Set<Device> devices = new HashSet<>();
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="mes_site_feed_warehouse",
+            joinColumns=@JoinColumn(name="siteId"), inverseJoinColumns=@JoinColumn(name="feedWarehouseId"))
+    @OrderBy("id")
+    private Set<FeedWarehouse> feedWarehouses = new HashSet<>();
 
     /*@ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="flfs_site_plan",
@@ -145,6 +161,14 @@ public class Site {
         this.sties.removeAll(sties);
     }
 
+    public void removeDevices(Collection<Device> devices){
+        this.devices.removeAll(devices);
+    }
+
+    public void removeFeedWarehouses(Collection<FeedWarehouse> feedWarehouses){
+        this.feedWarehouses.removeAll(feedWarehouses);
+    }
+
     public Set<PigletPlan> getPlans() {
         return plans;
     }
@@ -159,5 +183,21 @@ public class Site {
 
     public void setStage(int stage) {
         this.stage = stage;
+    }
+
+    public Set<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(Set<Device> devices) {
+        this.devices = devices;
+    }
+
+    public Set<FeedWarehouse> getFeedWarehouses() {
+        return feedWarehouses;
+    }
+
+    public void setFeedWarehouses(Set<FeedWarehouse> feedWarehouses) {
+        this.feedWarehouses = feedWarehouses;
     }
 }

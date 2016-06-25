@@ -5,8 +5,6 @@
  */
 package com.dxw.flfs.data.models.erp;
 
-import com.dxw.flfs.data.models.mes.Device;
-import com.dxw.flfs.data.models.mes.Sty;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;

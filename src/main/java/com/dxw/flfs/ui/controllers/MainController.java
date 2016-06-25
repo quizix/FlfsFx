@@ -13,6 +13,7 @@ import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.mes.Site;
 import com.dxw.flfs.jobs.JobManager;
+import com.dxw.flfs.ui.controllers.wizards.ConfigWizardController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -111,7 +112,7 @@ public class MainController {
             notificationManager.notify(MessageTags.Remind, n);
     }
 
-    public void onConfig() {
+    public void onConfigWizard() {
         try (UnitOfWork unitOfWork = new UnitOfWork(hibernateService.getSession())) {
             doConfigInternal(unitOfWork);
         } catch (Exception ex) {
@@ -122,10 +123,10 @@ public class MainController {
 
     private void doConfigInternal(UnitOfWork unitOfWork) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/wizard/startupWizard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/wizard/configWizard.fxml"));
             Parent root = loader.load();
 
-            StartupWizardController controller = loader.getController();
+            ConfigWizardController controller = loader.getController();
             controller.setUnitOfWork(unitOfWork);
 
             Stage stage = new Stage();
@@ -419,6 +420,31 @@ public class MainController {
 
     }
 
+    /**
+     * 液喂系统配置
+     */
+    public void onSetting(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/setting/setting.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("液喂系统设置");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.setOnCloseRequest(e -> {
+                SettingController controller = loader.getController();
+                controller.dispose();
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /*public void popupErrorMsg() {
         final Stage myDialog = new Stage();
         myDialog.initModality(Modality.APPLICATION_MODAL);

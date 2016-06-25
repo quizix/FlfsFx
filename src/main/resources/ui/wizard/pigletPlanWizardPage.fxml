@@ -7,11 +7,11 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.StartupWizardPage2Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.wizards.PigletPlanWizardPageController">
    <top>
       <ToolBar BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" onAction="#onAdd" text="添加" />
+          <Button mnemonicParsing="false" onAction="#onAdd" text="添加入栏计划" />
         </items>
       </ToolBar>
    </top>

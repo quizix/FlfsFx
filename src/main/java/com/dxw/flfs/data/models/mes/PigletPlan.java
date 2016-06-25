@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 表示进猪计划
+ * 表示小猪入栏计划
  * * Created by zhang on 2016-04-28.
  */
 @Entity

@@ -1,5 +1,7 @@
 package com.dxw.flfs.data.models.mes;
 
+import com.dxw.flfs.data.models.erp.Sty;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;

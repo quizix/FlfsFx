@@ -1,4 +1,4 @@
-package com.dxw.flfs.ui.controllers;
+package com.dxw.flfs.ui.controllers.wizards;
 
 import com.dxw.flfs.data.dal.UnitOfWork;
 import javafx.fxml.FXML;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 /**
  * Created by zhang on 2016-05-27.
  */
-public class StartupWizardController {
+public class ConfigWizardController {
     private boolean dialogResult = false;
 
     private int currentPage = 0;
@@ -23,10 +23,16 @@ public class StartupWizardController {
         the names of my controller variables should be <fx:id>Controller.
      */
     @FXML
-    StartupWizardPage2Controller startupWizardPage2Controller;
+    PigletPlanWizardPageController pigletPlanWizardPageController;
 
     @FXML
-    StartupWizardPage1Controller startupWizardPage1Controller;
+    StyWizardPageController styWizardPageController;
+
+    @FXML
+    DeviceWizardPageController deviceWizardPageController;
+
+    @FXML
+    FeedWarehouseWizardPageController feedWarehouseWizardPageController;
 
     @FXML
     StackPane stackPane;
@@ -47,7 +53,7 @@ public class StartupWizardController {
 
     @FXML
     public void onPrev() {
-        if (currentPage > 0) {
+        if ( hasPrev()) {
             currentPage--;
 
             enableButtons(currentPage);
@@ -64,10 +70,9 @@ public class StartupWizardController {
     }
 
 
-
     @FXML
     public void onNext() {
-        if (currentPage < stackPane.getChildren().size() - 1) {
+        if (hasNext()) {
             currentPage++;
 
             enableButtons(currentPage);
@@ -82,10 +87,24 @@ public class StartupWizardController {
         }
     }
 
+    private boolean hasNext() {
+        if (currentPage < stackPane.getChildren().size() - 1)
+            return true;
+        else
+            return false;
+    }
+
+    private boolean hasPrev() {
+        if (currentPage > 0)
+            return true;
+        else
+            return false;
+    }
+
     private void enableButtons(int currentPage) {
-        buttonPrev.setDisable(currentPage==0?true:false);
-        buttonNext.setDisable(currentPage==pages-1?true:false);
-        buttonOk.setDisable(currentPage==pages-1?false:true);
+        buttonPrev.setDisable(currentPage == 0 ? true : false);
+        buttonNext.setDisable(currentPage == pages - 1 ? true : false);
+        buttonOk.setDisable(currentPage == pages - 1 ? false : true);
     }
 
     @FXML
@@ -134,14 +153,20 @@ public class StartupWizardController {
 
         this.unitOfWork = unitOfWork;
 
-        this.startupWizardPage1Controller.setUnitOfWork(unitOfWork);
-        this.startupWizardPage2Controller.setUnitOfWork(unitOfWork);
+        this.styWizardPageController.setUnitOfWork(unitOfWork);
+        this.pigletPlanWizardPageController.setUnitOfWork(unitOfWork);
+        this.deviceWizardPageController.setUnitOfWork(unitOfWork);
+        this.feedWarehouseWizardPageController.setUnitOfWork(unitOfWork);
     }
 
     public void setTitle(int currentPage) {
-        if( currentPage == 0)
-            this.stage.setTitle("配置向导——第一步：设置栏位关联");
-        else if( currentPage == 1)
-            this.stage.setTitle("配置向导——第二步：设置小猪入栏计划");
+        if (currentPage == 0)
+            this.stage.setTitle("配置向导——第一步：饲料仓库关联");
+        else if (currentPage == 1)
+            this.stage.setTitle("配置向导——第二步：栏位关联");
+        else if (currentPage == 2)
+            this.stage.setTitle("配置向导——第三步：设备关联");
+        else if (currentPage == 3)
+            this.stage.setTitle("配置向导——第四步：设置小猪入栏计划");
     }
 }

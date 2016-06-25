@@ -1,11 +1,11 @@
-package com.dxw.flfs.ui.controllers;
+package com.dxw.flfs.ui.controllers.wizards;
 
 import com.dxw.flfs.app.FlfsApp;
 import com.dxw.flfs.data.dal.DefaultGenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.erp.Shed;
+import com.dxw.flfs.data.models.erp.FeedWarehouse;
 import com.dxw.flfs.data.models.mes.Site;
-import com.dxw.flfs.data.models.mes.Sty;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,21 +20,21 @@ import java.util.stream.Collectors;
 /**
  * Created by zhang on 2016-05-29.
  */
-public class ChooseStiesController {
+public class ChooseFeedWarehousesController {
 
     private Stage stage;
     private UnitOfWork unitOfWork;
 
     @FXML
-    private TableView<Sty> tableViewSty;
+    private TableView<FeedWarehouse> tableViewFeedWarehouse;
 
     @FXML
     private TableView<Shed> tableViewShed;
 
-    private Set<Sty> sties;
+    private Set<FeedWarehouse> feedWarehouses;
 
-    public Set<Sty> getSelectedSties(){
-        return sties;
+    public Set<FeedWarehouse> getSelectedFeedWarehouses(){
+        return feedWarehouses;
     }
 
     @FXML
@@ -48,11 +48,11 @@ public class ChooseStiesController {
     private boolean dialogResult;
     public void onOk(){
         dialogResult = true;
-        sties = new HashSet<>();
-        ObservableList<Sty> selectedItems =
-                tableViewSty.getItems();
+        feedWarehouses = new HashSet<>();
+        ObservableList<FeedWarehouse> selectedItems =
+                tableViewFeedWarehouse.getItems();
 
-        sties.addAll(selectedItems.stream().filter(sty -> sty.getChecked()).collect(Collectors.toList()));
+        feedWarehouses.addAll(selectedItems.stream().filter(warehouse -> warehouse.getChecked()).collect(Collectors.toList()));
 
         this.close();
     }
@@ -95,19 +95,19 @@ public class ChooseStiesController {
 
         tableViewShed.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    tableViewSty.getItems().clear();
+                    tableViewFeedWarehouse.getItems().clear();
                     if(newValue != null){
                         unitOfWork.begin();
-                        Set<Sty> sties = newValue.getSties();
+                        Set<FeedWarehouse> sties = newValue.getFeedWarehouses();
                         DefaultGenericRepository<Site> siteRepository = unitOfWork.getSiteRepository();
                         Site site = siteRepository.findByNaturalId(FlfsApp.getContext().getSiteCode());
                         unitOfWork.commit();
 
                         if( sties!=null)
-                            tableViewSty.getItems().addAll(
+                            tableViewFeedWarehouse.getItems().addAll(
                                     sties.stream()
-                                            .filter(sty-> !site.getSties().contains(sty))
-                                            .map(sty->{sty.setChecked(false); return sty;})
+                                            .filter(warehouse-> !site.getFeedWarehouses().contains(warehouse))
+                                            .map(warehouse->{warehouse.setChecked(false); return warehouse;})
                                             .collect(Collectors.toSet())
 
                             );

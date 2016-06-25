@@ -1,6 +1,5 @@
-package com.dxw.flfs.data.models.mes;
+package com.dxw.flfs.data.models.erp;
 
-import com.dxw.flfs.data.models.erp.Shed;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import org.hibernate.annotations.NaturalId;
@@ -15,7 +14,7 @@ import java.util.Date;
  *
  */
 @Entity
-@Table(name="mes_sty")
+@Table(name="erp_sty")
 @Access(AccessType.FIELD)
 public class Sty{
     /**

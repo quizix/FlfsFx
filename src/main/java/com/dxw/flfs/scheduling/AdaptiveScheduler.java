@@ -11,7 +11,7 @@ import com.dxw.flfs.data.dal.GenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.mes.PigletPlan;
 import com.dxw.flfs.data.models.mes.Site;
-import com.dxw.flfs.data.models.mes.Sty;
+import com.dxw.flfs.data.models.erp.Sty;
 
 import java.util.Optional;
 

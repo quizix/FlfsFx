@@ -30,6 +30,13 @@
                         <MenuItem mnemonicParsing="false" onAction="#onClickPigletPlan" text="小猪入栏计划" />
                     </items>
                 </Menu>
+            <Menu mnemonicParsing="false" text="液喂系统">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onSetting" text="配置向导..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem mnemonicParsing="false" onAction="#onSetting" text="系统设置..." />
+              </items>
+            </Menu>
                 <Menu mnemonicParsing="false" text="帮助">
                     <items>
                   <Menu mnemonicParsing="false" text="测试">
@@ -48,7 +55,7 @@
             <top>
                 <ToolBar prefHeight="0.0" prefWidth="976.0" BorderPane.alignment="CENTER">
                     <items>
-                  <Button mnemonicParsing="false" onAction="#onConfig" text="配置向导" />
+                  <Button mnemonicParsing="false" onAction="#onConfigWizard" text="配置向导" />
                   <Separator orientation="VERTICAL" />
                         <Button fx:id="buttonStart" disable="true" mnemonicParsing="false" onAction="#onClickStart" text="启动" />
                         <Button fx:id="buttonStop" disable="true" mnemonicParsing="false" onAction="#onClickStop" text="停止" />

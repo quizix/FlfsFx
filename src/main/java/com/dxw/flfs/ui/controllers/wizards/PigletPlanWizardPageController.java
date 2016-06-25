@@ -1,4 +1,4 @@
-package com.dxw.flfs.ui.controllers;
+package com.dxw.flfs.ui.controllers.wizards;
 
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
@@ -7,6 +7,7 @@ import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.DefaultGenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.mes.PigletPlan;
+import com.dxw.flfs.ui.controllers.PigletPlanDetailController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,7 @@ import java.util.Date;
 /**
  * Created by zhang on 2016-05-28.
  */
-public class StartupWizardPage2Controller {
+public class PigletPlanWizardPageController {
     @FXML
     private TableView<PigletPlan> tableView;
 

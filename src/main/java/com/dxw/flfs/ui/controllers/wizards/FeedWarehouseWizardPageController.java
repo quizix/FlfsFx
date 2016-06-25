@@ -1,10 +1,10 @@
-package com.dxw.flfs.ui.controllers;
+package com.dxw.flfs.ui.controllers.wizards;
 
 import com.dxw.flfs.app.FlfsApp;
 import com.dxw.flfs.data.dal.DefaultGenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.mes.Site;
-import com.dxw.flfs.data.models.mes.Sty;
+import com.dxw.flfs.data.models.erp.FeedWarehouse;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,12 +23,12 @@ import java.util.Set;
 /**
  * Created by zhang on 2016-05-28.
  */
-public class StartupWizardPage1Controller {
+public class FeedWarehouseWizardPageController {
 
     private UnitOfWork unitOfWork;
 
     @FXML
-    private TableView<Sty> tableView;
+    private TableView<FeedWarehouse> tableView;
 
     @FXML
     public void initialize(){
@@ -44,7 +44,7 @@ public class StartupWizardPage1Controller {
         try{
             DefaultGenericRepository<Site> repository = unitOfWork.getSiteRepository();
             Site site = repository.findByNaturalId(siteCode);
-            Collection<Sty> sties = site.getSties();
+            Collection<FeedWarehouse> sties = site.getFeedWarehouses();
 
             tableView.getItems().addAll(sties);
             tableView.getSelectionModel().setSelectionMode(
@@ -63,13 +63,13 @@ public class StartupWizardPage1Controller {
     @FXML
     public void onAssociate(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/wizard/chooseSties.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/wizard/chooseFeedWarehouses.fxml"));
             Parent root = loader.load();
 
-            ChooseStiesController controller = loader.getController();
+            ChooseFeedWarehousesController controller = loader.getController();
 
             Stage stage = new Stage();
-            stage.setTitle("选择栏位");
+            stage.setTitle("选择饲料仓库");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
@@ -82,19 +82,19 @@ public class StartupWizardPage1Controller {
             stage.showAndWait();
 
             if( controller.isDialogResult()){
-                Set<Sty> selectedSties = controller.getSelectedSties();
+                Set<FeedWarehouse> selectedFeedWarehouses = controller.getSelectedFeedWarehouses();
 
                 String siteCode = FlfsApp.getContext().getSiteCode();
                 unitOfWork.begin();
                 DefaultGenericRepository<Site> repository = unitOfWork.getSiteRepository();
                 Site site = repository.findByNaturalId(siteCode);
-                Collection<Sty> sties = site.getSties();
-                sties.addAll( selectedSties);
+                Collection<FeedWarehouse> sties = site.getFeedWarehouses();
+                sties.addAll( selectedFeedWarehouses);
                 repository.save(site);
 
                 unitOfWork.commit();
 
-                tableView.getItems().addAll(selectedSties);
+                tableView.getItems().addAll(selectedFeedWarehouses);
 
             }
 
@@ -105,7 +105,7 @@ public class StartupWizardPage1Controller {
 
     @FXML
     public void onUnassociate(){
-        ObservableList<Sty> selectedItems = tableView.getSelectionModel().getSelectedItems();
+        ObservableList<FeedWarehouse> selectedItems = tableView.getSelectionModel().getSelectedItems();
 
         if( selectedItems == null)
             return;
@@ -116,7 +116,7 @@ public class StartupWizardPage1Controller {
 
             DefaultGenericRepository<Site> repository = unitOfWork.getSiteRepository();
             Site site = repository.findByNaturalId(siteCode);
-            site.removeSties(selectedItems);
+            site.removeFeedWarehouses(selectedItems);
             unitOfWork.commit();
 
             tableView.getItems().removeAll(selectedItems);

@@ -1,5 +1,7 @@
 package com.dxw.flfs.data.models.erp;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -71,6 +73,9 @@ public class FeedWarehouse {
     @JoinColumn(name="headId")
     private User head;
 
+    @Transient
+    private BooleanProperty checked = new SimpleBooleanProperty();
+
     public Long getId() {
         return id;
     }
@@ -141,5 +146,17 @@ public class FeedWarehouse {
 
     public void setHead(User head) {
         this.head = head;
+    }
+
+    public boolean getChecked() {
+        return checked.get();
+    }
+
+    public BooleanProperty checkedProperty() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked.set(checked);
     }
 }

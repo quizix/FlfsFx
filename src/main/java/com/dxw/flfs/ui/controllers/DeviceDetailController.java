@@ -1,6 +1,6 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.flfs.data.models.mes.Device;
+import com.dxw.flfs.data.models.erp.Device;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
