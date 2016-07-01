@@ -51,13 +51,13 @@ public class Sty{
     /**
      * 编码
      */
+    @NaturalId(mutable=true)
     @Column(name="code")
     private String code;
     
     /**
      * 编号
      */
-    @NaturalId(mutable=true)
     @Column(name="no")
     private int no;
 
