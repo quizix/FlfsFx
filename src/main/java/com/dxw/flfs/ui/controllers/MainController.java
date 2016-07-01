@@ -1,8 +1,8 @@
 package com.dxw.flfs.ui.controllers;
 
 import com.dxw.common.messages.Message;
-import com.dxw.common.messages.MessageFlags;
 import com.dxw.common.messages.MessageBus;
+import com.dxw.common.messages.MessageFlags;
 import com.dxw.common.messages.MessageTags;
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
@@ -13,6 +13,7 @@ import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.mes.Site;
 import com.dxw.flfs.jobs.JobManager;
+import com.dxw.flfs.ui.controllers.settings.UserSettingController;
 import com.dxw.flfs.ui.controllers.wizards.ConfigWizardController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -437,6 +438,29 @@ public class MainController {
             stage.initOwner(null);
             stage.setOnCloseRequest(e -> {
                 SettingController controller = loader.getController();
+                controller.dispose();
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onConfigUser(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/setting/userSetting.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("用户设置");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.setOnCloseRequest(e -> {
+                UserSettingController controller = loader.getController();
                 controller.dispose();
             });
             stage.show();

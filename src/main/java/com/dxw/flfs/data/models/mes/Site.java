@@ -3,6 +3,7 @@ package com.dxw.flfs.data.models.mes;
 import com.dxw.flfs.data.models.erp.Device;
 import com.dxw.flfs.data.models.erp.FeedWarehouse;
 import com.dxw.flfs.data.models.erp.Sty;
+import com.dxw.flfs.data.models.erp.User;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.NaturalId;
 
@@ -95,7 +96,11 @@ public class Site {
     @OrderBy("id")
     private Set<PigletPlan> plans = new HashSet<>();
 
-
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="mes_site_user",
+            joinColumns=@JoinColumn(name="siteId"), inverseJoinColumns=@JoinColumn(name="userId"))
+    @OrderBy("id")
+    private Set<User> users = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -199,5 +204,21 @@ public class Site {
 
     public void setFeedWarehouses(Set<FeedWarehouse> feedWarehouses) {
         this.feedWarehouses = feedWarehouses;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public void addUsers(Collection<User> users){
+        this.users.addAll(users);
+    }
+
+    public void removeUsers(Collection<User> users){
+        this.users.removeAll(users);
     }
 }

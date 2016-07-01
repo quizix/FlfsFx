@@ -35,6 +35,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onSetting" text="配置向导..." />
                   <SeparatorMenuItem mnemonicParsing="false" />
                 <MenuItem mnemonicParsing="false" onAction="#onSetting" text="系统设置..." />
+                  <MenuItem mnemonicParsing="false" onAction="#onConfigUser" text="用户设置" />
               </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="帮助">

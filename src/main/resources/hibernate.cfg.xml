@@ -40,15 +40,16 @@
     <mapping class="com.dxw.flfs.data.models.erp.Vendor" />
     <mapping class="com.dxw.flfs.data.models.erp.MedicineWarehouse" />
     <mapping class="com.dxw.flfs.data.models.erp.FeedWarehouse" />
+    <mapping class="com.dxw.flfs.data.models.erp.Device" />
+    <mapping class="com.dxw.flfs.data.models.erp.Shed" />
+    <mapping class="com.dxw.flfs.data.models.erp.Sty" />
+    <mapping class="com.dxw.flfs.data.models.erp.Role" />
 
     <mapping class="com.dxw.flfs.data.models.mes.Batch" />
-    <mapping class="com.dxw.flfs.data.models.erp.Device" />
     <mapping class="com.dxw.flfs.data.models.mes.OperationLog" />
     <mapping class="com.dxw.flfs.data.models.mes.PigletPlan" />
     <mapping class="com.dxw.flfs.data.models.mes.Ph" />
     <mapping class="com.dxw.flfs.data.models.mes.ProductionInstruction" />
-    <mapping class="com.dxw.flfs.data.models.erp.Shed" />
-    <mapping class="com.dxw.flfs.data.models.erp.Sty" />
     <mapping class="com.dxw.flfs.data.models.mes.StyOperation" />
     <mapping class="com.dxw.flfs.data.models.mes.Site" />
 
