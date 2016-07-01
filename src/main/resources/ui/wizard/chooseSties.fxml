@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import com.dxw.flfs.ui.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane prefHeight="670.0" prefWidth="839.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.wizards.ChooseStiesController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="634.0" minHeight="10.0" prefHeight="614.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <SplitPane dividerPositions="0.3385579937304075" orientation="VERTICAL">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0">
+                    <children>
+                        <TitledPane collapsible="false" layoutY="46.0" text="猪舍信息" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <content>
+                                <TableView fx:id="tableViewShed" prefHeight="192.0" prefWidth="796.0">
+                                    <columns>
+                                        <TableColumn prefWidth="96.0" text="猪舍名称">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="name" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="150.0" text="猪舍编码">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="code" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="199.0" text="创建时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="createTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="204.0" text="修改时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="modifyTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                                </TableView>
+                            </content>
+                        </TitledPane>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0">
+                    <children>
+                        <TitledPane collapsible="false" text="栏位信息" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <content>
+                                <TableView fx:id="tableViewSty" editable="true">
+                                    <columns>
+                                        <TableColumn prefWidth="100.0" text="选择">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="checked" />
+                                            </cellValueFactory>
+                                            <cellFactory>
+                                                <CheckBoxTableCellFactory />
+                                            </cellFactory>
+                                        </TableColumn>
+                                        <TableColumn editable="false" prefWidth="100.0" text="栏位编号">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="id" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn editable="false" prefWidth="97.0" text="栏位名称">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="name" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn editable="false" minWidth="0.0" prefWidth="150.0" text="栏位编码">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="code" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn editable="false" minWidth="0.0" prefWidth="202.0" text="创建时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="createTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn editable="false" prefWidth="198.0" text="修改时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="modifyTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                                </TableView>
+                            </content>
+                        </TitledPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <Pane prefHeight="58.0" prefWidth="851.0" style="-fx-background-color: #eeeeee;" GridPane.rowIndex="1">
+            <children>
+                <Button layoutX="735.0" layoutY="15.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="30.0" prefWidth="76.0" text="取消" />
+                <Button layoutX="639.0" layoutY="15.0" mnemonicParsing="false" onAction="#onOk" prefHeight="30.0" prefWidth="76.0" text="确定" />
+            </children>
+        </Pane>
+    </children>
+</GridPane>
