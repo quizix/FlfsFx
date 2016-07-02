@@ -17,19 +17,19 @@ public class StyOperation {
      */
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    protected Long id;
+    private Long id;
 
     /**
      * 创建时间
      */
     @Column(name="createTime")
-    protected Date createTime;
+    private Date createTime;
 
     /**
      * 修改时间
      */
     @Column(name="modifyTime")
-    protected Date modifyTime;
+    private Date modifyTime;
 
     /**
      * 猪舍
