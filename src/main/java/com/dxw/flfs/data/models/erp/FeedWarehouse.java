@@ -73,6 +73,12 @@ public class FeedWarehouse {
     @JoinColumn(name="headId")
     private User head;
 
+    /**
+     * 库存量
+     */
+    @Column(name = "quantity", nullable = false, columnDefinition = "float default 0")
+    private float quantity;
+
     @Transient
     private BooleanProperty checked = new SimpleBooleanProperty();
 
@@ -158,5 +164,29 @@ public class FeedWarehouse {
 
     public void setChecked(boolean checked) {
         this.checked.set(checked);
+    }
+
+    public float getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(float quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * 入库
+     * @param v
+     */
+    public void addQuantity(float v){
+        this.quantity += v;
+    }
+
+    /**
+     * 出库
+     * @param v
+     */
+    public void subQuantity(float v){
+        this.quantity -= v;
     }
 }

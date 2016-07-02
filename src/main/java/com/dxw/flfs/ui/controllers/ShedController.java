@@ -534,6 +534,7 @@ public class ShedController {
                 warehouse.setCode(code);
                 warehouse.setNo(no);
                 warehouse.setName(name);
+                warehouse.setQuantity(0);
                 unitOfWork.begin();
                 unitOfWork.getFeedWarehouseRepository().save(warehouse);
                 unitOfWork.commit();
