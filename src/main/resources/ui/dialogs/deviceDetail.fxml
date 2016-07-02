@@ -20,6 +20,8 @@
             <TextField fx:id="textFieldName" layoutX="69.0" layoutY="23.0" promptText="设备名称" />
             <TextField fx:id="textFieldCode" layoutX="355.0" layoutY="23.0" promptText="设备编码" />
             <Label layoutX="311.0" layoutY="27.0" text="编码" />
+            <TextField fx:id="textFieldLocationCode" layoutX="69.0" layoutY="56.0" promptText="位置编码" />
+            <Label layoutX="21.0" layoutY="60.0" text="名称" />
          </children>
       </Pane>
    </center>

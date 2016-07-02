@@ -19,6 +19,9 @@ public class DeviceDetailController {
     private TextField textFieldCode;
 
     @FXML
+    private TextField textFieldLocationCode;
+
+    @FXML
     private Button buttonCancel;
 
     @FXML
@@ -55,6 +58,10 @@ public class DeviceDetailController {
         return textFieldCode.getText();
     }
 
+    public String getLocationCode() {
+        return textFieldLocationCode.getText();
+    }
+
     public boolean isDialogResult() {
         return dialogResult;
     }
@@ -65,7 +72,7 @@ public class DeviceDetailController {
         if(device != null){
             this.textFieldCode.setText(device.getCode());
             this.textFieldName.setText(device.getName());
-
+            this.textFieldLocationCode.setText(device.getLocationCode());
         }
     }
 }

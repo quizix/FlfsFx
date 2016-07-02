@@ -399,6 +399,7 @@ public class ShedController {
             if( controller.isDialogResult()){
                 String name = controller.getName();
                 String code = controller.getCode();
+                String locationCode = controller.getLocationCode();
 
                 Device device = new Device();
                 Date now = new Date();
@@ -406,6 +407,7 @@ public class ShedController {
                 device.setCreateTime(now);
                 device.setCode(code);
                 device.setName(name);
+                device.setLocationCode(locationCode);
 
                 shed.addDevice(device);
 

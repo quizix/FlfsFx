@@ -47,6 +47,8 @@ public class Device {
     @Column(name="code")
     private String code;
 
+    @Column(name="locationCode")
+    private String locationCode;
     /**
      * 编码
      */
@@ -175,5 +177,13 @@ public class Device {
 
     public void setChecked(boolean checked) {
         this.checked.set(checked);
+    }
+
+    public String getLocationCode() {
+        return locationCode;
+    }
+
+    public void setLocationCode(String locationCode) {
+        this.locationCode = locationCode;
     }
 }
