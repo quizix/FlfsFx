@@ -43,8 +43,8 @@
                      <contextMenu>
                         <ContextMenu>
                           <items>
-                            <MenuItem mnemonicParsing="false" onAction="#onEditVendor" text="入库" />
-                              <MenuItem mnemonicParsing="false" onAction="#onDeleteVendor" text="出库" />
+                            <MenuItem mnemonicParsing="false" onAction="#onStockIn" text="入库" />
+                              <MenuItem mnemonicParsing="false" onAction="#onStockOut" text="出库" />
                           </items>
                         </ContextMenu>
                      </contextMenu>

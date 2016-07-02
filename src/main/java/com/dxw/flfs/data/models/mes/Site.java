@@ -96,6 +96,10 @@ public class Site {
     @OrderBy("id")
     private Set<PigletPlan> plans = new HashSet<>();
 
+    @OneToMany(mappedBy = "site", cascade = CascadeType.PERSIST)
+    @OrderBy("id")
+    private Set<FeedRequirement> deliveryRequirements = new HashSet<>();
+
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="mes_site_user",
             joinColumns=@JoinColumn(name="siteId"), inverseJoinColumns=@JoinColumn(name="userId"))
@@ -220,5 +224,13 @@ public class Site {
 
     public void removeUsers(Collection<User> users){
         this.users.removeAll(users);
+    }
+
+    public Set<FeedRequirement> getDeliveryRequirements() {
+        return deliveryRequirements;
+    }
+
+    public void setDeliveryRequirements(Set<FeedRequirement> deliveryRequirements) {
+        this.deliveryRequirements = deliveryRequirements;
     }
 }

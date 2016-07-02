@@ -11,7 +11,15 @@ import com.dxw.flfs.data.models.erp.FeedWarehouse;
 import com.dxw.flfs.data.models.mes.Site;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by zhang on 2016-05-26.
@@ -58,13 +66,17 @@ public class StockManagementController {
         }
     }
 
-    public void onAddVendor(){
-        /*try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/vendorDetail.fxml"));
+    public void onStockIn(){
+        FeedWarehouse warehouse = feedWarehouseTableView.getSelectionModel().getSelectedItem();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/stockInOut.fxml"));
             Parent root = loader.load();
 
+            StockInController controller = loader.getController();
+            controller.setWarehouse(warehouse);
+
             Stage stage = new Stage();
-            stage.setTitle("添加供应商");
+            stage.setTitle("入库");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
@@ -72,28 +84,66 @@ public class StockManagementController {
             stage.initOwner(null);
             stage.showAndWait();
 
-            VendorDetailController controller = loader.getController();
-            if( controller.isDialogResult()){
-                String name = controller.getTextFieldName();
-                String code = controller.getTextFieldCode();
 
-                Vendor vendor = new Vendor();
+            if( controller.isDialogResult()){
+
+                float quantity = controller.getQuantity();
+
                 Date now = new Date();
-                vendor.setModifyTime(now);
-                vendor.setCreateTime(now);
-                vendor.setCode(code);
-                vendor.setName(name);
+                warehouse.setModifyTime(now);
+                warehouse.addQuantity(quantity);
 
                 unitOfWork.begin();
-                unitOfWork.getVendorRepository().save(vendor);
+                unitOfWork.getFeedWarehouseRepository().save(warehouse);
                 unitOfWork.commit();
 
-                feedWarehouseTableView.getItems().add(vendor);
+                refreshShedTable();
+
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
+    }
+
+    public void onStockOut(){
+        FeedWarehouse warehouse = feedWarehouseTableView.getSelectionModel().getSelectedItem();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/stockInOut.fxml"));
+            Parent root = loader.load();
+
+            StockInController controller = loader.getController();
+            controller.setWarehouse(warehouse);
+
+            Stage stage = new Stage();
+            stage.setTitle("出库");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.showAndWait();
+
+
+            if( controller.isDialogResult()){
+
+                float quantity = controller.getQuantity();
+
+                Date now = new Date();
+                warehouse.setModifyTime(now);
+                warehouse.subQuantity(quantity);
+
+                unitOfWork.begin();
+                unitOfWork.getFeedWarehouseRepository().save(warehouse);
+                unitOfWork.commit();
+
+                refreshShedTable();
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onEditVendor(){
@@ -104,7 +154,7 @@ public class StockManagementController {
             Parent root = loader.load();
 
             VendorDetailController controller = loader.getController();
-            controller.setVendor(vendor);
+            controller.setWarehouse(vendor);
             Stage stage = new Stage();
             stage.setTitle("修改供应商");
             stage.setScene(new Scene(root));
