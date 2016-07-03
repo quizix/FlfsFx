@@ -38,6 +38,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onConfigUser" text="用户设置" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#onClickStockManagement" text="库存管理" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickStyManagement" text="栏位管理" />
               </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="帮助">

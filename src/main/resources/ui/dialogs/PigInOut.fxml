@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.StockInOutController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.PigInOutController">
    <bottom>
       <Pane prefHeight="44.0" prefWidth="475.0" style="-fx-background-color: #eeeeee;" BorderPane.alignment="CENTER">
          <children>
@@ -16,9 +16,9 @@
    <center>
       <Pane prefHeight="119.0" prefWidth="475.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="21.0" layoutY="27.0" text="仓库名称" />
-            <TextField fx:id="textFieldWarehouseName" editable="false" layoutX="97.0" layoutY="23.0" prefHeight="30.0" prefWidth="173.0" promptText="仓库名称" />
-            <TextField fx:id="textFieldQuantity" layoutX="355.0" layoutY="23.0" promptText="数量" />
+            <Label layoutX="21.0" layoutY="27.0" text="栏位名称" />
+            <TextField fx:id="textFieldStyName" editable="false" layoutX="97.0" layoutY="23.0" prefHeight="30.0" prefWidth="173.0" promptText="栏位名称" />
+            <TextField fx:id="textFieldQuantity" layoutX="355.0" layoutY="23.0" promptText="数量" text="0"/>
             <Label layoutX="311.0" layoutY="27.0" text="数量" />
          </children>
       </Pane>

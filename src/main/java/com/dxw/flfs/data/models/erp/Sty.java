@@ -162,4 +162,17 @@ public class Sty{
     public void setChecked(boolean checked) {
         this.checked.set(checked);
     }
+
+    public void addCurrent(int value){
+        this.currentNumber += value;
+    }
+
+    public void subCurrent(int value){
+        this.currentNumber -= value;
+    }
+
+    @Override
+    public String toString(){
+        return this.getName() + "-" + this.getCode();
+    }
 }

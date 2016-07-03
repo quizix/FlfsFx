@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.PigTransferController">
+   <bottom>
+      <Pane prefHeight="44.0" prefWidth="475.0" style="-fx-background-color: #eeeeee;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="buttonCancel" layoutX="551.0" layoutY="7.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="23.0" prefWidth="52.0" text="取消" />
+            <Button fx:id="buttonOk" layoutX="475.0" layoutY="7.0" mnemonicParsing="false" onAction="#onOk" prefHeight="23.0" prefWidth="55.0" text="确定" />
+         </children>
+      </Pane>
+   </bottom>
+   <center>
+      <Pane prefHeight="112.0" prefWidth="627.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="21.0" layoutY="27.0" text="移出栏位名称" />
+            <TextField fx:id="textFieldQuantity" layoutX="127.0" layoutY="69.0" prefHeight="30.0" prefWidth="151.0" promptText="数量" text="0" />
+            <Label layoutX="21.0" layoutY="74.0" text="数量" />
+            <Label layoutX="327.0" layoutY="28.0" text="移入栏位名称" />
+            <ChoiceBox fx:id="choiceBoxFrom" layoutX="126.0" layoutY="22.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="choiceBoxTo" layoutX="428.0" layoutY="22.0" prefWidth="150.0" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

@@ -72,7 +72,7 @@ public class StockManagementController {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/stockInOut.fxml"));
             Parent root = loader.load();
 
-            StockInController controller = loader.getController();
+            StockInOutController controller = loader.getController();
             controller.setWarehouse(warehouse);
 
             Stage stage = new Stage();
@@ -112,7 +112,7 @@ public class StockManagementController {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/stockInOut.fxml"));
             Parent root = loader.load();
 
-            StockInController controller = loader.getController();
+            StockInOutController controller = loader.getController();
             controller.setWarehouse(warehouse);
 
             Stage stage = new Stage();
@@ -147,14 +147,14 @@ public class StockManagementController {
     }
 
     public void onEditVendor(){
-        /*Vendor vendor = feedWarehouseTableView.getSelectionModel().getSelectedItem();
+        /*Vendor vendor = styTableView.getSelectionModel().getSelectedItem();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/vendorDetail.fxml"));
             Parent root = loader.load();
 
             VendorDetailController controller = loader.getController();
-            controller.setWarehouse(vendor);
+            controller.setSty(vendor);
             Stage stage = new Stage();
             stage.setTitle("修改供应商");
             stage.setScene(new Scene(root));
@@ -185,7 +185,7 @@ public class StockManagementController {
         }*/
     }
     public void onDeleteVendor(){
-        /*Vendor vendor = feedWarehouseTableView.getSelectionModel().getSelectedItem();
+        /*Vendor vendor = styTableView.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个供应商？");
             alert.setHeaderText(null);
@@ -195,7 +195,7 @@ public class StockManagementController {
                         unitOfWork.getVendorRepository().delete(vendor);
                         unitOfWork.commit();
 
-                        feedWarehouseTableView.getItems().remove(vendor);
+                        styTableView.getItems().remove(vendor);
                     });*/
     }
 

@@ -1,6 +1,6 @@
 package com.dxw.flfs.ui.controllers;
 
-import com.dxw.flfs.data.models.erp.FeedWarehouse;
+import com.dxw.flfs.data.models.erp.Sty;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,9 +10,9 @@ import javafx.stage.Stage;
 /**
  * Created by zhang on 2016-07-02.
  */
-public class StockInController {
+public class PigInOutController {
     @FXML
-    private TextField textFieldWarehouseName;
+    private TextField textFieldStyName;
 
     @FXML
     private TextField textFieldQuantity;
@@ -49,13 +49,13 @@ public class StockInController {
         return dialogResult;
     }
 
-    public float getQuantity(){
-        return Float.parseFloat(this.textFieldQuantity.getText());
+    public int getNumber(){
+        return Integer.parseInt(this.textFieldQuantity.getText());
     }
 
-    public void setWarehouse(FeedWarehouse warehouse) {
-        if(warehouse != null){
-            this.textFieldWarehouseName.setText(warehouse.getName());
+    public void setSty(Sty sty) {
+        if(sty != null){
+            this.textFieldStyName.setText(sty.getName());
         }
     }
 }
