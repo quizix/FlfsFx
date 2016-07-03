@@ -6,52 +6,102 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="435.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.MaterialManagementController">
-   <children>
-            <VBox prefWidth="796.0">
-                <children>
-            <TitledPane collapsible="false" text="仓库">
+
+<BorderPane prefHeight="421.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.MaterialManagementController">
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="饲料仓库">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                                <TableView fx:id="feedWarehouseTableView" prefHeight="382.0" prefWidth="830.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <columns>
+                                        <TableColumn prefWidth="152.0" text="名字">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="name" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="138.0" text="编码">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="code" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="138.0" text="数量">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="quantity" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn minWidth="0.0" prefWidth="233.0" text="创建时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="createTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                        <TableColumn prefWidth="174.0" text="修改时间">
+                                            <cellValueFactory>
+                                                <PropertyValueFactory property="modifyTime" />
+                                            </cellValueFactory>
+                                        </TableColumn>
+                                    </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#onStockIn" text="入库" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onStockOut" text="出库" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                                </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="药品仓库">
                <content>
-                          <TableView fx:id="feedWarehouseTableView" prefHeight="394.0" prefWidth="796.0">
-                              <columns>
-                                  <TableColumn prefWidth="152.0" text="名字">
-                                      <cellValueFactory>
-                                          <PropertyValueFactory property="name" />
-                                      </cellValueFactory>
-                                  </TableColumn>
-                                  <TableColumn minWidth="0.0" prefWidth="138.0" text="编码">
-                                      <cellValueFactory>
-                                          <PropertyValueFactory property="code" />
-                                      </cellValueFactory>
-                                  </TableColumn>
-                                  <TableColumn minWidth="0.0" prefWidth="138.0" text="数量">
-                                      <cellValueFactory>
-                                          <PropertyValueFactory property="quantity" />
-                                      </cellValueFactory>
-                                  </TableColumn>
-                                  <TableColumn minWidth="0.0" prefWidth="233.0" text="创建时间">
-                                      <cellValueFactory>
-                                          <PropertyValueFactory property="createTime" />
-                                      </cellValueFactory>
-                                  </TableColumn>
-                                  <TableColumn prefWidth="174.0" text="修改时间">
-                                      <cellValueFactory>
-                                          <PropertyValueFactory property="modifyTime" />
-                                      </cellValueFactory>
-                                  </TableColumn>
-                              </columns>
-                     <contextMenu>
-                        <ContextMenu>
-                          <items>
-                            <MenuItem mnemonicParsing="false" onAction="#onStockIn" text="入库" />
-                              <MenuItem mnemonicParsing="false" onAction="#onStockOut" text="出库" />
-                          </items>
-                        </ContextMenu>
-                     </contextMenu>
-                          </TableView>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="feedWarehouseTableView1" prefHeight="382.0" prefWidth="830.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columns>
+                              <TableColumn prefWidth="152.0" text="名字">
+                                 <cellValueFactory>
+                                    <PropertyValueFactory property="name" />
+                                 </cellValueFactory>
+                              </TableColumn>
+                              <TableColumn minWidth="0.0" prefWidth="138.0" text="编码">
+                                 <cellValueFactory>
+                                    <PropertyValueFactory property="code" />
+                                 </cellValueFactory>
+                              </TableColumn>
+                              <TableColumn minWidth="0.0" prefWidth="138.0" text="数量">
+                                 <cellValueFactory>
+                                    <PropertyValueFactory property="quantity" />
+                                 </cellValueFactory>
+                              </TableColumn>
+                              <TableColumn minWidth="0.0" prefWidth="233.0" text="创建时间">
+                                 <cellValueFactory>
+                                    <PropertyValueFactory property="createTime" />
+                                 </cellValueFactory>
+                              </TableColumn>
+                              <TableColumn prefWidth="174.0" text="修改时间">
+                                 <cellValueFactory>
+                                    <PropertyValueFactory property="modifyTime" />
+                                 </cellValueFactory>
+                              </TableColumn>
+                           </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#onStockIn" text="入库" />
+                                    <MenuItem mnemonicParsing="false" onAction="#onStockOut" text="出库" />
+                                 </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
                </content>
-            </TitledPane>
-                </children>
-            </VBox>
-   </children>
-</Pane>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

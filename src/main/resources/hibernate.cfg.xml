@@ -53,7 +53,7 @@
     <mapping class="com.dxw.flfs.data.models.mes.StyOperation" />
     <mapping class="com.dxw.flfs.data.models.mes.Site" />
     <mapping class="com.dxw.flfs.data.models.mes.FeedRequirement" />
-
+    <mapping class="com.dxw.flfs.data.models.mes.FeedRequirementDetail" />
     <mapping class="com.dxw.flfs.data.models.mes.WorkingCondition" />
 
   </session-factory>

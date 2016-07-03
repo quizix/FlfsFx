@@ -8,10 +8,13 @@ import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.DefaultGenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.mes.FeedRequirement;
+import com.dxw.flfs.data.models.mes.FeedRequirementDetail;
 import com.dxw.flfs.data.models.mes.Site;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+
+import java.util.Set;
 
 /**
  * 送料需求管理：
@@ -26,6 +29,8 @@ public class FeedRequirementManagementController {
     @FXML
     TableView<FeedRequirement> feedRequirementTableView;
 
+    @FXML
+    TableView<FeedRequirementDetail> feedRequirementDetailTableView;
 
     @FXML
     public void initialize(){
@@ -47,6 +52,16 @@ public class FeedRequirementManagementController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        feedRequirementTableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    feedRequirementDetailTableView.getItems().clear();
+                    if(newValue != null){
+                        Set<FeedRequirementDetail> details = newValue.getFeedRequirementDetails();
+                        if( details!=null)
+                            feedRequirementDetailTableView.getItems().addAll(details);
+                    }
+                });
     }
 
     public void dispose() {

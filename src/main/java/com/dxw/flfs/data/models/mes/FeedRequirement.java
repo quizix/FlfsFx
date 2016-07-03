@@ -4,6 +4,8 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 送料需求表
@@ -83,6 +85,10 @@ public class FeedRequirement {
     @ManyToOne
     @JoinColumn(name="siteId")
     private Site site;
+
+    @OneToMany(mappedBy = "feedRequirement", cascade = CascadeType.PERSIST)
+    @OrderBy("id")
+    private Set<FeedRequirementDetail> feedRequirementDetails= new HashSet<>();
 
 
     public Long getId() {
@@ -179,5 +185,13 @@ public class FeedRequirement {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Set<FeedRequirementDetail> getFeedRequirementDetails() {
+        return feedRequirementDetails;
+    }
+
+    public void setFeedRequirementDetails(Set<FeedRequirementDetail> feedRequirementDetails) {
+        this.feedRequirementDetails = feedRequirementDetails;
     }
 }

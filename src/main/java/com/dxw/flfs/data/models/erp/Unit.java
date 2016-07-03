@@ -81,4 +81,9 @@ public class Unit {
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
+
+    @Override
+    public String toString(){
+        return this.name;
+    }
 }
