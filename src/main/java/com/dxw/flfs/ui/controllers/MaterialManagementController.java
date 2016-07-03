@@ -24,7 +24,7 @@ import java.util.Date;
 /**
  * Created by zhang on 2016-05-26.
  */
-public class StockManagementController {
+public class MaterialManagementController {
 
     private HibernateService hibernateService;
 
@@ -147,7 +147,7 @@ public class StockManagementController {
     }
 
     public void onEditVendor(){
-        /*Vendor vendor = styTableView.getSelectionModel().getSelectedItem();
+        /*Vendor vendor = feedRequirementTableView.getSelectionModel().getSelectedItem();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/vendorDetail.fxml"));
@@ -185,7 +185,7 @@ public class StockManagementController {
         }*/
     }
     public void onDeleteVendor(){
-        /*Vendor vendor = styTableView.getSelectionModel().getSelectedItem();
+        /*Vendor vendor = feedRequirementTableView.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "确定要删除这个供应商？");
             alert.setHeaderText(null);
@@ -195,7 +195,7 @@ public class StockManagementController {
                         unitOfWork.getVendorRepository().delete(vendor);
                         unitOfWork.commit();
 
-                        styTableView.getItems().remove(vendor);
+                        feedRequirementTableView.getItems().remove(vendor);
                     });*/
     }
 

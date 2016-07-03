@@ -98,7 +98,7 @@ public class Site {
 
     @OneToMany(mappedBy = "site", cascade = CascadeType.PERSIST)
     @OrderBy("id")
-    private Set<FeedRequirement> deliveryRequirements = new HashSet<>();
+    private Set<FeedRequirement> feedRequirements = new HashSet<>();
 
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(name="mes_site_user",
@@ -226,11 +226,11 @@ public class Site {
         this.users.removeAll(users);
     }
 
-    public Set<FeedRequirement> getDeliveryRequirements() {
-        return deliveryRequirements;
+    public Set<FeedRequirement> getFeedRequirements() {
+        return feedRequirements;
     }
 
-    public void setDeliveryRequirements(Set<FeedRequirement> deliveryRequirements) {
-        this.deliveryRequirements = deliveryRequirements;
+    public void setFeedRequirements(Set<FeedRequirement> feedRequirements) {
+        this.feedRequirements = feedRequirements;
     }
 }

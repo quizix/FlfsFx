@@ -1,5 +1,7 @@
 package com.dxw.flfs.data.models.mes;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -18,6 +20,12 @@ public class FeedRequirement {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * site code
+     */
+    @NaturalId(mutable=true)
+    @Column(name="code")
+    private String code;
     /**
      * 创建时间
      */
@@ -163,5 +171,13 @@ public class FeedRequirement {
 
     public void setSite(Site site) {
         this.site = site;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
