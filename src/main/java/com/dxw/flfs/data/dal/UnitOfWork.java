@@ -25,6 +25,8 @@ public class UnitOfWork implements AutoCloseable {
     private DefaultGenericRepository<Device> deviceRepository;
     private DefaultGenericRepository<Unit> unitRepository;
     private DefaultGenericRepository<Vendor> vendorRepository;
+    private DefaultGenericRepository<PigEntry> pigEntryRepository;
+
 
     public UnitOfWork(Session session){
         this.session = session;
@@ -114,6 +116,12 @@ public class UnitOfWork implements AutoCloseable {
         if( vendorRepository == null)
             vendorRepository = new DefaultGenericRepository<>(session, Vendor.class);
         return vendorRepository;
+    }
+
+    public DefaultGenericRepository<PigEntry> getPigEntryRepository() {
+        if( pigEntryRepository == null)
+            pigEntryRepository = new DefaultGenericRepository<>(session, PigEntry.class);
+        return pigEntryRepository;
     }
 
     @Override

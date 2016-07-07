@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.warehouses.PigEntryController">
+   <center>
+      <TitledPane animated="false" collapsible="false" layoutX="151.0" layoutY="104.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="育肥猪入栏列表">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView prefHeight="325.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="单据编号" />
+                      <TableColumn prefWidth="125.0" text="采购订单编号" />
+                        <TableColumn prefWidth="129.0" text="育肥猪编号" />
+                        <TableColumn prefWidth="120.0" text="数量" />
+                        <TableColumn prefWidth="160.0" text="送货单位" />
+                        <TableColumn prefWidth="169.0" text="送货日期" />
+                        <TableColumn prefWidth="181.0" text="栏位编号" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </center>
+   <top>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button mnemonicParsing="false" onAction="#onAddPigEntry" text="新增入栏表" />
+        </items>
+      </ToolBar>
+   </top>
+</BorderPane>

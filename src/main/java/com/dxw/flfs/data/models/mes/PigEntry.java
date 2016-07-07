@@ -1,45 +1,63 @@
 package com.dxw.flfs.data.models.mes;
 
+import com.dxw.flfs.data.models.erp.Pig;
 import com.dxw.flfs.data.models.erp.Sty;
+import com.dxw.flfs.data.models.erp.Vendor;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
+ * 育肥猪入库
  * Created by zhang on 2016-04-19.
  */
 @Entity
-@Table(name="mes_sty_operation")
+@Table(name = "mes_pig_entry")
 @Access(AccessType.FIELD)
-public class StyOperation {
+public class PigEntry {
     /**
      * 内部id
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * 创建时间
      */
-    @Column(name="createTime")
+    @Column(name = "createTime")
     private Date createTime;
 
     /**
      * 修改时间
      */
-    @Column(name="modifyTime")
+    @Column(name = "modifyTime")
     private Date modifyTime;
 
+
     /**
-     * 猪舍
+     * 采购编号
+     */
+    @Column(name = "purchaseCode")
+    private String purchaseCode;
+
+    /**
+     * 栏位
      */
     @ManyToOne
-    @JoinColumn(name="styId")
+    @JoinColumn(name = "styId")
     private Sty sty;
 
-    @Column(name="delta")
-    protected int delta;
+    @ManyToOne
+    @JoinColumn(name = "pigId")
+    private Pig pig;
+
+    @ManyToOne
+    @JoinColumn(name = "vendorId")
+    private Vendor vendor;
+
+    @Column(name = "number")
+    protected int number;
 
     public Long getId() {
         return id;
@@ -73,11 +91,27 @@ public class StyOperation {
         this.createTime = createTime;
     }
 
-    public int getDelta() {
-        return delta;
+    public int getNumber() {
+        return number;
     }
 
-    public void setDelta(int delta) {
-        this.delta = delta;
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public Pig getPig() {
+        return pig;
+    }
+
+    public void setPig(Pig pig) {
+        this.pig = pig;
+    }
+
+    public Vendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
     }
 }

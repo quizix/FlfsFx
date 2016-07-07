@@ -37,9 +37,17 @@
                 <MenuItem mnemonicParsing="false" onAction="#onSetting" text="系统设置..." />
                   <MenuItem mnemonicParsing="false" onAction="#onConfigUser" text="用户设置" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#onFeedRequirement" text="送料需求管理" />
-                  <MenuItem mnemonicParsing="false" onAction="#onMaterialManagement" text="物料管理" />
-                  <MenuItem mnemonicParsing="false" onAction="#onClickStyManagement" text="栏位管理" />
+                  <MenuItem mnemonicParsing="false" onAction="#onFeedRequirement" text="周送料需求" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="小猪入栏" />
+                  <MenuItem mnemonicParsing="false" text="成品猪出栏" />
+                  <MenuItem mnemonicParsing="false" text="死猪出栏" />
+                  <MenuItem mnemonicParsing="false" text="移栏" />
+                  <MenuItem mnemonicParsing="false" text="栏位信息" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="饲料入库" />
+                  <MenuItem mnemonicParsing="false" text="饲料出库" />
+                  <MenuItem mnemonicParsing="false" text="料仓信息" />
               </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="帮助">

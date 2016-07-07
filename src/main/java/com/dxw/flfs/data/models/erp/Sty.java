@@ -1,11 +1,14 @@
 package com.dxw.flfs.data.models.erp;
 
+import com.dxw.flfs.data.models.mes.PigEntry;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 栏位
@@ -73,6 +76,10 @@ public class Sty{
      */
     @Column(name="lastNumber")
     private int lastNumber;
+
+    @OneToMany(mappedBy = "sty", cascade = CascadeType.PERSIST)
+    @OrderBy("createDate DESC")
+    private Set<PigEntry> styOperations = new HashSet<>();
 
     @Transient
     private BooleanProperty checked = new SimpleBooleanProperty();
@@ -174,5 +181,25 @@ public class Sty{
     @Override
     public String toString(){
         return this.getName() + "-" + this.getCode();
+    }
+
+
+
+    public void addStyOperation(PigEntry styOperation){
+        styOperation.setSty(this);
+        this.styOperations.add(styOperation);
+    }
+
+    public void removeStyOperation(PigEntry styOperation){
+        styOperation.setSty(null);
+        this.styOperations.remove(styOperation);
+    }
+
+    public Set<PigEntry> getStyOperations() {
+        return styOperations;
+    }
+
+    public void setStyOperations(Set<PigEntry> styOperations) {
+        this.styOperations = styOperations;
     }
 }

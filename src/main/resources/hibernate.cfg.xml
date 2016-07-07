@@ -50,7 +50,7 @@
     <mapping class="com.dxw.flfs.data.models.mes.PigletPlan" />
     <mapping class="com.dxw.flfs.data.models.mes.Ph" />
     <mapping class="com.dxw.flfs.data.models.mes.ProductionInstruction" />
-    <mapping class="com.dxw.flfs.data.models.mes.StyOperation" />
+    <mapping class="com.dxw.flfs.data.models.mes.PigEntry" />
     <mapping class="com.dxw.flfs.data.models.mes.Site" />
     <mapping class="com.dxw.flfs.data.models.mes.FeedRequirement" />
     <mapping class="com.dxw.flfs.data.models.mes.FeedRequirementDetail" />
