@@ -1,4 +1,4 @@
-package com.dxw.flfs.ui.controllers;
+package com.dxw.flfs.ui.controllers.warehouses;
 
 import com.dxw.common.services.ServiceRegistry;
 import com.dxw.common.services.ServiceRegistryImpl;
@@ -8,25 +8,31 @@ import com.dxw.flfs.data.HibernateService;
 import com.dxw.flfs.data.dal.DefaultGenericRepository;
 import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.erp.Sty;
+import com.dxw.flfs.data.models.mes.PigDelivery;
+import com.dxw.flfs.data.models.mes.PigEntry;
 import com.dxw.flfs.data.models.mes.Site;
+import com.dxw.flfs.ui.controllers.PigInOutController;
+import com.dxw.flfs.ui.controllers.PigTransferController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * 栏位管理：
  * 猪的入栏，出栏，移栏，死猪处理
  * Created by zhang on 2016-05-26.
  */
-public class StyManagementController {
+public class StyOperationsController {
 
     private HibernateService hibernateService;
 
@@ -35,6 +41,14 @@ public class StyManagementController {
     @FXML
     TableView<Sty> styTableView;
 
+    @FXML
+    TableView<PigEntry> pigEntryTableView;
+
+    @FXML
+    TableView<PigDelivery> pigDeliveryTableView;
+
+    @FXML
+    TabPane tabPane;
 
     @FXML
     public void initialize(){
@@ -56,6 +70,30 @@ public class StyManagementController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        styTableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    switch (tabPane.getSelectionModel().getSelectedIndex()){
+                        case 0:
+                            pigEntryTableView.getItems().clear();
+                            if(newValue != null){
+                                Set<PigEntry> pigEntries = newValue.getPigEntries();
+                                if( pigEntries!=null)
+                                    pigEntryTableView.getItems().addAll(pigEntries);
+                            }
+                            break;
+                        case 1:
+                            pigDeliveryTableView.getItems().clear();
+                            if(newValue != null){
+                                Set<PigDelivery> pigDeliveries = newValue.getPigDeliveries();
+                                if( pigDeliveries!=null)
+                                    pigDeliveryTableView.getItems().addAll(pigDeliveries);
+                            }
+                            break;
+                    }
+
+                }
+        );
     }
 
     public void dispose() {
@@ -68,17 +106,18 @@ public class StyManagementController {
         }
     }
 
-    public void onPigIn(){
+    public void onAddPigEntry(){
        Sty sty = styTableView.getSelectionModel().getSelectedItem();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/pigInOut.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/warehouses/pigEntryDetail.fxml"));
             Parent root = loader.load();
 
-            PigInOutController controller = loader.getController();
+            PigEntryDetailController controller = loader.getController();
             controller.setSty(sty);
+            controller.setUnitOfWork(unitOfWork);
 
             Stage stage = new Stage();
-            stage.setTitle("入栏");
+            stage.setTitle("新增入栏表");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
@@ -87,18 +126,32 @@ public class StyManagementController {
             stage.showAndWait();
 
             if( controller.isDialogResult()){
-                int quantity = controller.getNumber();
 
                 Date now = new Date();
                 sty.setModifyTime(now);
-                sty.addCurrent(quantity);
 
-                unitOfWork.begin();
-                unitOfWork.getStyRepository().save(sty);
-                unitOfWork.commit();
+                PigEntry pigEntry = new PigEntry();
+                pigEntry.setCreateTime(now);
+                pigEntry.setModifyTime(now);
+                pigEntry.setCode(controller.getCode());
+                pigEntry.setPurchaseCode(controller.getPurchaseCode());
+                pigEntry.setPig(controller.getPig());
+                pigEntry.setNumber(controller.getNumber());
+                pigEntry.setVendor(controller.getVendor());
 
-                refreshShedTable();
+                sty.addPigEntry(pigEntry);
 
+                try {
+                    unitOfWork.begin();
+                    unitOfWork.getStyRepository().save(sty);
+                    unitOfWork.commit();
+                    refreshStyTable();
+                }
+                catch(Exception ex){
+                    unitOfWork.rollback();
+                }
+
+                pigEntryTableView.getItems().add(pigEntry);
             }
 
         } catch (IOException e) {
@@ -106,17 +159,17 @@ public class StyManagementController {
         }
     }
 
-    public void onPigOut(){
+    public void onAddPigDelivery(){
         Sty sty = styTableView.getSelectionModel().getSelectedItem();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/pigInOut.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/warehouses/pigDeliveryDetail.fxml"));
             Parent root = loader.load();
 
-            PigInOutController controller = loader.getController();
+            PigDeliveryDetailController controller = loader.getController();
             controller.setSty(sty);
 
             Stage stage = new Stage();
-            stage.setTitle("出栏");
+            stage.setTitle("新增出栏表");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
@@ -125,18 +178,28 @@ public class StyManagementController {
             stage.showAndWait();
 
             if( controller.isDialogResult()){
-                int number = controller.getNumber();
 
                 Date now = new Date();
                 sty.setModifyTime(now);
-                sty.subCurrent(number);
 
-                unitOfWork.begin();
-                unitOfWork.getStyRepository().save(sty);
-                unitOfWork.commit();
+                PigDelivery pigDelivery = new PigDelivery();
+                pigDelivery.setCreateTime(now);
+                pigDelivery.setModifyTime(now);
+                pigDelivery.setCode(controller.getCode());
+                pigDelivery.setNumber(controller.getNumber());
+                sty.addPigDelivery(pigDelivery);
 
-                refreshShedTable();
+                try {
+                    unitOfWork.begin();
+                    unitOfWork.getStyRepository().save(sty);
+                    unitOfWork.commit();
+                    refreshStyTable();
+                }
+                catch(Exception ex){
+                    unitOfWork.rollback();
+                }
 
+                pigDeliveryTableView.getItems().add(pigDelivery);
             }
 
         } catch (IOException e) {
@@ -172,7 +235,7 @@ public class StyManagementController {
                 unitOfWork.getStyRepository().save(sty);
                 unitOfWork.commit();
 
-                refreshShedTable();
+                refreshStyTable();
 
             }
 
@@ -190,7 +253,7 @@ public class StyManagementController {
             Site site = repository.findByNaturalId(siteCode);
 
             PigTransferController controller = loader.getController();
-            controller.setSty(site.getSties());
+            controller.setSties(site.getSties());
 
             Stage stage = new Stage();
             stage.setTitle("移栏");
@@ -216,7 +279,7 @@ public class StyManagementController {
                 unitOfWork.getStyRepository().save(to);
                 unitOfWork.commit();
 
-                refreshShedTable();
+                refreshStyTable();
 
             }
 
@@ -225,11 +288,10 @@ public class StyManagementController {
         }
     }
 
-
-
-
-    private void refreshShedTable() {
+    private void refreshStyTable() {
         styTableView.getColumns().get(0).setVisible(false);
         styTableView.getColumns().get(0).setVisible(true);
     }
+
+
 }

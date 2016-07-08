@@ -31,7 +31,6 @@ public class PigTransferController {
 
     @FXML
     public void initialize(){
-
     }
 
     private boolean dialogResult;
@@ -67,7 +66,7 @@ public class PigTransferController {
         return  this.choiceBoxTo.getValue();
     }
 
-    public void setSty(Collection<Sty> sties) {
+    public void setSties(Collection<Sty> sties) {
         if(sties != null){
             choiceBoxFrom.setItems( FXCollections.observableArrayList(sties));
             choiceBoxTo.setItems( FXCollections.observableArrayList(sties));

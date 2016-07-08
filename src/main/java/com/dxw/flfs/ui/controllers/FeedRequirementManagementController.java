@@ -81,7 +81,7 @@ public class FeedRequirementManagementController {
             Parent root = loader.load();
 
             PigInOutController controller = loader.getController();
-            controller.setSty(sty);
+            controller.setSties(sty);
 
             Stage stage = new Stage();
             stage.setTitle("入栏");
@@ -119,7 +119,7 @@ public class FeedRequirementManagementController {
             Parent root = loader.load();
 
             PigInOutController controller = loader.getController();
-            controller.setSty(sty);
+            controller.setSties(sty);
 
             Stage stage = new Stage();
             stage.setTitle("出栏");
@@ -156,7 +156,7 @@ public class FeedRequirementManagementController {
             Parent root = loader.load();
 
             PigInOutController controller = loader.getController();
-            controller.setSty(sty);
+            controller.setSties(sty);
 
             Stage stage = new Stage();
             stage.setTitle("死猪处理");
@@ -196,7 +196,7 @@ public class FeedRequirementManagementController {
             Site site = repository.findByNaturalId(siteCode);
 
             PigTransferController controller = loader.getController();
-            controller.setSty(site.getSties());
+            controller.setSties(site.getSties());
 
             Stage stage = new Stage();
             stage.setTitle("移栏");

@@ -38,9 +38,10 @@
                   <MenuItem mnemonicParsing="false" onAction="#onConfigUser" text="用户设置" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#onFeedRequirement" text="周送料需求" />
+                  <MenuItem mnemonicParsing="false" onAction="#onStyOperations" text="猪出入栏" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="小猪入栏" />
-                  <MenuItem mnemonicParsing="false" text="成品猪出栏" />
+                  <MenuItem mnemonicParsing="false" text="小猪入栏" onAction="#onPigEntry"/>
+                  <MenuItem mnemonicParsing="false" text="成品猪出栏" onAction="#onPigDelivery"/>
                   <MenuItem mnemonicParsing="false" text="死猪出栏" />
                   <MenuItem mnemonicParsing="false" text="移栏" />
                   <MenuItem mnemonicParsing="false" text="栏位信息" />

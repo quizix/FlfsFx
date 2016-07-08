@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="189.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.warehouses.PigEntryDetailController">
+   <bottom>
+      <Pane prefHeight="44.0" prefWidth="475.0" style="-fx-background-color: #eeeeee;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="buttonCancel" layoutX="483.0" layoutY="7.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="23.0" prefWidth="52.0" text="取消" />
+            <Button fx:id="buttonOk" layoutX="422.0" layoutY="7.0" mnemonicParsing="false" onAction="#onOk" prefHeight="23.0" prefWidth="55.0" text="确定" />
+         </children>
+      </Pane>
+   </bottom>
+   <center>
+      <Pane prefHeight="149.0" prefWidth="571.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="textFieldCode" layoutX="66.0" layoutY="26.0" promptText="单据编号" />
+            <Label layoutX="20.0" layoutY="30.0" text="编号" />
+            <Label layoutX="286.0" layoutY="30.0" text="采购订单编号" />
+            <TextField fx:id="textFieldPurchaseCode" layoutX="379.0" layoutY="26.0" promptText="采购订单编号" />
+            <Label layoutX="14.0" layoutY="64.0" text="育肥猪" />
+            <ChoiceBox fx:id="choiceBoxPig" layoutX="67.0" layoutY="60.0" prefHeight="23.0" prefWidth="158.0" />
+            <TextField fx:id="textFieldNumber" layoutX="379.0" layoutY="60.0" promptText="采购订单编号" />
+            <Label layoutX="286.0" layoutY="64.0" text="入栏数" />
+            <ChoiceBox fx:id="choiceBoxVendor" layoutX="67.0" layoutY="99.0" prefHeight="23.0" prefWidth="158.0" />
+            <Label layoutX="14.0" layoutY="103.0" text="送货单位" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

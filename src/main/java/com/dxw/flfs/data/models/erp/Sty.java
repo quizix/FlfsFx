@@ -1,5 +1,6 @@
 package com.dxw.flfs.data.models.erp;
 
+import com.dxw.flfs.data.models.mes.PigDelivery;
 import com.dxw.flfs.data.models.mes.PigEntry;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -77,9 +78,19 @@ public class Sty{
     @Column(name="lastNumber")
     private int lastNumber;
 
-    @OneToMany(mappedBy = "sty", cascade = CascadeType.PERSIST)
-    @OrderBy("createDate DESC")
-    private Set<PigEntry> styOperations = new HashSet<>();
+    /**
+     * 入栏操作
+     */
+    @OneToMany(mappedBy = "sty")
+    @OrderBy("createTime DESC")
+    private Set<PigEntry> pigEntries = new HashSet<>();
+
+    /**
+     * 出栏操作
+     */
+    @OneToMany(mappedBy = "sty")
+    @OrderBy("createTime DESC")
+    private Set<PigDelivery> pigDeliveries = new HashSet<>();
 
     @Transient
     private BooleanProperty checked = new SimpleBooleanProperty();
@@ -185,21 +196,37 @@ public class Sty{
 
 
 
-    public void addStyOperation(PigEntry styOperation){
-        styOperation.setSty(this);
-        this.styOperations.add(styOperation);
+    public void addPigEntry(PigEntry pigEntry){
+        pigEntry.setSty(this);
+        this.currentNumber += pigEntry.getNumber();
+
+        this.pigEntries.add(pigEntry);
     }
 
-    public void removeStyOperation(PigEntry styOperation){
-        styOperation.setSty(null);
-        this.styOperations.remove(styOperation);
+
+
+    public Set<PigEntry> getPigEntries() {
+        return pigEntries;
     }
 
-    public Set<PigEntry> getStyOperations() {
-        return styOperations;
+    public void setPigEntries(Set<PigEntry> pigEntries) {
+        this.pigEntries = pigEntries;
     }
 
-    public void setStyOperations(Set<PigEntry> styOperations) {
-        this.styOperations = styOperations;
+    public Set<PigDelivery> getPigDeliveries() {
+        return pigDeliveries;
     }
+
+    public void addPigDelivery(PigDelivery pigDelivery){
+        pigDelivery.setSty(this);
+        this.currentNumber += pigDelivery.getNumber();
+
+        this.pigDeliveries.add(pigDelivery);
+    }
+
+    public void setPigDeliveries(Set<PigDelivery> pigDeliveries) {
+        this.pigDeliveries = pigDeliveries;
+    }
+
+
 }

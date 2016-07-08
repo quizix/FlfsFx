@@ -154,7 +154,7 @@ public class MaterialManagementController {
             Parent root = loader.load();
 
             VendorDetailController controller = loader.getController();
-            controller.setSty(vendor);
+            controller.setSties(vendor);
             Stage stage = new Stage();
             stage.setTitle("修改供应商");
             stage.setScene(new Scene(root));

@@ -14,6 +14,8 @@ import com.dxw.flfs.data.dal.UnitOfWork;
 import com.dxw.flfs.data.models.mes.Site;
 import com.dxw.flfs.jobs.JobManager;
 import com.dxw.flfs.ui.controllers.settings.UserSettingController;
+import com.dxw.flfs.ui.controllers.warehouses.PigEntryController;
+import com.dxw.flfs.ui.controllers.warehouses.StyOperationsController;
 import com.dxw.flfs.ui.controllers.wizards.ConfigWizardController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -401,9 +403,9 @@ public class MainController {
         }
     }
 
-    public void onClickStyManagement(){
+    public void onStyOperations(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/styManagement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/warehouses/styOperations.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
@@ -415,7 +417,7 @@ public class MainController {
             stage.initOwner(null);
 
             stage.setOnCloseRequest(e -> {
-                StyManagementController controller = loader.getController();
+                StyOperationsController controller = loader.getController();
                 controller.dispose();
             });
             stage.show();
@@ -470,6 +472,33 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void onPigEntry(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ui/dialogs/warehouses/pigEntry.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("小猪入栏");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.sizeToScene();
+            stage.initOwner(null);
+            stage.setOnCloseRequest(e -> {
+                PigEntryController controller = loader.getController();
+                controller.dispose();
+            });
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onPigDelivery(){
+
     }
 
     public void onClickAbout() {

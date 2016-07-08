@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="595.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dxw.flfs.ui.controllers.warehouses.StyOperationsController">
+    <center>
+        <SplitPane dividerPositions="0.41989881956155145" orientation="VERTICAL" prefHeight="455.0" prefWidth="790.0" BorderPane.alignment="CENTER">
+            <items>
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <VBox>
+                            <children>
+                                <ToolBar prefHeight="40.0" prefWidth="200.0">
+                                    <items>
+                                        <Button mnemonicParsing="false" onAction="#onPigTransfer" text="移栏" />
+                                    </items>
+                                </ToolBar>
+                                <TitledPane collapsible="false" text="栏位">
+                                    <content>
+                                        <TableView fx:id="styTableView" prefHeight="394.0" prefWidth="796.0">
+                                            <columns>
+                                                <TableColumn prefWidth="152.0" text="栏位名称">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="name" />
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn minWidth="0.0" prefWidth="138.0" text="栏位编码">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="code" />
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn minWidth="0.0" prefWidth="138.0" text="现有数量">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="currentNumber" />
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn minWidth="0.0" prefWidth="233.0" text="创建时间">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="createTime" />
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn prefWidth="174.0" text="修改时间">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="modifyTime" />
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                            </columns>
+                                        </TableView>
+                                    </content>
+                                </TitledPane>
+                            </children>
+                        </VBox>
+                    </children>
+                </GridPane>
+                <GridPane layoutX="109.0" prefHeight="209.0" prefWidth="792.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <TabPane fx:id="tabPane" layoutX="109.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                            <tabs>
+                                <Tab text="育肥猪入栏">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <VBox prefHeight="180.0" prefWidth="792.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <children>
+                                                        <ToolBar prefHeight="40.0" prefWidth="200.0">
+                                                            <items>
+                                                                <Button mnemonicParsing="false" onAction="#onAddPigEntry" text="新增入栏" />
+                                                            </items>
+                                                        </ToolBar>
+                                                        <TableView fx:id="pigEntryTableView" prefHeight="273.0" prefWidth="797.0">
+                                                            <columns>
+                                                                <TableColumn prefWidth="75.0" text="单据编号">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="code" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                                <TableColumn prefWidth="125.0" text="采购订单编号">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="purchaseCode" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                                <TableColumn prefWidth="129.0" text="育肥猪编号">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="pig" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                                <TableColumn prefWidth="120.0" text="数量">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="number" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                                <TableColumn prefWidth="160.0" text="送货单位">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="vendor" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                                <TableColumn prefWidth="143.0" text="送货日期">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="createTime" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                                <TableColumn prefWidth="207.0" text="栏位编号">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="sty" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                            </columns>
+                                                        </TableView>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                                <Tab text="成品猪出栏">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <VBox prefHeight="180.0" prefWidth="792.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <children>
+                                                        <ToolBar prefHeight="40.0" prefWidth="200.0">
+                                                            <items>
+                                                                <Button mnemonicParsing="false" onAction="#onAddPigDelivery" text="新增出栏" />
+                                                            </items>
+                                                        </ToolBar>
+                                                        <TableView fx:id="pigDeliveryTableView" prefHeight="200.0" prefWidth="200.0">
+                                                            <columns>
+                                                                <TableColumn prefWidth="75.0" text="单据编号">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="code" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                                <TableColumn prefWidth="129.0" text="育肥猪编号">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="pig" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                                <TableColumn prefWidth="120.0" text="数量">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="number" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                                <TableColumn prefWidth="169.0" text="出栏日期">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="createTime" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                                <TableColumn prefWidth="181.0" text="栏位编号">
+                                                                    <cellValueFactory>
+                                                                        <PropertyValueFactory property="sty" />
+                                                                    </cellValueFactory>
+                                                                </TableColumn>
+                                                            </columns>
+                                                        </TableView>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </children>
+                </GridPane>
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane>
